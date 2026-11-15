@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "atolye",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["atolye/sunucu.js"],
+      "port": 8797,
+      "url": "http://127.0.0.1:8797"
+    }
+  ]
+}

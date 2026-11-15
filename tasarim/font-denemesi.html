@@ -1,0 +1,137 @@
+<title>Hemdem Font Denemesi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..600,0..100&family=Nunito:wght@400;600&family=Lora:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Manrope:wght@400;600&display=swap">
+<style>
+/* Layout: kısa giriş, renk seçici, yan yana üç dikey 9:16 reels karesi */
+:root{
+  --bg:#F3F1EE; --surface:#FFFFFF; --fg:#22242A; --muted:#62656E; --line:#DDD9D3; --accent:#5B6E8C;
+  --ui:"Inter",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#16181C; --surface:#1F2228; --fg:#ECEAE6; --muted:#A3A6AE; --line:#30343B; --accent:#9DB0CF; color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#16181C; --surface:#1F2228; --fg:#ECEAE6; --muted:#A3A6AE; --line:#30343B; --accent:#9DB0CF; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--ui);line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 48px}
+.wrap{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+h1{font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 100;font-weight:500;font-size:2rem;margin:0;text-wrap:balance}
+.intro p{margin:6px 0 0;color:var(--muted);max-width:62ch}
+.picker{display:flex;flex-direction:column;gap:10px}
+.picker h2{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0;font-weight:500}
+.swatches{display:flex;flex-wrap:wrap;gap:10px}
+.sw{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);color:var(--fg);
+  border-radius:999px;padding:6px 14px 6px 6px;font:500 .85rem var(--ui);cursor:pointer}
+.sw i{width:22px;height:22px;border-radius:50%;display:block;border:1px solid rgba(127,127,127,.25)}
+.sw[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent) inset}
+.sw:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.card{display:flex;flex-direction:column;gap:12px;min-width:0}
+.frame{position:relative;aspect-ratio:9/16;max-width:100%;border-radius:14px;overflow:hidden;
+  background:var(--f-bg);color:var(--f-fg);transition:background .4s,color .4s}
+.sil{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:62%;opacity:.16}
+.sil *{fill:currentColor}
+.sav{position:absolute;inset:18% 9% auto;text-align:center}
+.sav q{quotes:none;display:block;font-size:1.32rem;line-height:1.35}
+.sav cite{display:block;margin-top:12px;font-style:normal;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;opacity:.7}
+.sub{position:absolute;left:8%;right:8%;bottom:16%;text-align:center;font-size:.92rem;line-height:1.4}
+.sub span{background:color-mix(in srgb,var(--f-bg) 70%,transparent);padding:2px 8px;border-radius:6px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.mark{position:absolute;left:0;right:0;bottom:5%;text-align:center;font-size:.7rem;letter-spacing:.3em;opacity:.55}
+.meta{display:flex;flex-direction:column;gap:4px}
+.meta h3{margin:0;font-size:1rem;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.badge{font-size:.7rem;font-weight:500;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:1px 8px}
+.meta p{margin:0;color:var(--muted);font-size:.88rem}
+.meta code{font-size:.8rem;color:var(--fg)}
+.chars{font-size:.85rem;color:var(--muted)}
+/* Font çiftleri */
+.a .sav q,.a .mark{font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 100,"opsz" 48;font-weight:400}
+.a .sub,.a .sav cite{font-family:"Nunito",system-ui,sans-serif;font-weight:600}
+.b .sav q,.b .mark{font-family:"Lora",Georgia,serif;font-style:italic}
+.b .sub,.b .sav cite{font-family:"Inter",system-ui,sans-serif;font-weight:500}
+.c .sav q,.c .mark{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-weight:500;font-size:1.5rem}
+.c .sub,.c .sav cite{font-family:"Manrope",system-ui,sans-serif;font-weight:600}
+@media (prefers-reduced-motion:reduce){.frame{transition:none}}
+</style>
+
+<div class="wrap">
+  <header class="intro">
+    <h1>Hemdem font denemesi</h1>
+    <p>Üç font çifti, aynı sahnede. Büyük yazı Sav için, alttaki küçük yazı altyazı için. Arka plan rengini aşağıdan değiştirip her çiftin koyu ve açık zeminde nasıl durduğuna bakabilirsin.</p>
+  </header>
+
+  <section class="picker" aria-label="Arka plan rengi">
+    <h2>Arka plan</h2>
+    <div class="swatches" id="swatches"></div>
+  </section>
+
+  <section class="grid">
+    <article class="card a">
+      <div class="frame">
+        <svg class="sil" viewBox="0 0 200 220" aria-hidden="true"><circle cx="100" cy="62" r="34"/><path d="M20 220 C20 150 55 112 100 112 C145 112 180 150 180 220 Z"/></svg>
+        <div class="sav"><q>Kelimelerinse kifayetsiz olduğunu bilmezdim.</q><cite>Orhan Veli</cite></div>
+        <div class="sub"><span>Mesajı yazdın. Sildin. Yeniden yazdın.</span></div>
+        <div class="mark">HEMDEM</div>
+      </div>
+      <div class="meta">
+        <h3>A · Fraunces + Nunito <span class="badge">Seçildi</span></h3>
+        <p>Sıcak ve yumuşak. Fraunces'ın kenarları yuvarlatılabiliyor, Nunito'nun harf uçları da yuvarlak. Sesli ve samimi bir anlatıma en yakın çift.</p>
+        <p class="chars">Ğğ Şş İı Öö Çç Üü</p>
+      </div>
+    </article>
+
+    <article class="card b">
+      <div class="frame">
+        <svg class="sil" viewBox="0 0 200 220" aria-hidden="true"><circle cx="100" cy="62" r="34"/><path d="M20 220 C20 150 55 112 100 112 C145 112 180 150 180 220 Z"/></svg>
+        <div class="sav"><q>Kelimelerinse kifayetsiz olduğunu bilmezdim.</q><cite>Orhan Veli</cite></div>
+        <div class="sub"><span>Mesajı yazdın. Sildin. Yeniden yazdın.</span></div>
+        <div class="mark">HEMDEM</div>
+      </div>
+      <div class="meta">
+        <h3>B · Lora + Inter</h3>
+        <p>Klasik ve sade. Kitap sayfası hissi veriyor, altyazı telefonda çok net okunuyor. En güvenli seçim, ama en az kişilikli olanı.</p>
+        <p class="chars">Ğğ Şş İı Öö Çç Üü</p>
+      </div>
+    </article>
+
+    <article class="card c">
+      <div class="frame">
+        <svg class="sil" viewBox="0 0 200 220" aria-hidden="true"><circle cx="100" cy="62" r="34"/><path d="M20 220 C20 150 55 112 100 112 C145 112 180 150 180 220 Z"/></svg>
+        <div class="sav"><q>Kelimelerinse kifayetsiz olduğunu bilmezdim.</q><cite>Orhan Veli</cite></div>
+        <div class="sub"><span>Mesajı yazdın. Sildin. Yeniden yazdın.</span></div>
+        <div class="mark">HEMDEM</div>
+      </div>
+      <div class="meta">
+        <h3>C · Cormorant Garamond + Manrope</h3>
+        <p>Zarif ve şiirsel. Divan ve tasavvuf sözlerinde çok güzel durur. İnce olduğu için küçük ekranda biraz zor okunur.</p>
+        <p class="chars">Ğğ Şş İı Öö Çç Üü</p>
+      </div>
+    </article>
+  </section>
+</div>
+
+<script>
+const colors=[
+  {n:"Gece mavisi",bg:"#1F2A3A",fg:"#EDE7DE"},
+  {n:"Mürdüm",bg:"#3A2635",fg:"#F1E4E2"},
+  {n:"Koyu yosun",bg:"#26322B",fg:"#E8EDE3"},
+  {n:"Lavanta gecesi",bg:"#2D2A3E",fg:"#ECE6F2"},
+  {n:"Kestane",bg:"#3B2C26",fg:"#F2E6DC"},
+  {n:"Derin petrol",bg:"#1E3236",fg:"#E3EEEC"},
+  {n:"Sis mavisi",bg:"#D8E0E8",fg:"#26303D"},
+  {n:"Toz pembe",bg:"#EAD9D3",fg:"#3D2B2A"},
+  {n:"Adaçayı",bg:"#D9E0D3",fg:"#2B3428"},
+  {n:"Lavanta",bg:"#DDD7E8",fg:"#2E2940"},
+  {n:"Şeftali",bg:"#F1DCCB",fg:"#3E2C22"},
+  {n:"Su yeşili",bg:"#D3E5E0",fg:"#22332F"}
+];
+const box=document.getElementById("swatches");
+function pick(i){
+  colors.forEach((c,j)=>box.children[j].setAttribute("aria-pressed",i===j));
+  document.querySelectorAll(".frame").forEach(f=>{f.style.setProperty("--f-bg",colors[i].bg);f.style.setProperty("--f-fg",colors[i].fg)});
+  try{localStorage.setItem("hemdem-renk",i)}catch(e){}
+}
+colors.forEach((c,i)=>{const b=document.createElement("button");b.type="button";b.id="renk-"+i;b.className="sw";
+  b.innerHTML='<i style="background:'+c.bg+'"></i>'+c.n;b.onclick=()=>pick(i);box.appendChild(b)});
+let s=0;try{s=+localStorage.getItem("hemdem-renk")||0}catch(e){}
+pick(s>=0&&s<colors.length?s:0);
+</script>

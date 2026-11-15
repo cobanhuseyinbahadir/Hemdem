@@ -1,0 +1,110 @@
+{
+  "ses": "tILIOdKERNNbBHVEXk7I",
+  "model": "eleven_v4",
+  "stability": 0.5,
+  "similarity": 0.75,
+  "basSessizlik": 0.3,
+  "sonPay": 0.6,
+  "cumleler": [
+    {
+      "metin": "Kahveni içtin.",
+      "etiket": "[calm, quietly]",
+      "durak": 0.3
+    },
+    {
+      "metin": "Fincanı tabağına ters çevirdin, alışkanlıktan.",
+      "etiket": "[calm, absent-minded]",
+      "durak": 0.55
+    },
+    {
+      "metin": "Sonra durdun.",
+      "etiket": "[softly, a beat of realization]",
+      "durak": 0.3
+    },
+    {
+      "metin": "Gösterecek kimse yoktu artık.",
+      "etiket": "[whispers]",
+      "durak": 0.7
+    },
+    {
+      "metin": "Bir zamanlar bu fincanı ona gösterirdin.",
+      "etiket": "[warmly, remembering]",
+      "durak": 0.3
+    },
+    {
+      "metin": "Gelir, fincanına bakardı.",
+      "etiket": "[warmly, smiling]",
+      "durak": 0.25
+    },
+    {
+      "metin": "Saatlerce gülerdiniz.",
+      "etiket": "[smiling, a little nostalgic]",
+      "durak": 0.55
+    },
+    {
+      "metin": "Şimdi sadece bayramda iki satır yazışıyorsunuz.",
+      "etiket": "[flat, a little sad]",
+      "durak": 0.4
+    },
+    {
+      "metin": "Kimse kavga etmedi, kimse kırılmadı.",
+      "etiket": "[puzzled, quietly]",
+      "durak": 0.4
+    },
+    {
+      "metin": "Fincanın dibinde kalan hep o soru: \"Kabahat bende mi?\"",
+      "etiket": "[anxious, hesitant]",
+      "durak": 0.7
+    },
+    {
+      "metin": "Atalarımız bunu bir sözde anlatmış:",
+      "etiket": "[calm, storytelling]",
+      "durak": 0.3
+    },
+    {
+      "metin": "\"Bir fincan kahvenin kırk yıl hatırı vardır.\"",
+      "etiket": "[slowly, with weight]",
+      "durak": 0.4
+    },
+    {
+      "metin": "Küçük bir iyilik, kırk yıl unutulmazmış.",
+      "etiket": "[gently]",
+      "durak": 0.7
+    },
+    {
+      "metin": "Bu söz sana vefayı öğretti.",
+      "etiket": "[calm, sincere]",
+      "durak": 0.3
+    },
+    {
+      "metin": "Ama bir yük de bıraktı:",
+      "etiket": "[a little heavier]",
+      "durak": 0.25
+    },
+    {
+      "metin": "Dostluk bitince biri kabahatli sandın.",
+      "etiket": "[softly]",
+      "durak": 0.4
+    },
+    {
+      "metin": "Oysa söz \"dostluk kırk yıl sürer\" demiyor, \"hatırı kırk yıl sürer\" diyor.",
+      "etiket": "[thoughtful, gently emphasizing]",
+      "durak": 0.55
+    },
+    {
+      "metin": "Belki vefa, bitmişi zorla sürdürmek değil, onu iyi anmaktır.",
+      "etiket": "[warm, reassuring]",
+      "durak": 0.7
+    },
+    {
+      "metin": "O şekiller bugün kimseye kalmayacak.",
+      "etiket": "[quietly, a little sad]",
+      "durak": 0.55
+    },
+    {
+      "metin": "Peki sende kalan hatır, hangi fincanın?",
+      "etiket": "[slowly, thoughtfully]",
+      "durak": 0.4
+    }
+  ]
+}

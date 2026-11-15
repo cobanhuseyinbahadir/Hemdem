@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Hemdem sahne</title>
+<link rel="stylesheet" href="node_modules/@fontsource/caveat/500.css">
+<link rel="stylesheet" href="node_modules/@fontsource/caveat/600.css">
+<link rel="stylesheet" href="node_modules/@fontsource/nunito/600.css">
+<link rel="stylesheet" href="node_modules/@fontsource-variable/fraunces/full.css">
+<link rel="stylesheet" href="node_modules/@fontsource-variable/fraunces/full-italic.css">
+<style>
+  html, body { margin: 0; background: #000; }
+  canvas { display: block; }
+</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script src="eskiz.js"></script>
+<script src="minyatur.js"></script>
+<script>
+  // Film dosyası ?film=<dosya yolu> ile verilir. Dosya window.FILM'i tanımlar:
+  // Eskiz:    { duration, fps?, paper, ink, accent, seed?, subs?, setup(E)?, render(g, t, E) }
+  // Minyatür: { style: 'minyatur', duration, fps?, seed?, subs?, setup(M)?, render(g, t, M) }
+  //           Minyatürde motor kâğıt çizmez; film resmin tamamını çizer, motor üstüne
+  //           sabit parşömen altyazıyı ve tezhip bordürünü ekler.
+  const params = new URLSearchParams(location.search);
+  const g = document.getElementById('c').getContext('2d');
+  const filmSrc = params.get('film');
+  window.ready = new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = filmSrc;
+    s.onload = async () => {
+      try {
+        const sample = 'Ğğ Şş İı Öö Çç Üü';
+        await Promise.all([
+          document.fonts.load(`500 64px 'Caveat'`, sample),
+          document.fonts.load(`600 64px 'Caveat'`, sample),
+          document.fonts.load(`600 46px 'Nunito'`, sample),
+          document.fonts.load(`400 92px 'Fraunces Variable'`, 'Hemdem'),
+          document.fonts.load(`500 50px 'Fraunces Variable'`, sample),
+          document.fonts.load(`italic 500 50px 'Fraunces Variable'`, sample),
+        ]);
+        await document.fonts.ready;
+        if (FILM.style === 'minyatur') {
+          M.setup(g, FILM);
+          if (FILM.setup) FILM.setup(M);
+        } else {
+          E.setup(FILM);
+          if (FILM.setup) FILM.setup(E);
+        }
+        // timeMap varsa video süresi gerçek zamana göre hesaplanır
+        let duration = FILM.duration;
+        if (FILM.timeMap && FILM.timeMap.length > 1) {
+          const last = FILM.timeMap[FILM.timeMap.length - 1];
+          duration = last[1] + (FILM.duration - last[0]);
+        }
+        resolve({ duration, fps: FILM.fps || 30 });
+      } catch (e) { reject(String(e && e.stack || e)); }
+    };
+    s.onerror = () => reject('Film dosyası yüklenemedi: ' + filmSrc);
+    document.head.appendChild(s);
+  });
+  // t: gerçek zaman (videodaki saniye). FILM.timeMap varsa plan zamanına çevrilir;
+  // render ve altyazılar hep plan zamanıyla çalışır.
+  window.renderFrame = function (t) {
+    const tp = E.warp(FILM.timeMap, t);
+    g.setTransform(1, 0, 0, 1, 0, 0);
+    g.clearRect(0, 0, E.W, E.H);
+    if (FILM.style === 'minyatur') {
+      g.fillStyle = M.C.LAPIS_D; g.fillRect(0, 0, M.W, M.H);
+      g.save();
+      g.beginPath(); g.rect(M.PIC.x, M.PIC.y, M.PIC.w, M.PIC.h); g.clip();
+      M.lwK = 1;
+      FILM.render(g, tp, M);
+      g.restore();
+      M.lwK = 1;
+      M.drawSubs(g, FILM.subs, tp);
+      if (FILM.overlay) { g.save(); g.setTransform(1, 0, 0, 1, 0, 0); FILM.overlay(g, tp, M); g.restore(); }
+      M.border(g, FILM.signature ?? 'Hemdem');
+      return true;
+    }
+    E.drawPaper(g);
+    g.save();
+    FILM.render(g, tp, E);
+    g.restore();
+    E.drawSubs(g, FILM.subs, tp);
+    return true;
+  };
+</script>
+</body>
+</html>

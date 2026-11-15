@@ -1,0 +1,122 @@
+[
+ {
+  "id": "1-sakin",
+  "run": "v4-etiketsiz",
+  "f": "1-sakin_v4-etiketsiz.mp3",
+  "chars": 61,
+  "end": 4.4,
+  "tagLeak": false
+ },
+ {
+  "id": "1-sakin",
+  "run": "v4-etiketli",
+  "f": "1-sakin_v4-etiketli.mp3",
+  "chars": 88,
+  "end": 4.64,
+  "tagLeak": true
+ },
+ {
+  "id": "1-sakin",
+  "run": "v3-etiketli",
+  "f": "1-sakin_v3-etiketli.mp3",
+  "chars": 88,
+  "end": 4.24,
+  "tagLeak": true
+ },
+ {
+  "id": "2-fisilti",
+  "run": "v4-etiketsiz",
+  "f": "2-fisilti_v4-etiketsiz.mp3",
+  "chars": 43,
+  "end": 3.36,
+  "tagLeak": false
+ },
+ {
+  "id": "2-fisilti",
+  "run": "v4-etiketli",
+  "f": "2-fisilti_v4-etiketli.mp3",
+  "chars": 54,
+  "end": 3.68,
+  "tagLeak": true
+ },
+ {
+  "id": "2-fisilti",
+  "run": "v3-etiketli",
+  "f": "2-fisilti_v3-etiketli.mp3",
+  "chars": 54,
+  "end": 3.76,
+  "tagLeak": true
+ },
+ {
+  "id": "3-sicak",
+  "run": "v4-etiketsiz",
+  "f": "3-sicak_v4-etiketsiz.mp3",
+  "chars": 47,
+  "end": 3.84,
+  "tagLeak": false
+ },
+ {
+  "id": "3-sicak",
+  "run": "v4-etiketli",
+  "f": "3-sicak_v4-etiketli.mp3",
+  "chars": 65,
+  "end": 4.08,
+  "tagLeak": true
+ },
+ {
+  "id": "3-sicak",
+  "run": "v3-etiketli",
+  "f": "3-sicak_v3-etiketli.mp3",
+  "chars": 65,
+  "end": 3.68,
+  "tagLeak": true
+ },
+ {
+  "id": "4-kaygi",
+  "run": "v4-etiketsiz",
+  "f": "4-kaygi_v4-etiketsiz.mp3",
+  "chars": 52,
+  "end": 4,
+  "tagLeak": false
+ },
+ {
+  "id": "4-kaygi",
+  "run": "v4-etiketli",
+  "f": "4-kaygi_v4-etiketli.mp3",
+  "chars": 72,
+  "end": 4.24,
+  "tagLeak": true
+ },
+ {
+  "id": "4-kaygi",
+  "run": "v3-etiketli",
+  "f": "4-kaygi_v3-etiketli.mp3",
+  "chars": 72,
+  "end": 4.32,
+  "tagLeak": true
+ },
+ {
+  "id": "5-agir",
+  "run": "v4-etiketsiz",
+  "f": "5-agir_v4-etiketsiz.mp3",
+  "chars": 39,
+  "end": 3.6,
+  "tagLeak": false
+ },
+ {
+  "id": "5-agir",
+  "run": "v4-etiketli",
+  "f": "5-agir_v4-etiketli.mp3",
+  "chars": 62,
+  "end": 4.32,
+  "tagLeak": true
+ },
+ {
+  "id": "5-agir",
+  "run": "v3-etiketli",
+  "f": "5-agir_v3-etiketli.mp3",
+  "chars": 62,
+  "end": 4.48,
+  "tagLeak": true
+ }
+]

@@ -1,0 +1,32 @@
+# Gizli bilgiler — asla yüklenmez
+.env
+.env.*
+
+# Bağımlılıklar
+node_modules/
+
+# Günlük üretim (konular, metinler, videolar) — yalnızca sistem yüklenir
+gunluk/
+
+# Medya (ses, video, görsel) — bilgisayarda kalır, kodla yeniden üretilebilir
+*.mp4
+*.mov
+*.wav
+*.m4a
+*.mp3
+*.aac
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+
+# Ses/müzik deneme çıktıları
+tasarim/ses-deneme/**/ses-cumleler/
+tasarim/**/kareler/
+
+# Sistem
+.DS_Store
+Thumbs.db
+desktop.ini
+.claude/settings.local.json

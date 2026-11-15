@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hemdem okuma kartı</title>
+<!-- gunluk/<tarih>/ içine kopyalanınca bu yol motor klasörüne çıkar -->
+<link rel="stylesheet" href="../../motor/node_modules/@fontsource/nunito/600.css">
+<style>
+  /* Ses Yönetmeni bu şablonu kopyalar ve aşağıdaki OKUMA verisini doldurur. */
+  :root { --bg: #1F2A3A; --fg: #EDE7DE; --dim: rgba(237,231,222,.38); --acc: #E2A65A; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--fg); font-family: 'Nunito', system-ui, sans-serif; }
+  header { position: sticky; top: 0; background: var(--bg); padding: 14px 18px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; border-bottom: 1px solid rgba(255,255,255,.08); z-index: 2; }
+  header h1 { font-size: 1rem; margin: 0 auto 0 0; font-weight: 600; }
+  button { font: 600 1rem 'Nunito', sans-serif; background: var(--acc); color: #1b1b1b; border: 0; border-radius: 999px; padding: 10px 20px; cursor: pointer; }
+  button.ghost { background: transparent; color: var(--fg); border: 1px solid var(--dim); }
+  label { font-size: .85rem; color: var(--dim); display: flex; align-items: center; gap: 6px; }
+  #clock { font-variant-numeric: tabular-nums; min-width: 5ch; text-align: right; }
+  main { padding: 30vh 22px 60vh; max-width: 760px; margin: 0 auto; }
+  .ph { font-size: clamp(1.6rem, 5.5vw, 2.6rem); line-height: 1.35; margin: 0 0 .5em; color: var(--dim); transition: color .25s; }
+  .ph.on { color: var(--fg); }
+  .ph.done { color: rgba(237,231,222,.55); }
+  .ph b { color: var(--acc); font-weight: 600; }
+  .note { display: block; font-size: .95rem; color: var(--acc); opacity: .85; margin-top: .2em; }
+  .pause { height: 1.2em; }
+  .pause.long { height: 2.4em; }
+  #count { position: fixed; inset: 0; display: none; place-items: center; font-size: 30vw; background: var(--bg); z-index: 5; }
+</style>
+</head>
+<body>
+<header>
+  <h1 id="title"></h1>
+  <label>Hız <input id="speed" type="range" min="0.85" max="1.15" step="0.01" value="1"> <span id="sv">1.00×</span></label>
+  <span id="clock">0.0</span>
+  <button id="go">Başla</button>
+  <button id="reset" class="ghost">Baştan</button>
+</header>
+<div id="count"></div>
+<main id="text"></main>
+<script>
+// a, b: cümlenin okunması gereken zaman aralığı (sn, plan zamanı). pause: sonrasında "kisa" | "uzun".
+// text içinde **kelime** vurguyu gösterir. note: o cümle için kısa yönlendirme.
+const OKUMA = {
+  title: 'Z3 · Kelimeler yetmiyorsa',
+  phrases: [
+    { a: 0.0, b: 1.3, text: 'Mesajı yazdın.', pause: 'kisa', note: 'yavaş, kendi kendine' },
+  ],
+};
+const main = document.getElementById('text');
+document.getElementById('title').textContent = OKUMA.title;
+const els = OKUMA.phrases.map(p => {
+  const d = document.createElement('p'); d.className = 'ph';
+  d.innerHTML = p.text.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>') + (p.note ? `<span class="note">${p.note}</span>` : '');
+  main.appendChild(d);
+  if (p.pause) { const s = document.createElement('div'); s.className = 'pause ' + (p.pause === 'uzun' ? 'long' : ''); main.appendChild(s); }
+  return d;
+});
+let t0 = null, raf = null, speed = 1;
+const sp = document.getElementById('speed'), sv = document.getElementById('sv');
+sp.oninput = () => { speed = parseFloat(sp.value); sv.textContent = speed.toFixed(2) + '×'; };
+function tick() {
+  const t = ((performance.now() - t0) / 1000) * speed;
+  document.getElementById('clock').textContent = t.toFixed(1);
+  OKUMA.phrases.forEach((p, i) => {
+    els[i].classList.toggle('on', t >= p.a - 0.15 && t < p.b + 0.2);
+    els[i].classList.toggle('done', t >= p.b + 0.2);
+  });
+  const cur = OKUMA.phrases.findIndex(p => t < p.b + 0.2);
+  if (cur >= 0) els[cur].scrollIntoView({ block: 'center', behavior: 'smooth' });
+  if (cur >= 0) raf = requestAnimationFrame(tick);
+}
+document.getElementById('go').onclick = () => {
+  const c = document.getElementById('count'); c.style.display = 'grid'; let n = 3; c.textContent = n;
+  const iv = setInterval(() => { n--; if (n) c.textContent = n; else { clearInterval(iv); c.style.display = 'none'; t0 = performance.now(); cancelAnimationFrame(raf); tick(); } }, 800);
+};
+document.getElementById('reset').onclick = () => { cancelAnimationFrame(raf); t0 = null; els.forEach(e => e.classList.remove('on', 'done')); window.scrollTo(0, 0); document.getElementById('clock').textContent = '0.0'; };
+</script>
+</body>
+</html>

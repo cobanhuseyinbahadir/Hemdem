@@ -1,0 +1,772 @@
+{
+ "toplamSure": 66.045,
+ "lufs": -16.8,
+ "truePeak": -1.5,
+ "cumleler": [
+  {
+   "no": 1,
+   "metin": "Kahveni içtin.",
+   "etiket": "[calm, quietly]",
+   "model": "eleven_v4",
+   "surum": 1,
+   "bas": 0.317,
+   "son": 1.465,
+   "kelimeler": [
+    {
+     "k": "Kahveni",
+     "bas": 0.317,
+     "son": 0.797
+    },
+    {
+     "k": "içtin.",
+     "bas": 0.877,
+     "son": 1.465
+    }
+   ]
+  },
+  {
+   "no": 2,
+   "metin": "Fincanı tabağına ters çevirdin, alışkanlıktan.",
+   "etiket": "[calm, absent-minded]",
+   "model": "eleven_v4",
+   "surum": 1,
+   "bas": 1.863,
+   "son": 4.983,
+   "kelimeler": [
+    {
+     "k": "Fincanı",
+     "bas": 1.863,
+     "son": 2.263
+    },
+    {
+     "k": "tabağına",
+     "bas": 2.343,
+     "son": 2.743
+    },
+    {
+     "k": "ters",
+     "bas": 2.823,
+     "son": 3.063
+    },
+    {
+     "k": "çevirdin,",
+     "bas": 3.103,
+     "son": 3.783
+    },
+    {
+     "k": "alışkanlıktan.",
+     "bas": 3.943,
+     "son": 4.983
+    }
+   ]
+  },
+  {
+   "no": 3,
+   "metin": "Sonra durdun.",
+   "etiket": "[softly, a beat of realization]",
+   "model": "eleven_v4",
+   "surum": 1,
+   "bas": 5.683,
+   "son": 6.865,
+   "kelimeler": [
+    {
+     "k": "Sonra",
+     "bas": 5.683,
+     "son": 6.083
+    },
+    {
+     "k": "durdun.",
+     "bas": 6.163,
+     "son": 6.865
+    }
+   ]
+  },
+  {
+   "no": 4,
+   "metin": "Gösterecek kimse yoktu artık.",
+   "etiket": "[whispers]",
+   "model": "eleven_v4",
+   "surum": 1,
+   "bas": 7.156,
+   "son": 9.173,
+   "kelimeler": [
+    {
+     "k": "Gösterecek",
+     "bas": 7.156,
+     "son": 7.876
+    },
+    {
+     "k": "kimse",
+     "bas": 7.996,
+     "son": 8.196
+    },
+    {
+     "k": "yoktu",
+     "bas": 8.276,
+     "son": 8.596
+    },
+    {
+     "k": "artık.",
+     "bas": 8.716,
+     "son": 9.173
+    }
+   ]
+  },
+  {
+   "no": 5,
+   "metin": "Bir zamanlar bu fincanı ona gösterirdin.",
+   "etiket": "[warmly, remembering]",
+   "model": "eleven_v4",
+   "surum": 1,
+   "bas": 9.959,
+   "son": 12.599,
+   "kelimeler": [
+    {
+     "k": "Bir",
+     "bas": 9.959,
+     "son": 10.039
+    },
+    {
+     "k": "zamanlar",
+     "bas": 10.119,
+     "son": 10.679
+    },
+    {
+     "k": "bu",
+     "bas": 10.839,
+     "son": 10.919
+    },
+    {
+     "k": "fincanı",
+     "bas": 10.999,
+     "son": 11.399
+    },
+    {
+     "k": "ona",
+     "bas": 11.519,
+     "son": 11.639
+    },
+    {
+     "k": "gösterirdin.",
+     "bas": 11.679,
+     "son": 12.599
+    }
+   ]
+  },
+  {
+   "no": 6,
+   "metin": "Gelir, fincanına bakardı.",
+   "etiket": "[warmly, smiling]",
+   "model": "eleven_v4",
+   "surum": 1,
+   "bas": 12.939,
+   "son": 14.808,
+   "kelimeler": [
+    {
+     "k": "Gelir,",
+     "bas": 12.939,
+     "son": 13.411
+    },
+    {
+     "k": "fincanına",
+     "bas": 13.611,
+     "son": 14.171
+    },
+    {
+     "k": "bakardı.",
+     "bas": 14.291,
+     "son": 14.808
+    }
+   ]
+  },
+  {
+   "no": 7,
+   "metin": "Saatlerce gülerdiniz.",
+   "etiket": "[smiling, a little nostalgic]",
+   "model": "eleven_v4",
+   "surum": 1,
+   "bas": 15.098,
+   "son": 16.756,
+   "kelimeler": [
+    {
+     "k": "Saatlerce",
+     "bas": 15.098,
+     "son": 15.834
+    },
+    {
+     "k": "gülerdiniz.",
+     "bas": 15.914,
+     "son": 16.756
+    }
+   ]
+  },
+  {
+   "no": 8,
+   "metin": "Şimdi sadece bayramda iki satır yazışıyorsunuz.",
+   "etiket": "[flat, a little sad]",
+   "model": "eleven_v4",
+   "surum": 1,
+   "bas": 17.408,
+   "son": 20.486,
+   "kelimeler": [
+    {
+     "k": "Şimdi",
+     "bas": 17.408,
+     "son": 17.728
+    },
+    {
+     "k": "sadece",
+     "bas": 17.808,
+     "son": 18.288
+    },
+    {
+     "k": "bayramda",
+     "bas": 18.368,
+     "son": 18.768
+    },
+    {
+     "k": "iki",
+     "bas": 18.848,
+     "son": 19.008
+    },
+    {
+     "k": "satır",
+     "bas": 19.088,
+     "son": 19.328
+    },
+    {
+     "k": "yazışıyorsunuz.",
+     "bas": 19.408,
+     "son": 20.486
+    }
+   ]
+  },
+  {
+   "no": 9,
+   "metin": "Kimse kavga etmedi, kimse kırılmadı.",
+   "etiket": "[puzzled, quietly]",
+   "model": "eleven_v4",
+   "surum": 1,
+   "bas": 20.908,
+   "son": 23.649,
+   "kelimeler": [
+    {
+     "k": "Kimse",
+     "bas": 20.908,
+     "son": 21.308
+    },
+    {
+     "k": "kavga",
+     "bas": 21.348,
+     "son": 21.628
+    },
+    {
+     "k": "etmedi,",
+     "bas": 21.708,
+     "son": 22.428
+    },
+    {
+     "k": "kimse",
+     "bas": 22.668,
+     "son": 22.988
+    },
+    {
+     "k": "kırılmadı.",
+     "bas": 23.068,
+     "son": 23.649
+    }
+   ]
+  },
+  {
+   "no": 10,
+   "metin": "Fincanın dibinde kalan hep o soru: \"Kabahat bende mi?\"",
+   "etiket": "[anxious, hesitant]",
+   "model": "eleven_v4",
+   "surum": 1,
+   "bas": 24.142,
+   "son": 28.062,
+   "kelimeler": [
+    {
+     "k": "Fincanın",
+     "bas": 24.142,
+     "son": 24.622
+    },
+    {
+     "k": "dibinde",
+     "bas": 24.702,
+     "son": 25.022
+    },
+    {
+     "k": "kalan",
+     "bas": 25.102,
+     "son": 25.422
+    },
+    {
+     "k": "hep",
+     "bas": 25.502,
+     "son": 25.742
+    },
+    {
+     "k": "o",
+     "bas": 25.822,
+     "son": 25.902
+    },
+    {
+     "k": "soru:",
+     "bas": 25.942,
+     "son": 26.502
+    },
+    {
+     "k": "\"Kabahat",
+     "bas": 26.782,
+     "son": 27.262
+    },
+    {
+     "k": "bende",
+     "bas": 27.342,
+     "son": 27.662
+    },
+    {
+     "k": "mi?\"",
+     "bas": 27.782,
+     "son": 28.062
+    }
+   ]
+  },
+  {
+   "no": 11,
+   "metin": "Atalarımız bunu bir sözde anlatmış:",
+   "etiket": "[calm, storytelling]",
+   "model": "eleven_v4",
+   "surum": 1,
+   "bas": 28.766,
+   "son": 31.197,
+   "kelimeler": [
+    {
+     "k": "Atalarımız",
+     "bas": 28.766,
+     "son": 29.406
+    },
+    {
+     "k": "bunu",
+     "bas": 29.646,
+     "son": 29.806
+    },
+    {
+     "k": "bir",
+     "bas": 29.886,
+     "son": 29.966
+    },
+    {
+     "k": "sözde",
+     "bas": 30.046,
+     "son": 30.366
+    },
+    {
+     "k": "anlatmış:",
+     "bas": 30.446,
+     "son": 31.197
+    }
+   ]
+  },
+  {
+   "no": 12,
+   "metin": "\"Bir fincan kahvenin kırk yıl hatırı vardır.\"",
+   "etiket": "[slowly, with weight]",
+   "model": "eleven_v4",
+   "surum": 1,
+   "bas": 31.584,
+   "son": 35.258,
+   "kelimeler": [
+    {
+     "k": "\"Bir",
+     "bas": 31.584,
+     "son": 31.824
+    },
+    {
+     "k": "fincan",
+     "bas": 31.904,
+     "son": 32.384
+    },
+    {
+     "k": "kahvenin",
+     "bas": 32.464,
+     "son": 33.424
+    },
+    {
+     "k": "kırk",
+     "bas": 33.504,
+     "son": 33.784
+    },
+    {
+     "k": "yıl",
+     "bas": 33.824,
+     "son": 34.064
+    },
+    {
+     "k": "hatırı",
+     "bas": 34.144,
+     "son": 34.504
+    },
+    {
+     "k": "vardır.\"",
+     "bas": 34.544,
+     "son": 35.258
+    }
+   ]
+  },
+  {
+   "no": 13,
+   "metin": "Küçük bir iyilik, kırk yıl unutulmazmış.",
+   "etiket": "[gently]",
+   "model": "eleven_v4",
+   "surum": 1,
+   "bas": 35.667,
+   "son": 38.757,
+   "kelimeler": [
+    {
+     "k": "Küçük",
+     "bas": 35.667,
+     "son": 35.987
+    },
+    {
+     "k": "bir",
+     "bas": 36.067,
+     "son": 36.147
+    },
+    {
+     "k": "iyilik,",
+     "bas": 36.227,
+     "son": 36.947
+    },
+    {
+     "k": "kırk",
+     "bas": 37.187,
+     "son": 37.427
+    },
+    {
+     "k": "yıl",
+     "bas": 37.467,
+     "son": 37.587
+    },
+    {
+     "k": "unutulmazmış.",
+     "bas": 37.667,
+     "son": 38.757
+    }
+   ]
+  },
+  {
+   "no": 14,
+   "metin": "Bu söz sana vefayı öğretti.",
+   "etiket": "[calm, sincere]",
+   "model": "eleven_v4",
+   "surum": 1,
+   "bas": 39.538,
+   "son": 41.61,
+   "kelimeler": [
+    {
+     "k": "Bu",
+     "bas": 39.538,
+     "son": 39.618
+    },
+    {
+     "k": "söz",
+     "bas": 39.658,
+     "son": 39.938
+    },
+    {
+     "k": "sana",
+     "bas": 40.178,
+     "son": 40.418
+    },
+    {
+     "k": "vefayı",
+     "bas": 40.498,
+     "son": 40.898
+    },
+    {
+     "k": "öğretti.",
+     "bas": 40.978,
+     "son": 41.61
+    }
+   ]
+  },
+  {
+   "no": 15,
+   "metin": "Ama bir yük de bıraktı:",
+   "etiket": "[a little heavier]",
+   "model": "eleven_v4",
+   "surum": 1,
+   "bas": 41.973,
+   "son": 43.894,
+   "kelimeler": [
+    {
+     "k": "Ama",
+     "bas": 41.973,
+     "son": 42.213
+    },
+    {
+     "k": "bir",
+     "bas": 42.533,
+     "son": 42.693
+    },
+    {
+     "k": "yük",
+     "bas": 42.773,
+     "son": 42.933
+    },
+    {
+     "k": "de",
+     "bas": 43.013,
+     "son": 43.093
+    },
+    {
+     "k": "bıraktı:",
+     "bas": 43.173,
+     "son": 43.813
+    }
+   ]
+  },
+  {
+   "no": 16,
+   "metin": "Dostluk bitince biri kabahatli sandın.",
+   "etiket": "[softly]",
+   "model": "eleven_v4",
+   "surum": 1,
+   "bas": 44.169,
+   "son": 47.049,
+   "kelimeler": [
+    {
+     "k": "Dostluk",
+     "bas": 44.169,
+     "son": 44.569
+    },
+    {
+     "k": "bitince",
+     "bas": 44.649,
+     "son": 45.209
+    },
+    {
+     "k": "biri",
+     "bas": 45.609,
+     "son": 45.769
+    },
+    {
+     "k": "kabahatli",
+     "bas": 45.849,
+     "son": 46.329
+    },
+    {
+     "k": "sandın.",
+     "bas": 46.409,
+     "son": 47.049
+    }
+   ]
+  },
+  {
+   "no": 17,
+   "metin": "Oysa söz \"dostluk kırk yıl sürer\" demiyor, \"hatırı kırk yıl sürer\" diyor.",
+   "etiket": "[thoughtful, gently emphasizing]",
+   "model": "eleven_v4",
+   "surum": 1,
+   "bas": 47.533,
+   "son": 52.708,
+   "kelimeler": [
+    {
+     "k": "Oysa",
+     "bas": 47.533,
+     "son": 47.853
+    },
+    {
+     "k": "söz",
+     "bas": 47.933,
+     "son": 48.253
+    },
+    {
+     "k": "\"dostluk",
+     "bas": 48.573,
+     "son": 49.053
+    },
+    {
+     "k": "kırk",
+     "bas": 49.133,
+     "son": 49.293
+    },
+    {
+     "k": "yıl",
+     "bas": 49.373,
+     "son": 49.533
+    },
+    {
+     "k": "sürer\"",
+     "bas": 49.573,
+     "son": 49.893
+    },
+    {
+     "k": "demiyor,",
+     "bas": 49.933,
+     "son": 50.613
+    },
+    {
+     "k": "\"hatırı",
+     "bas": 50.893,
+     "son": 51.373
+    },
+    {
+     "k": "kırk",
+     "bas": 51.453,
+     "son": 51.613
+    },
+    {
+     "k": "yıl",
+     "bas": 51.693,
+     "son": 51.853
+    },
+    {
+     "k": "sürer\"",
+     "bas": 51.893,
+     "son": 52.213
+    },
+    {
+     "k": "diyor.",
+     "bas": 52.253,
+     "son": 52.708
+    }
+   ]
+  },
+  {
+   "no": 18,
+   "metin": "Belki vefa, bitmişi zorla sürdürmek değil, onu iyi anmaktır.",
+   "etiket": "[warm, reassuring]",
+   "model": "eleven_v4",
+   "surum": 1,
+   "bas": 53.298,
+   "son": 57.784,
+   "kelimeler": [
+    {
+     "k": "Belki",
+     "bas": 53.298,
+     "son": 53.405
+    },
+    {
+     "k": "vefa,",
+     "bas": 53.485,
+     "son": 54.165
+    },
+    {
+     "k": "bitmişi",
+     "bas": 54.365,
+     "son": 54.765
+    },
+    {
+     "k": "zorla",
+     "bas": 54.845,
+     "son": 55.165
+    },
+    {
+     "k": "sürdürmek",
+     "bas": 55.205,
+     "son": 55.725
+    },
+    {
+     "k": "değil,",
+     "bas": 55.805,
+     "son": 56.285
+    },
+    {
+     "k": "onu",
+     "bas": 56.525,
+     "son": 56.765
+    },
+    {
+     "k": "iyi",
+     "bas": 56.845,
+     "son": 57.005
+    },
+    {
+     "k": "anmaktır.",
+     "bas": 57.085,
+     "son": 57.784
+    }
+   ]
+  },
+  {
+   "no": 19,
+   "metin": "O şekiller bugün kimseye kalmayacak.",
+   "etiket": "[quietly, a little sad]",
+   "model": "eleven_v4",
+   "surum": 1,
+   "bas": 58.502,
+   "son": 60.982,
+   "kelimeler": [
+    {
+     "k": "O",
+     "bas": 58.502,
+     "son": 58.582
+    },
+    {
+     "k": "şekiller",
+     "bas": 58.662,
+     "son": 59.142
+    },
+    {
+     "k": "bugün",
+     "bas": 59.222,
+     "son": 59.462
+    },
+    {
+     "k": "kimseye",
+     "bas": 59.622,
+     "son": 60.102
+    },
+    {
+     "k": "kalmayacak.",
+     "bas": 60.142,
+     "son": 60.982
+    }
+   ]
+  },
+  {
+   "no": 20,
+   "metin": "Peki sende kalan hatır, hangi fincanın?",
+   "etiket": "[slowly, thoughtfully]",
+   "model": "eleven_v4",
+   "surum": 1,
+   "bas": 61.525,
+   "son": 65.445,
+   "kelimeler": [
+    {
+     "k": "Peki",
+     "bas": 61.525,
+     "son": 62.085
+    },
+    {
+     "k": "sende",
+     "bas": 62.565,
+     "son": 62.965
+    },
+    {
+     "k": "kalan",
+     "bas": 63.005,
+     "son": 63.285
+    },
+    {
+     "k": "hatır,",
+     "bas": 63.365,
+     "son": 64.085
+    },
+    {
+     "k": "hangi",
+     "bas": 64.325,
+     "son": 64.645
+    },
+    {
+     "k": "fincanın?",
+     "bas": 64.685,
+     "son": 65.445
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Hemdem Minyatür · deneme karesi</title>
+<!-- Deneme karesi. İlham (dil ve mantık): Lemo-Opuscar "Gilded Illumination" (kod MIT; bu dosya sıfırdan yazıldı, Opuscar kodu içermez)
+     ve Osmanlı minyatür / tezhip geleneği. -->
+<link rel="stylesheet" href="../../motor/node_modules/@fontsource-variable/fraunces/full.css">
+<link rel="stylesheet" href="../../motor/node_modules/@fontsource-variable/fraunces/full-italic.css">
+<style>html,body{margin:0;background:#111}canvas{display:block}</style>
+</head>
+<body>
+<canvas id="c" width="1080" height="1920"></canvas>
+<script>
+(async () => {
+const TR = 'Bir fincan kahvenin kırk yıl hatırı vardır KAHVEHÂNE içtin çevirdin ğüşöçİ';
+await Promise.all(['500 50px', 'italic 500 50px', '600 26px'].map(f => document.fonts.load(f + ' "Fraunces Variable"', TR)));
+const W = 1080, H = 1920, TAU = Math.PI * 2;
+const cv = document.getElementById('c'), g = cv.getContext('2d');
+
+// --- rastgele (sabit tohum) ---
+let seed = 11;
+const R = () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+const rr = (a, b) => a + R() * (b - a);
+
+// --- minyatür pigmentleri ---
+const INK = '#2a1a10';
+const LAPIS = '#22379a', LAPIS_D = '#141f5a', LAPIS_L = '#3a52b8';
+const VERM = '#c8321f', VERM_D = '#8c1f12';
+const VERD = '#3f8f7a', VERD_D = '#2a5f51';
+const TURQ = '#3b9ea6', TURQ_D = '#24676d';
+const ROSE = '#e2b3a3', ROSE_D = '#b98172';
+const LILAC = '#b3a3c4', LILAC_D = '#8676a0';
+const SAGE = '#b9c99a', SAGE_D = '#8fa572';
+const LEAF = '#4f8a45', LEAF_D = '#2f5c2c';
+const WOOD = '#9a6a43', WOOD_D = '#6b4426';
+const SKIN = '#ecc9a5', SKIN_D = '#c99a76';
+const WHITE = '#f6efe0', VELLUM = '#efe2c4', VELLUM_D = '#d6c39c';
+
+// --- dokular ---
+function canvasOf(w, h, fn) { const c = document.createElement('canvas'); c.width = w; c.height = h; fn(c.getContext('2d'), w, h); return c; }
+
+function granular(base, dark, light, n = 9000, sz = 256) {
+  return g.createPattern(canvasOf(sz, sz, (q) => {
+    q.fillStyle = base; q.fillRect(0, 0, sz, sz);
+    for (let i = 0; i < n; i++) {
+      q.fillStyle = R() < .55 ? dark : light; q.globalAlpha = rr(.12, .38);
+      const r = rr(.5, 1.6); q.beginPath(); q.arc(rr(0, sz), rr(0, sz), r, 0, TAU); q.fill();
+    }
+  }), 'repeat');
+}
+
+// altın varak: kareler, ekler, çatlaklar, kırmızı bole lekeleri
+const goldCanvas = canvasOf(240, 240, (q, w, h) => {
+  const S = 40;
+  for (let y = 0; y < h; y += S) for (let x = -S; x < w + S; x += S) {
+    const ox = (y / S) % 2 ? S / 2 : 0;
+    const k = rr(-.10, .10);
+    const c = (v) => Math.max(0, Math.min(255, Math.round(v * (1 + k))));
+    q.fillStyle = `rgb(${c(201)},${c(154)},${c(62)})`;
+    q.fillRect(x + ox, y, S, S);
+    q.strokeStyle = 'rgba(90,55,10,.55)'; q.lineWidth = 1; q.strokeRect(x + ox + .5, y + .5, S - 1, S - 1);
+    q.strokeStyle = 'rgba(255,230,160,.35)'; q.beginPath(); q.moveTo(x + ox + 2, y + 2); q.lineTo(x + ox + S - 2, y + 2); q.stroke();
+  }
+  for (let i = 0; i < 26; i++) { q.fillStyle = 'rgba(150,45,25,.55)'; q.beginPath(); q.arc(rr(0, w), rr(0, h), rr(.6, 1.8), 0, TAU); q.fill(); }
+  for (let i = 0; i < 10; i++) { q.strokeStyle = 'rgba(80,45,10,.4)'; q.beginPath(); let x = rr(0, w), y = rr(0, h); q.moveTo(x, y); for (let j = 0; j < 4; j++) { x += rr(-8, 8); y += rr(-8, 8); q.lineTo(x, y); } q.stroke(); }
+});
+const GOLD = g.createPattern(goldCanvas, 'repeat');
+
+const P_LAPIS = granular(LAPIS, LAPIS_D, LAPIS_L);
+const P_SAGE = granular(SAGE, SAGE_D, '#dfe8c8', 7000);
+const P_VELLUM = granular(VELLUM, VELLUM_D, '#fbf4e2', 5000);
+
+// --- çizim yardımcıları ---
+const P = (fn) => { const p = new Path2D(); fn(p); return p; };
+
+// kapalı yumuşak yol (noktaların orta noktalarından)
+function smooth(pts) {
+  return P(p => {
+    const n = pts.length, m = (i) => { const a = pts[i % n], b = pts[(i + 1) % n]; return [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2]; };
+    const s = m(n - 1); p.moveTo(s[0], s[1]);
+    for (let i = 0; i < n; i++) { const c = pts[i], e = m(i); p.quadraticCurveTo(c[0], c[1], e[0], e[1]); }
+    p.closePath();
+  });
+}
+
+// minyatür kalıbı: düz renk + içte koyu bant + mürekkep kontur
+function shape(path, fill, rim, lw = 3, rimW = 10) {
+  g.fillStyle = fill; g.fill(path);
+  if (rim) { g.save(); g.clip(path); g.lineWidth = rimW; g.strokeStyle = rim; g.globalAlpha = .55; g.stroke(path); g.restore(); }
+  g.lineWidth = lw; g.strokeStyle = INK; g.lineJoin = 'round'; g.lineCap = 'round'; g.stroke(path);
+}
+
+// üstübeç (beyaz kurşun) çizgi ve noktalar
+function hiLine(fn, w = 2.2, a = .85) { g.save(); g.strokeStyle = WHITE; g.globalAlpha = a; g.lineWidth = w; g.lineCap = 'round'; g.beginPath(); fn(g); g.stroke(); g.restore(); }
+function triad(x, y, r = 2.6, c = WHITE) { g.fillStyle = c; for (const [dx, dy] of [[0, -r * 1.3], [-r * 1.2, r * .8], [r * 1.2, r * .8]]) { g.beginPath(); g.arc(x + dx, y + dy, r, 0, TAU); g.fill(); } }
+function pearls(x0, y0, x1, y1, n, r = 3) { g.fillStyle = WHITE; for (let i = 0; i <= n; i++) { const t = i / n; g.beginPath(); g.arc(x0 + (x1 - x0) * t, y0 + (y1 - y0) * t, r, 0, TAU); g.fill(); } }
+
+// altın varak + (isteğe bağlı) içerden gelen ışık
+function gold(path, lit = null, lw = 3) {
+  g.save(); g.clip(path);
+  g.fillStyle = GOLD; g.fill(path);
+  if (lit) {
+    const gr = g.createRadialGradient(lit.x, lit.y, 0, lit.x, lit.y, lit.r);
+    gr.addColorStop(0, 'rgba(255,226,150,.85)'); gr.addColorStop(.5, 'rgba(240,190,90,.35)'); gr.addColorStop(1, 'rgba(240,190,90,0)');
+    g.globalCompositeOperation = 'screen'; g.fillStyle = gr; g.fill(path);
+  } else {
+    g.fillStyle = 'rgba(60,30,5,.28)'; g.fill(path); // sönük varak
+  }
+  g.restore();
+  g.lineWidth = lw; g.strokeStyle = INK; g.stroke(path);
+}
+
+function star8(x, y, r) { return P(p => { for (let i = 0; i < 16; i++) { const a = i / 16 * TAU - Math.PI / 2, rad = i % 2 ? r * .45 : r; const px = x + Math.cos(a) * rad, py = y + Math.sin(a) * rad; i ? p.lineTo(px, py) : p.moveTo(px, py); } p.closePath(); }); }
+
+function flash(x, y, r, a = 1) { g.save(); g.globalAlpha = a; g.strokeStyle = '#fff3cf'; g.lineWidth = 2; g.lineCap = 'round'; g.beginPath(); g.moveTo(x - r, y); g.lineTo(x + r, y); g.moveTo(x, y - r); g.lineTo(x, y + r); g.stroke(); g.lineWidth = 1.2; const d = r * .5; g.beginPath(); g.moveTo(x - d, y - d); g.lineTo(x + d, y + d); g.moveTo(x - d, y + d); g.lineTo(x + d, y - d); g.stroke(); g.restore(); }
+
+// ============ SAHNE ============
+const X0 = 72, Y0 = 72, X1 = W - 72, Y1 = H - 72;
+const PIC = P(p => p.rect(X0, Y0, X1 - X0, Y1 - Y0));
+g.save(); g.clip(PIC);
+
+// gökyüzü (lacivert, granüllü)
+g.fillStyle = P_LAPIS; g.fillRect(X0, Y0, X1 - X0, 900);
+
+// sönük altın yıldızlar
+for (let i = 0; i < 38; i++) { const x = rr(X0 + 20, X1 - 20), y = rr(300, 800), r = rr(5, 11); gold(star8(x, y, r), null, 1.4); }
+
+// çin bulutları (dalgalı, beyaz)
+function cloud(x, y, w, n) {
+  const p = P(p => {
+    const step = w / n; p.moveTo(x, y);
+    for (let i = 0; i < n; i++) { const cx = x + step * (i + .5), r = step / 2 * (i % 2 ? .9 : 1.15); p.arc(cx, y, r, Math.PI, 0); }
+    p.quadraticCurveTo(x + w + 14, y + 12, x + w - 6, y + 16);
+    for (let i = n - 1; i >= 0; i--) { const cx = x + step * (i + .5); p.quadraticCurveTo(cx + step * .2, y + 26, cx - step * .5, y + 16); }
+    p.quadraticCurveTo(x - 16, y + 12, x, y);
+  });
+  shape(p, WHITE, '#9fb0d8', 2.2, 8);
+  hiLine(q => { for (let i = 0; i < n; i++) { const cx = x + w / n * (i + .5); q.moveTo(cx - 8, y + 4); q.quadraticCurveTo(cx, y - 2, cx + 8, y + 4); } }, 1.4, .5);
+}
+cloud(120, 360, 230, 5); cloud(400, 450, 170, 4); cloud(560, 330, 130, 3);
+
+// uzak süngerimsi kayalar (minyatür kayaları)
+function rock(cx, cy, rx, ry, fill, rim, n = 11) {
+  const pts = []; for (let i = 0; i < n; i++) { const a = Math.PI + i / (n - 1) * Math.PI; const k = rr(.78, 1.12); pts.push([cx + Math.cos(a) * rx * k, cy + Math.sin(a) * ry * k]); }
+  pts.push([cx + rx, cy + ry * .25]); pts.push([cx - rx, cy + ry * .25]);
+  const p = smooth(pts); shape(p, fill, rim, 2.6, 12);
+  for (let i = 0; i < 5; i++) triad(cx + rr(-rx * .6, rx * .6), cy + rr(-ry * .6, 0), 2.2);
+}
+rock(470, 860, 120, 170, LILAC, LILAC_D); rock(610, 880, 100, 130, ROSE, ROSE_D); rock(380, 900, 90, 110, '#c9b6d2', LILAC_D);
+
+// zemin (yukarıdan bakılmış gibi eğik düzlem)
+const ground = P(p => { p.moveTo(X0, 880); p.bezierCurveTo(300, 840, 700, 900, X1, 860); p.lineTo(X1, Y1); p.lineTo(X0, Y1); p.closePath(); });
+g.fillStyle = P_SAGE; g.fill(ground); g.lineWidth = 3; g.strokeStyle = INK; g.stroke(ground);
+// çiçek noktaları
+for (let i = 0; i < 80; i++) { const x = rr(X0 + 20, X1 - 20), y = rr(920, 1550); if (x > 200 && x < 930 && y > 1180 && y < 1400) continue; triad(x, y, 2.2, R() < .5 ? WHITE : '#e4867a'); }
+
+// servi
+const servi = smooth([[545, 620], [575, 760], [590, 900], [580, 1000], [510, 1000], [500, 900], [515, 760]]);
+shape(servi, '#2f6b48', '#1d4a30', 3, 14);
+hiLine(q => { for (let y = 680; y < 980; y += 34) { q.moveTo(530, y); q.lineTo(560, y + 14); } }, 1.6, .55);
+
+// kahvehane
+const roof = P(p => { p.moveTo(84, 650); p.lineTo(500, 650); p.lineTo(452, 560); p.lineTo(132, 560); p.closePath(); });
+shape(roof, VERM, VERM_D, 3, 12);
+g.save(); g.clip(roof); g.strokeStyle = 'rgba(80,15,5,.55)'; g.lineWidth = 2; for (let y = 578; y < 650; y += 18) { for (let x = 90; x < 500; x += 22) { g.beginPath(); g.arc(x + (y % 36 ? 11 : 0), y, 11, 0, Math.PI); g.stroke(); } } g.restore();
+const wall = P(p => p.rect(100, 650, 384, 540));
+shape(wall, ROSE, ROSE_D, 3, 14);
+// çini bandı
+const band = P(p => p.rect(100, 660, 384, 34)); shape(band, TURQ, TURQ_D, 2.4, 6);
+for (let x = 116; x < 480; x += 32) { g.fillStyle = WHITE; g.beginPath(); g.arc(x, 677, 4, 0, TAU); g.fill(); g.fillStyle = VERM; g.beginPath(); g.arc(x + 16, 677, 2.4, 0, TAU); g.fill(); }
+// levha
+const plaque = P(p => { p.moveTo(170, 708); p.lineTo(414, 708); p.lineTo(428, 730); p.lineTo(414, 752); p.lineTo(170, 752); p.lineTo(156, 730); p.closePath(); });
+g.fillStyle = P_VELLUM; g.fill(plaque); g.lineWidth = 2.6; g.strokeStyle = INK; g.stroke(plaque);
+// sivri kemerler
+function arch(x, w, top, bot) { return P(p => { p.moveTo(x, bot); p.lineTo(x, top + w * .55); p.quadraticCurveTo(x, top + w * .1, x + w / 2, top); p.quadraticCurveTo(x + w, top + w * .1, x + w, top + w * .55); p.lineTo(x + w, bot); p.closePath(); }); }
+for (const x of [122, 238, 354]) {
+  const a = arch(x, 104, 790, 1170); shape(a, LAPIS_D, null, 3);
+  g.save(); g.clip(a); g.fillStyle = 'rgba(255,255,255,.05)'; for (let i = 0; i < 300; i++) g.fillRect(rr(x, x + 104), rr(790, 1170), 1.4, 1.4); g.restore();
+  hiLine(q => { q.moveTo(x + 6, 1160); q.lineTo(x + 6, 790 + 104 * .55); q.quadraticCurveTo(x + 6, 790 + 104 * .14, x + 52, 797); }, 2, .6);
+}
+// kemerlerin içinde sönük kandiller
+for (const x of [174, 290, 406]) { g.strokeStyle = INK; g.lineWidth = 1.4; g.beginPath(); g.moveTo(x, 800); g.lineTo(x, 860); g.stroke(); gold(P(p => { p.moveTo(x - 12, 860); p.lineTo(x + 12, 860); p.lineTo(x + 6, 884); p.lineTo(x - 6, 884); p.closePath(); }), null, 1.6); }
+
+// çınar gövdesi
+const trunk = P(p => { p.moveTo(918, 1215); p.bezierCurveTo(930, 1050, 900, 900, 920, 760); p.lineTo(870, 700); p.lineTo(890, 690); p.lineTo(950, 740); p.lineTo(990, 660); p.lineTo(1006, 680); p.lineTo(975, 790); p.bezierCurveTo(985, 950, 1000, 1080, 1004, 1215); p.closePath(); });
+shape(trunk, WOOD, WOOD_D, 3, 14);
+hiLine(q => { q.moveTo(930, 1190); q.bezierCurveTo(938, 1060, 918, 920, 930, 790); }, 1.8, .5);
+// dal (kandilin asılı olduğu)
+const branch = P(p => { p.moveTo(900, 760); p.bezierCurveTo(820, 740, 760, 760, 700, 790); p.lineTo(702, 802); p.bezierCurveTo(760, 776, 830, 762, 905, 784); p.closePath(); });
+shape(branch, WOOD, WOOD_D, 2.6, 6);
+// çınar yaprak kümeleri
+function crown(cx, cy, r) {
+  const pts = []; const n = 22; for (let i = 0; i < n; i++) { const a = i / n * TAU; const k = i % 2 ? .86 : 1.04; pts.push([cx + Math.cos(a) * r * k, cy + Math.sin(a) * r * k * .82]); }
+  shape(smooth(pts), LEAF, LEAF_D, 2.8, 16);
+  for (let i = 0; i < 9; i++) { const a = rr(0, TAU), d = rr(0, r * .7); triad(cx + Math.cos(a) * d, cy + Math.sin(a) * d * .8, 2.4); }
+}
+crown(930, 440, 120); crown(790, 520, 110); crown(1000, 600, 100); crown(860, 640, 95); crown(720, 650, 80);
+
+// zincir ve kandil (ışığın kaynağı)
+g.strokeStyle = INK; g.lineWidth = 1.6; g.beginPath(); g.moveTo(712, 798); g.lineTo(712, 900); g.stroke();
+for (let y = 806; y < 900; y += 10) { g.beginPath(); g.ellipse(712, y, 2.5, 4, 0, 0, TAU); g.stroke(); }
+const LAMP = { x: 712, y: 935 };
+const glow = g.createRadialGradient(LAMP.x, LAMP.y, 0, LAMP.x, LAMP.y, 170);
+glow.addColorStop(0, 'rgba(255,214,130,.40)'); glow.addColorStop(1, 'rgba(255,214,130,0)');
+g.fillStyle = glow; g.beginPath(); g.arc(LAMP.x, LAMP.y, 170, 0, TAU); g.fill();
+const lampTop = P(p => { p.moveTo(696, 902); p.lineTo(728, 902); p.lineTo(736, 914); p.lineTo(688, 914); p.closePath(); });
+const lampBody = P(p => { p.moveTo(690, 914); p.lineTo(734, 914); p.lineTo(740, 948); p.lineTo(712, 972); p.lineTo(684, 948); p.closePath(); });
+gold(lampTop, { x: 712, y: 935, r: 60 }, 2); gold(lampBody, { x: 712, y: 935, r: 60 }, 2.4);
+g.fillStyle = 'rgba(255,240,200,.9)'; g.beginPath(); g.ellipse(712, 936, 7, 11, 0, 0, TAU); g.fill();
+flash(712, 936, 18, .9);
+
+// peyke (ahşap sedir) ve kilim
+const top = P(p => { p.moveTo(250, 1235); p.lineTo(880, 1235); p.lineTo(912, 1302); p.lineTo(218, 1302); p.closePath(); });
+const front = P(p => p.rect(218, 1302, 694, 74));
+shape(front, WOOD, WOOD_D, 3, 12);
+for (let x = 250; x < 900; x += 62) { g.strokeStyle = WOOD_D; g.lineWidth = 2; g.beginPath(); g.moveTo(x, 1308); g.lineTo(x, 1370); g.stroke(); }
+shape(top, VERM, VERM_D, 3, 10);
+g.save(); g.clip(top);
+for (let x = 250; x < 920; x += 46) { const d = P(p => { p.moveTo(x, 1250); p.lineTo(x + 16, 1268); p.lineTo(x, 1286); p.lineTo(x - 16, 1268); p.closePath(); }); g.fillStyle = '#f0d9a6'; g.fill(d); g.strokeStyle = INK; g.lineWidth = 1.4; g.stroke(d); g.fillStyle = LAPIS; g.beginPath(); g.arc(x, 1268, 4, 0, TAU); g.fill(); }
+g.restore();
+pearls(230, 1296, 900, 1296, 44, 2.4);
+
+// --- figürler ---
+function figure(o) {
+  const s = o.dir; // 1 = sağa bakıyor, -1 = sola
+  const x = o.x, base = 1292;
+  // diz (bağdaş) ve gövde
+  const body = P(p => {
+    p.moveTo(x - 58 * s, 1092);
+    p.bezierCurveTo(x - 72 * s, 1150, x - 96 * s, 1210, x - 120 * s, 1262);
+    p.quadraticCurveTo(x - 128 * s, base + 4, x - 96 * s, base + 4);
+    p.lineTo(x + 104 * s, base + 4);
+    p.quadraticCurveTo(x + 136 * s, base + 2, x + 118 * s, 1256);
+    p.bezierCurveTo(x + 96 * s, 1214, x + 74 * s, 1150, x + 60 * s, 1092);
+    p.quadraticCurveTo(x, 1072, x - 58 * s, 1092);
+    p.closePath();
+  });
+  shape(body, o.coat, o.coatD, 3, 18);
+  // kaftan önü ve kuşak
+  hiLine(q => { q.moveTo(x + 8 * s, 1096); q.bezierCurveTo(x + 14 * s, 1160, x + 6 * s, 1220, x + 18 * s, base); }, 2.4, .8);
+  const sash = P(p => { p.moveTo(x - 66 * s, 1190); p.quadraticCurveTo(x, 1206, x + 70 * s, 1188); p.lineTo(x + 74 * s, 1206); p.quadraticCurveTo(x, 1226, x - 70 * s, 1208); p.closePath(); });
+  shape(sash, o.sash, null, 2.2);
+  pearls(x - 60 * s, 1199, x + 64 * s, 1197, 10, 2);
+  // kol ve el (tepsiye / fincana uzanıyor)
+  const arm = P(p => { p.moveTo(x + 40 * s, 1102); p.bezierCurveTo(x + 90 * s, 1120, x + 120 * s, 1150, o.hx - 10 * s, o.hy - 6); p.lineTo(o.hx - 12 * s, o.hy + 16); p.bezierCurveTo(x + 100 * s, 1180, x + 70 * s, 1160, x + 34 * s, 1140); p.closePath(); });
+  shape(arm, o.coat, o.coatD, 2.8, 10);
+  const hand = P(p => p.ellipse(o.hx, o.hy + 5, 12, 10, 0, 0, TAU)); shape(hand, SKIN, SKIN_D, 2.2, 5);
+  // boyun ve baş
+  shape(P(p => p.rect(x - 12, 1060, 24, 30)), SKIN, SKIN_D, 2.4, 5);
+  const head = P(p => p.ellipse(x + 4 * s, 1030, 36, 40, 0, 0, TAU));
+  shape(head, SKIN, SKIN_D, 2.8, 8);
+  // yüz (sade minyatür yüzü, üç çeyrek)
+  const ex = x + 18 * s, ey = 1024;
+  g.strokeStyle = INK; g.lineWidth = 2.2; g.beginPath(); g.moveTo(ex - 9, ey); g.quadraticCurveTo(ex, ey - 5, ex + 9, ey); g.stroke();
+  g.fillStyle = INK; g.beginPath(); g.arc(ex + 2 * s, ey, 2.6, 0, TAU); g.fill();
+  g.lineWidth = 2; g.beginPath(); g.moveTo(ex - 10, ey - 12); g.quadraticCurveTo(ex, ey - 18, ex + 11, ey - 12); g.stroke();
+  g.beginPath(); g.moveTo(x + 34 * s, 1026); g.lineTo(x + 40 * s, 1040); g.lineTo(x + 32 * s, 1042); g.stroke();
+  g.strokeStyle = '#a5523e'; g.beginPath(); g.moveTo(x + 22 * s, 1054); g.lineTo(x + 32 * s, 1053); g.stroke();
+  if (o.beard) { const b = P(p => { p.moveTo(x - 20 * s, 1040); p.quadraticCurveTo(x - 6 * s, 1100, x + 18 * s, 1094); p.quadraticCurveTo(x + 40 * s, 1080, x + 38 * s, 1058); p.quadraticCurveTo(x + 20 * s, 1066, x - 2 * s, 1050); p.closePath(); }); shape(b, WHITE, '#c9c2b4', 2.4, 6); }
+  // başlık
+  if (o.cap) { const c = P(p => { p.moveTo(x - 32 * s, 1012); p.quadraticCurveTo(x - 30 * s, 978, x + 6 * s, 976); p.quadraticCurveTo(x + 40 * s, 978, x + 42 * s, 1004); p.lineTo(x + 58 * s, 1010); p.quadraticCurveTo(x + 30 * s, 1016, x - 32 * s, 1012); p.closePath(); }); shape(c, o.cap, '#000', 2.6, 6); hiLine(q => { q.moveTo(x - 20 * s, 994); q.quadraticCurveTo(x, 982, x + 26 * s, 988); }, 1.6, .55); }
+  if (o.hair) { const hr = P(p => { p.moveTo(x - 32 * s, 1026); p.quadraticCurveTo(x - 34 * s, 984, x + 6 * s, 988); p.quadraticCurveTo(x + 36 * s, 990, x + 38 * s, 1006); p.quadraticCurveTo(x + 10 * s, 998, x - 18 * s, 1036); p.closePath(); }); shape(hr, o.hair, null, 2.4); }
+}
+// fincan tutacak eller: sol figür tepsiye, sağ figür altın fincanı tutuyor
+figure({ x: 372, dir: 1, coat: VERD, coatD: VERD_D, sash: '#e9c46a', cap: '#3a2f2a', hx: 520, hy: 1196 });
+figure({ x: 790, dir: -1, coat: VERM, coatD: VERM_D, sash: TURQ, hair: '#d9d2c4', beard: true, hx: 668, hy: 1150 });
+
+// bakır sini ve sıradan fincan
+const tray = P(p => p.ellipse(578, 1256, 70, 17, 0, 0, TAU)); shape(tray, '#c27a45', '#8a4f28', 2.6, 6);
+hiLine(q => { q.ellipse(578, 1253, 58, 11, 0, Math.PI * 1.1, Math.PI * 1.9); }, 1.6, .7);
+const saucer = P(p => p.ellipse(560, 1248, 26, 7, 0, 0, TAU)); shape(saucer, WHITE, '#bfc8dd', 2);
+const cup1 = P(p => { p.moveTo(546, 1218); p.lineTo(574, 1218); p.lineTo(570, 1244); p.lineTo(550, 1244); p.closePath(); }); shape(cup1, WHITE, '#bfc8dd', 2.2, 4);
+g.fillStyle = LAPIS; g.fillRect(548, 1226, 24, 5);
+
+// altın varaklı fincan: kandilin ışığı üstünden geçiyor
+const cupX = 668, cupY = 1128;
+const cup2 = P(p => { p.moveTo(cupX - 20, cupY); p.lineTo(cupX + 20, cupY); p.lineTo(cupX + 14, cupY + 34); p.lineTo(cupX - 14, cupY + 34); p.closePath(); });
+const handle = P(p => { p.arc(cupX - 22, cupY + 15, 9, Math.PI * .5, Math.PI * 1.5); p.arc(cupX - 22, cupY + 15, 4, Math.PI * 1.5, Math.PI * .5, true); p.closePath(); });
+const saucer2 = P(p => p.ellipse(cupX, cupY + 36, 28, 7, 0, 0, TAU));
+const LIT = { x: cupX + 10, y: cupY + 4, r: 70 };
+gold(saucer2, LIT, 2.2); gold(handle, LIT, 1.8); gold(cup2, LIT, 2.6);
+pearls(cupX - 18, cupY + 4, cupX + 18, cupY + 4, 6, 1.8);
+// ışık halkaları (altın değdiği anda)
+g.save(); g.strokeStyle = 'rgba(241,200,110,.85)'; g.lineWidth = 2;
+g.beginPath(); g.arc(cupX, cupY + 16, 54, 0, TAU); g.stroke();
+g.globalAlpha = .45; g.beginPath(); g.arc(cupX, cupY + 16, 78, 0, TAU); g.stroke(); g.restore();
+flash(cupX + 12, cupY + 6, 13, .95); flash(cupX - 8, cupY + 24, 7, .7);
+
+// ön plan: lale tarhı
+function tulip(x, y, h, c, cd) {
+  g.strokeStyle = LEAF_D; g.lineWidth = 3; g.beginPath(); g.moveTo(x, y); g.quadraticCurveTo(x + 4, y - h * .5, x, y - h); g.stroke();
+  const lf = P(p => { p.moveTo(x, y - 6); p.quadraticCurveTo(x - 26, y - h * .45, x - 8, y - h * .7); p.quadraticCurveTo(x - 6, y - h * .35, x, y - 6); p.closePath(); });
+  shape(lf, LEAF, LEAF_D, 2, 4);
+  const fl = P(p => { p.moveTo(x - 13, y - h - 30); p.lineTo(x - 6, y - h - 14); p.lineTo(x, y - h - 34); p.lineTo(x + 6, y - h - 14); p.lineTo(x + 13, y - h - 30); p.quadraticCurveTo(x + 16, y - h + 2, x, y - h + 2); p.quadraticCurveTo(x - 16, y - h + 2, x - 13, y - h - 30); p.closePath(); });
+  shape(fl, c, cd, 2.4, 6);
+  hiLine(q => { q.moveTo(x - 7, y - h - 4); q.lineTo(x - 5, y - h - 18); }, 1.6, .7);
+}
+const bed = P(p => { p.moveTo(110, 1560); p.lineTo(970, 1560); p.lineTo(960, 1600); p.lineTo(120, 1600); p.closePath(); });
+shape(bed, '#a77a52', '#7a5434', 2.6, 6);
+for (let i = 0, x = 276; x < 770; x += 50, i++) tulip(x, 1566, rr(60, 84), i % 3 === 1 ? '#e9c46a' : VERM, i % 3 === 1 ? '#b8902f' : VERM_D);
+
+// dere (dalgalı lacivert şerit)
+const brook = P(p => { p.moveTo(X0, 1612); p.bezierCurveTo(300, 1596, 700, 1630, X1, 1606); p.lineTo(X1, 1680); p.bezierCurveTo(700, 1700, 300, 1668, X0, 1684); p.closePath(); });
+g.fillStyle = P_LAPIS; g.fill(brook); g.lineWidth = 3; g.strokeStyle = INK; g.stroke(brook);
+hiLine(q => { for (let x = 100; x < 1000; x += 44) { const y = 1640 + Math.sin(x * .03) * 8; q.moveTo(x, y); q.quadraticCurveTo(x + 11, y - 8, x + 22, y); } }, 2, .7);
+
+// kedi (minyatürlerin sessiz tanığı)
+const cat = P(p => { p.moveTo(170, 1500); p.quadraticCurveTo(158, 1440, 182, 1420); p.lineTo(178, 1398); p.lineTo(192, 1412); p.lineTo(208, 1398); p.lineTo(208, 1422); p.quadraticCurveTo(232, 1450, 220, 1500); p.closePath(); });
+shape(cat, '#e7dccb', '#b8a68c', 2.4, 8);
+g.strokeStyle = INK; g.lineWidth = 2.6; g.beginPath(); g.moveTo(220, 1494); g.bezierCurveTo(260, 1500, 266, 1468, 246, 1460); g.stroke();
+g.fillStyle = INK; g.beginPath(); g.arc(186, 1428, 2, 0, TAU); g.arc(202, 1428, 2, 0, TAU); g.fill();
+
+// çini kaplı küçük çeşme (sağ ön)
+const cesme = P(p => { p.moveTo(800, 1540); p.lineTo(800, 1430); p.quadraticCurveTo(800, 1392, 850, 1388); p.quadraticCurveTo(900, 1392, 900, 1430); p.lineTo(900, 1540); p.closePath(); });
+shape(cesme, WHITE, '#c9c2b4', 2.8, 10);
+const nis = arch(824, 52, 1414, 1500); shape(nis, TURQ, TURQ_D, 2.4, 8);
+for (let y = 1440; y < 1500; y += 18) for (let x = 834; x < 870; x += 18) triad(x + 4, y + 4, 1.6);
+const yalak = P(p => { p.moveTo(812, 1512); p.lineTo(888, 1512); p.lineTo(880, 1540); p.lineTo(820, 1540); p.closePath(); }); shape(yalak, '#d8d0c0', '#a9a090', 2.4, 4);
+g.strokeStyle = '#7fb3d9'; g.lineWidth = 2.4; g.beginPath(); g.moveTo(850, 1490); g.lineTo(850, 1512); g.stroke();
+
+g.restore(); // sahne kırpması bitti
+
+// --- üst kartuş: Sav ---
+const cart = P(p => { p.moveTo(140, 104); p.lineTo(940, 104); p.quadraticCurveTo(990, 182, 940, 262); p.lineTo(140, 262); p.quadraticCurveTo(90, 182, 140, 104); p.closePath(); });
+g.save(); g.shadowColor = 'rgba(0,0,0,.25)'; g.shadowBlur = 10; g.fillStyle = P_VELLUM; g.fill(cart); g.restore();
+g.save(); g.clip(cart); g.lineWidth = 14; g.strokeStyle = GOLD; g.stroke(cart); g.restore();
+g.lineWidth = 3; g.strokeStyle = INK; g.stroke(cart);
+const cartIn = P(p => { p.moveTo(156, 120); p.lineTo(924, 120); p.quadraticCurveTo(966, 183, 924, 246); p.lineTo(156, 246); p.quadraticCurveTo(114, 183, 156, 120); p.closePath(); });
+g.lineWidth = 1.4; g.stroke(cartIn);
+g.fillStyle = INK; g.textAlign = 'center'; g.textBaseline = 'middle';
+g.font = '500 50px "Fraunces Variable"';
+g.fillText('Bir fincan kahvenin', 540, 160);
+g.font = 'italic 500 50px "Fraunces Variable"';
+g.fillText('kırk yıl hatırı vardır.', 540, 214);
+
+// --- levhadaki yazı ---
+g.font = '600 26px "Fraunces Variable"'; g.fillStyle = VERM_D; g.fillText('KAHVEHÂNE', 292, 731);
+
+// --- alt yazı kuşağı (sabit yerde açılan parşömen) ---
+const sy = 1690, sh = 96, sx0 = 120, sx1 = 960;
+const scroll = P(p => { p.moveTo(sx0, sy); p.lineTo(sx1, sy); p.quadraticCurveTo(sx1 + 26, sy + sh / 2, sx1, sy + sh); p.lineTo(sx0, sy + sh); p.quadraticCurveTo(sx0 - 26, sy + sh / 2, sx0, sy); p.closePath(); });
+g.save(); g.shadowColor = 'rgba(0,0,0,.25)'; g.shadowBlur = 10; g.fillStyle = P_VELLUM; g.fill(scroll); g.restore();
+g.lineWidth = 3; g.strokeStyle = INK; g.stroke(scroll);
+for (const [x, d] of [[sx0, -1], [sx1, 1]]) { const roll = P(p => p.ellipse(x + d * 8, sy + sh / 2, 12, sh / 2 + 6, 0, 0, TAU)); shape(roll, VELLUM_D, '#a88f62', 2.6, 6); }
+g.fillStyle = INK; g.font = '500 38px "Fraunces Variable"';
+g.fillText('Kahveni içtin. Fincanı tabağına ters çevirdin.', 540, sy + sh / 2 + 2);
+
+// --- tezhip bordürü ---
+const outer = P(p => { p.rect(0, 0, W, H); p.rect(X0, Y0, X1 - X0, Y1 - Y0); });
+g.save(); g.fillStyle = P_LAPIS; g.fill(outer, 'evenodd'); g.restore();
+function rule(m, w, c) { g.lineWidth = w; g.strokeStyle = c; g.strokeRect(m, m, W - 2 * m, H - 2 * m); }
+g.save(); g.lineWidth = 8; g.strokeStyle = GOLD; g.strokeRect(X0 - 5, Y0 - 5, X1 - X0 + 10, Y1 - Y0 + 10); g.restore();
+rule(X0 - 10, 2, INK); rule(X0, 2.6, INK); rule(12, 2, INK);
+g.save(); g.lineWidth = 6; g.strokeStyle = GOLD; g.strokeRect(16, 16, W - 32, H - 32); g.restore(); rule(20, 1.6, INK);
+// bordür motifleri: altın dört yapraklı rozet + kırmızı nokta + inci
+function rosette(x, y) {
+  const p = P(p => { for (let i = 0; i < 4; i++) { const a = i / 4 * TAU; p.moveTo(x, y); p.ellipse(x + Math.cos(a) * 8, y + Math.sin(a) * 8, 8, 4.5, a, 0, TAU); } });
+  gold(p, null, 1.4); g.fillStyle = VERM; g.beginPath(); g.arc(x, y, 3.2, 0, TAU); g.fill();
+}
+const mid = (24 + X0 - 10) / 2;
+for (let x = 60; x < W - 40; x += 58) { rosette(x, mid); rosette(x, H - mid); triad(x + 29, mid, 1.8); triad(x + 29, H - mid, 1.8); }
+for (let y = 118; y < H - 90; y += 58) { rosette(mid, y); rosette(W - mid, y); triad(mid, y + 29, 1.8); triad(W - mid, y + 29, 1.8); }
+for (const [x, y] of [[mid, mid], [W - mid, mid], [mid, H - mid], [W - mid, H - mid]]) { const sq = P(p => p.rect(x - 22, y - 22, 44, 44)); gold(sq, { x: x - 6, y: y - 6, r: 40 }, 2); g.fillStyle = VERM; g.beginPath(); g.arc(x, y, 7, 0, TAU); g.fill(); g.strokeStyle = INK; g.lineWidth = 1.6; g.stroke(); }
+
+// imza
+g.fillStyle = VELLUM; g.font = '600 24px "Fraunces Variable"'; g.textAlign = 'right';
+g.fillText('Hemdem', X1 - 8, Y1 + 34);
+
+window.READY = true;
+})();
+</script>
+</body>
+</html>
