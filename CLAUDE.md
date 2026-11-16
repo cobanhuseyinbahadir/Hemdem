@@ -48,6 +48,7 @@ Videolar `motor/` klasöründeki motorla kodla üretilir (Node + Chrome + ffmpeg
 - `arsiv/islenen-konular.md`: Seçilen ve işlenen her konu. Tekrarı önlemek için agent'lar bunu okur.
 - `arsiv/savlar.md`: Yayınlanan her videonun Sav'ı ve kapanış cümlesi. İleride ürün ve kitap için kullanılacak.
 - `arsiv/dersler.md`: Sisteme dair kalıcı kararlar ve hatalardan çıkan dersler. Şef her gün başlarken okur; bir ders ancak ilgili talimat dosyasına işlenince `işlendi` olur.
+- `arsiv/olcumler.md`: Her videonun ~48. saatteki Instagram rakamları (geçilme, izlenme süresi, gönderme, kaydetme…). Şef içerik sahibinin onayıyla okur ve yazar; her 5 videoda bir özetler.
 
 ## Kurallar
 

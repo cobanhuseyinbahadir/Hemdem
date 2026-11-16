@@ -47,6 +47,9 @@ Video **5–9 çekimden** oluşur; her çekim **3–7 sn** ve 1–3 cümleye ba�
   Aynı geçişi art arda iki kez kullanma. Bindirme (dissolve) ve sayfa çevirme yok.
 
 - **İlk 3 saniye en önemli an.** İlk çekim bir elin ya da nesnenin yakın planıyla başlar ve ilk cümleyle birlikte bir şey olur.
+- **İlk kare sesi kapalı birini de durdurur** *(16 Kasım 2026, Instagram araştırması: Instagram ilk 3 saniyede geçilmeyi ölçer; izleyicilerin çoğu bizi tanımıyor ve sesi kapalı kaydırıyor)*. İlk karede, ilk saniyeden itibaren üstteki kartuşta kısa bir **kanca yazısı** olur: en fazla 5 kelime, metnin ya da Sav'ın en merak uyandıran parçası (ör. *"Babaannemin defterinden"*, *"Eskilerin unuttuğu bir kelime"*). Altyazıyı tekrar etmez; Sav kartuşu gelince yerini ona bırakır. Boş bir nesne yakın planı tek başına yetmez: ilk karede ya bir insan eli/figür ya da gerilim taşıyan bir nesne olur.
+- **Dönüş anı görselde de büyür.** Metnin en güçlü dönüşü (ör. "O torun sensin.") bir aksiyonla, ışıkla ya da kamera yaklaşmasıyla vurgulanır; sıradan bir altyazı satırı gibi geçmez.
+- **Ölü kare yok.** Videonun hiçbir yerinde (kapanış hariç) 1 saniyeden uzun **boş ya da öznesiz** kare (boş sayfa, düz duvar, boş gökyüzü), ya da 1.5 saniyeden uzun altyazısız ve hareketsiz an olmaz. Geçiş için kullanılan boş bir yüzey en fazla 0.5 sn ekranda kalır. *(K1'de ~20. saniyedeki boş parşömen sayfası seyircinin en kolay bıraktığı türden bir andı.)*
 - **Kapanış:** Son çekim geniş bir kadraj; kapanış cümlesinden sonra en az 2 sn ekranda kalır ve yavaşça durulur.
 
 ### 4. Figürler ve hareketler
@@ -134,7 +137,9 @@ Altyazılar sesten otomatik gelir (her cümle kendi söylendiği anda; parşöme
 - [ ] Kamera her çekimde hareket ediyor mu?
 - [ ] Her geçiş beş türden biri mi, aynı tür art arda tekrar etmiyor mu? Eşleşen şekillerin ikisi de yazılı mı?
 - [ ] Anı ve şimdi gökyüzü renginden ayırt ediliyor mu?
-- [ ] İlk 3 saniyede yakın plan ve bir eylem var mı?
+- [ ] İlk 3 saniyede yakın plan ve bir eylem var mı? İlk karede kartuşta en fazla 5 kelimelik kanca yazısı var mı?
+- [ ] Metnin dönüş anı görselde vurgulanıyor mu?
+- [ ] 1 sn'den uzun boş/öznesiz kare, 1.5 sn'den uzun altyazısız ve hareketsiz an yok mu (kapanış hariç)?
 - [ ] Duygular simgeyle değil duruşla, mesafeyle, ışıkla anlatılıyor mu?
 - [ ] Her çekim sesi kapalıyken tanınıyor mu? Belirsiz şekil yok mu?
 - [ ] Gereksiz süs öğesi yok mu? Nesne sayıları çekim boyunca sabit mi?

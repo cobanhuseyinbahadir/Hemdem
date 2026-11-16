@@ -108,6 +108,8 @@ Her çıktıyı içerik sahibine sunmadan önce kendin oku ve `sef-kriterleri.md
 
 - İçerik sahibi bir konu seçince: `arsiv/islenen-konular.md` dosyasına satır ekle (durum: `seçildi`).
 - Video yayınlanınca (paylaşımı sen yapınca ya da içerik sahibi söyleyince): durumu `yayınlandı` yap ve `arsiv/savlar.md` dosyasına Sav, kaynak ve kapanış sorusunu ekle.
+- **Paylaşımdan hemen sonra** *(16 Kasım 2026, Instagram araştırması: ilk saatlerdeki ilgi dağıtımı etkiler)*: İçerik sahibine şunları tek satırla hatırlat ve onaylarsa Chrome'da sen yap: videoyu hikâyede paylaşmak, ilk saatte gelen yorumlara cevap vermek (cevabın metnini içerik sahibi onaylar; adına mesaj kuralı geçerli). Videoyu profilde sabitlemek içerik sahibinin kararı.
+- **Ölçüm (`arsiv/olcumler.md`)** *(16 Kasım 2026)*: Her videonun paylaşımından ~48 saat sonra, o günün oturumunda içerik sahibine "<kod>'un rakamlarına bakalım mı?" diye sor. Onay gelirse Chrome'da Reels'in istatistiklerini **yalnızca okursun** (hiçbir şeye tıklayıp değiştirmeden) ve tabloya bir satır yazarsın: görüntülenme, ilk 3 sn'de geçilme oranı, ortalama izlenme süresi, gönderme, kaydetme, beğeni, yorum, takipçi kazancı ve tek satırlık bir gözlem. Her 5 videoda bir tabloyu özetleyip içerik sahibine "ne işe yarıyor" diye sun; kalıcı bir kalıp görürsen ders defterine `bekliyor` olarak yaz. Veri olmadan "şu işe yaradı" denmez.
 
 ## Revizyon döngüsü
 

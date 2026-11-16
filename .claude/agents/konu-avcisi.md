@@ -180,8 +180,13 @@ Başka bir dilde bir duyguyu, durumu ya da anı tek kelimeyle anlatan ve Türkç
 - **Kapanış taslağı:** "<sonuca bağlanmayan, düşündüren bir soru ya da açık uçlu bir cümle>"
 - **Neden şimdi:** <Ö önerisinde: hangi özel gün ve tarihi. Diğerlerinde: "Zamansız">
 - **Hassasiyet:** <düşük / orta / yüksek> — <yüksekse nedeni ve nasıl özenle işlenmeli>
-- **Puan:** "Bu benim" <1–5> · Sav'ın gücü <1–5> · Özgünlük <1–5>
+- **Kime gönderilir:** <izleyicinin bu videoyu DM ile göndereceği somut kişi: "annesine", "uzun zamandır görüşmediği arkadaşına"…>
+- **Puan:** "Bu benim" <1–5> · Sav'ın gücü <1–5> · Özgünlük <1–5> · Gönderilebilirlik <1–5>
 ```
+
+## Gönderilebilirlik *(16 Kasım 2026)*
+
+Instagram, bizi takip etmeyenlere ulaşırken en çok videonun **DM ile birine gönderilmesine** bakar. Hemdem yeni bir hesap; büyümesi buna bağlı. Her öneride sor: *"Bunu izleyen, kime gönderir?"* Cevap somut bir ilişkiyse (anne, babaanne, kardeş, eski dost, eş) puan yüksektir; "herkese" ya da "kimseye" ise düşüktür. Gönderilebilirliği 2 ve altı olan öneriyi listeye koyma; Konu Avcısı'nın tavsiyesinde bu puanı da göz önünde tut. Kanca da yabancıya yazılır: hesabı tanımayan birini ilk cümlede durdurmalı.
 
 ## Kanca
 

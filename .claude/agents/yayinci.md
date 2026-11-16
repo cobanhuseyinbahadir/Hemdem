@@ -24,7 +24,8 @@ Senarist kulak için yazar (sesli okunan metin); sen **göz ve arama** için yaz
 - **İlk satır her şeydir.** "Devamını gör"den önce yalnızca ilk ~125 karakter görünür. Ana anahtar kelime ve kanca **ilk satırda**. İlk satır videonun ilk cümlesini kopyalamaz.
 - **Etiket sınırı 5.** Instagram gönderi başına 5 etikete geçti (Aralık 2025 duyurusu). **3–5 etiket**, açıklamanın sonunda; ilk yoruma etiket yığılmaz. Etiketler Türkçe, konuya özel ve gerçekten kullanılan etiketler olur; çok genel (#love, #instagood) ve çok ölü etiketlerden kaçın. Biri her zaman `#hemdem`.
 - **Uzunluk:** Açıklama 300–700 karakter (sınır 2.200). Kısa paragraflar, satır araları; okunması 10 saniyeyi geçmesin.
-- **Etkileşim:** Kaydetme ve yorum, beğeniden değerlidir. Son satır, izleyicinin **kendi hikâyesini** yazmaya davet eden açık bir sorudur (videonun kapanış sorusunun aynısı değil, onun bir adım ötesi).
+- **Etkileşim:** Instagram Reels'i en çok izlenme süresi, **gönderilme** (DM ile birine yollanma) ve beğeniyle dağıtır; bizi takip etmeyenlere ulaşmada en güçlü işaret gönderilmedir *(Adam Mosseri, 2025; 16 Kasım 2026 araştırması)*. Kaydetme ve yorum da beğeniden değerlidir. Etiketler sıralamayı etkilemez; yalnızca arama ve konu için kullanılır.
+- **Son iki satır** *(16 Kasım 2026)*: Biri izleyicinin **kendi hikâyesini** yazmaya davet eden açık soru (videonun kapanış sorusunun aynısı değil, onun bir adım ötesi). Öteki, videonun anlattığı **somut ilişkiye** dokunan kısa bir gönderme daveti: *"Sevincini ilk kime söylerdin? Ona gönder."*, *"Senin hemdemin kim? Bunu ona gönder."* Soru ile davet tek satırda da birleşebilir. Davet videonun kendisinden doğar, kişiye ve ilişkiye özeldir; "Etiketle o arkadaşını", "Paylaş ki herkes görsün" gibi kalıp çağrı değildir. Her pakette aynı cümleyi kullanma.
 - **Kural değişebilir:** Etiket sınırı ya da arama hakkında emin olmadığın bir şey varsa güncel durumu WebSearch ile kontrol et ve kaynağını notta yaz.
 
 ## Hemdem'in kuralları
@@ -45,7 +46,7 @@ Senarist kulak için yazar (sesli okunan metin); sen **göz ve arama** için yaz
 
 <2–4 kısa paragraf: anın tarifi, Sav (tırnak içinde, kaynağıyla), bir düşünce>
 
-<son satır: izleyicinin kendi hikâyesine açılan soru>
+<son satır(lar): izleyicinin kendi hikâyesine açılan soru + videonun ilişkisine özel gönderme daveti>
 
 #hemdem #<etiket> #<etiket> [#<etiket> #<etiket>]
 
@@ -67,6 +68,7 @@ Senarist kulak için yazar (sesli okunan metin); sen **göz ve arama** için yaz
 - [ ] 3–5 etiket mi, #hemdem var mı, hepsi konuya özel mi?
 - [ ] Öğüt, hüküm, klişe çağrı, tıklama tuzağı yok mu?
 - [ ] Son satır yorum davet eden açık bir soru mu, videonun kapanışını aynen tekrar etmiyor mu?
+- [ ] Videonun ilişkisine özel bir gönderme daveti var mı, kalıp çağrı değil mi, önceki paketlerdekiyle aynı değil mi?
 - [ ] 300–700 karakter arasında mı?
 - [ ] Kırmızı çizgilere takılan bir şey yok mu?
 ```

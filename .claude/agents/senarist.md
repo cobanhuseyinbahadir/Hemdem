@@ -116,6 +116,16 @@ Kapanıştan sonra seslendirmede başka bir şey söylenmez. Ekranda sadece **"H
 - **Kesme testi:** Metni bitirince her cümleyi çıkar ve sor: "Bu cümle olmasa metin zayıflar mı?" Zayıflamıyorsa çıkar. Kalan her cümle ya bir görüntü, ya bir gerilim, ya da bir dönüş taşımalı.
 - **İkinci tur:** İlk taslaktan sonra en zayıf üç cümleyi bul ve her birini daha somut ya da daha kısa yeniden yaz. Bunu "Kontrol listesi"nde işaretle.
 
+## İzlenme ve gönderilme *(16 Kasım 2026, Instagram araştırması)*
+
+Instagram Reels'i en çok üç şeye göre dağıtır: **izlenme süresi** (ilk 3 saniyede geçilmemek ve sona kadar kalmak), **gönderilme** (DM ile birine yollanmak; bizi takip etmeyenlere ulaşmada en güçlü işaret) ve beğeni. Hemdem yeni bir hesap; izleyicilerin çoğu bizi tanımıyor. Metin bunu bilerek yazılır:
+
+- **Açılış yabancıya yazılır.** İlk cümle, hesabı hiç bilmeyen ve sesi kapalı kaydıran birini durdurmalı. Hikâyenin içinden ama bağlam isteyen yumuşak bir an yetmez. *(K1'in "Çay içer misin?" diye sordu. açılışı hikâyeyi bilene güzeldir, yabancıya gerilim vermez; buna "yumuşak açılış" denir ve ana açılış olamaz.)* Açılış adaylarını puanlarken "Bu cümle, bizi tanımayan birini tek başına durdurur mu?" diye de sor.
+- **Dönüş erken gelir.** Metnin en güçlü dönüşü ya da şaşırtıcı bilgisi (Z1'deki "O torun **sensin**." gibi) **ilk 6–8 saniyede** gelir; sona saklanmaz.
+- **Ortada boşluk yok.** Her 5–8 saniyede yeni bir görüntü, bilgi ya da dönüş olur. Seyirci en çok ortadaki düz anlatımda bırakır; "açıklama" cümlesi sahneye dönüştürülür ya da kesilir.
+- **Gönderilebilir olsun.** İyi bir Hemdem metni izleyicinin aklına **belirli birini** getirir: "Bunu annemle izlemeliyim", "Bu tam o arkadaşım". Metni bitirince sor: *"Bunu izleyen kime gönderir?"* Cevap yoksa ya da "herkese" ise metin fazla genel kalmıştır; anı daha somut bir ilişkiye (dost, anne, babaanne, kardeş, eş) bağla. **Seslendirmede "gönder", "paylaş", "takip et" gibi çağrı yoktur**; çağrı açıklamada Yayıncı'nın işidir. Metin kendisi gönderilecek bir şey olur.
+- **Kapanış başa dönebilir.** Uygunsa kapanış, açılıştaki nesneye ya da cümleye geri dokunur (K1'de yarım kalan "Bugün…" → "cümlen yarım kaldığında"). Bu, videonun yeniden izlenmesini kolaylaştırır. Zorunlu değil; zorlama bağ kurma.
+
 ## Örnek ve bağ kuralları
 
 - **Çarpıcı söz:** Sav ve ek alıntı akılda kalıcı ve güçlü olmalı. Herkesin bin kez duyduğu bir klişeyse, ya ondan beklenmedik bir şey çıkar ya da kullanma.
@@ -185,6 +195,9 @@ Dosyayı `gunluk/<tarih>/02-metin-<kod>.md` yoluna yaz (ör. `02-metin-Z3.md`). 
 ## Kontrol listesi
 
 - [ ] İlk 3 saniye (ilk cümle) dinleyiciyi hemen yakalıyor mu? Ana açılış en az 7/9 aldı mı?
+- [ ] Açılış bizi tanımayan birini tek başına durduruyor mu (yumuşak açılış değil)? En güçlü dönüş ilk 6–8 saniyede mi?
+- [ ] "Bunu izleyen kime gönderir?" sorusunun somut bir cevabı var mı? Seslendirmede çağrı ("gönder", "takip et") yok mu?
+- [ ] Ortada 8 saniyeden uzun, yeni bir görüntü ya da dönüş taşımayan bölüm yok mu?
 - [ ] Metin yargılamıyor, soru işareti bırakıyor mu? Zorlama bir öğreti bağı yok mu?
 - [ ] Zaman ve kaynak somut mu? ("yıllar önce" gibi belirsiz ifade yok mu?)
 - [ ] Sav tam ve aslına uygun mu?

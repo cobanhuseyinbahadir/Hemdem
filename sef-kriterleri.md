@@ -12,6 +12,7 @@
 - **Hemdem'e uygunluk:** Tanıdık acı + tanıdık söz + "yalnız değilsin" üçlüsü var mı?
 - **Özgünlük:** Bu söz bu açıdan daha önce çok işlenmiş mi?
 - **Risk:** Siyaset, taze trajedi, kutuplaşma 🔴
+- **Gönderilebilirlik:** İzleyici bunu kime gönderir? Cevap somut bir ilişki mi (anne, babaanne, eski dost, eş)? Instagram'da bizi takip etmeyenlere ulaşmanın en güçlü yolu DM ile gönderilmek. *(16 Kasım, Instagram araştırması)*
 - **Denge:** Son günlerde benzer konu/ton seçildi mi? Haftalık listede Z ve K karışık mı, günlük 2 video (öğlen K, akşam Z) için yeterli çeşit var mı? *(16 Kasım)*
 - **Haber yok:** Öneriler haber ya da trendden gelmiyor; zamansız ya da Türkiye'ye özgü bir özel günden geliyor. Ö önerisi yalnızca özel güne 1–2 gün kala geliyor. 🔴 *(15 Kasım)*
 - **Kelime önerileri (K1, K2):** Kelime sözlük dersi gibi değil, bir anı ve duyguyu açıyor mu? Anlam ve köken güvenilir bir sözlükte doğrulanmış mı? K2 çok işlenmiş bir kelimeyse (hygge, ikigai…) yeni ve doğru bir açısı var mı? *(15 Kasım)*
@@ -21,6 +22,7 @@
 *(İçerik sahibinin kendi kriterleri, 12 Kasım 2026; 13 Kasım'da güncellendi)*
 
 - **İlk 3 saniye:** Metin ilk 3 saniyede dinleyiciyi yakalıyor mu? İlk cümle kaydırmayı durduruyor mu? 🔴 *(13 Kasım)*
+- **Yabancıya yazılmış açılış ve erken dönüş:** İlk cümle bizi hiç tanımayan birini tek başına durduruyor mu (bağlam isteyen "yumuşak açılış" değil; K1'in "Çay içer misin?" açılışı örnek)? Metnin en güçlü dönüşü ilk 6–8 saniyede mi? Ortada 8 saniyeden uzun düz anlatım yok mu? Seslendirmede "gönder / takip et" çağrısı yok mu? *(16 Kasım, Instagram araştırması)*
 - **Çarpıcı açılış ve çarpıcı son:** İlk iki cümle ve son cümle güçlü; yumuşaklığa ya da sıradanlığa kaymıyor. 🔴
 - **Yargılamıyor, düşündürüyor:** Amaç hüküm vermek değil, soru işareti uyandırmak. 🔴 *(13 Kasım)*
 - **Ton:** Sıcak, samimi; bilimsel ya da sıradan değil. *(15 Kasım: "Aile büyüğünün sesi" kriteri içerik sahibinin isteğiyle tamamen kaldırıldı. Şef bunu bir ölçüt olarak kullanmaz ve sunuşta anmaz.)*
@@ -56,7 +58,8 @@
 - **Kurgu tablosu:** Her çekim için "plan: görülmesi gereken / karede gördüğüm" tablosu var mı, hepsi ✔ mi? Tablo yoksa ya da ✘ varsa ön izleme sunulmaz. 🔴
 - **Tek özne ve anahtar an:** Her çekimde kadrajın tek bir öznesi var mı? Cümlenin anahtar kelimesi söylendiği anda görüntüde karşılığı oluyor mu?
 - **Zamanlar sesten:** `film.js`'te elle yazılmış saniye yok mu (her zaman `M.c` / `M.k`)? Altyazılar `subs: 'ses'` ile mi geliyor?
-- **İlk kare:** Durduruyor mu, boş mu?
+- **İlk kare:** Durduruyor mu, boş mu? 0. saniyede kartuşta en fazla 5 kelimelik kanca yazısı okunuyor mu, ilk karede figür/el ya da gerilim taşıyan nesne var mı? 🔴 *(16 Kasım)*
+- **Ölü kare yok:** Kapanış hariç 1 sn'den uzun boş/öznesiz kare ya da 1.5 sn'den uzun altyazısız ve hareketsiz an yok mu? Kurgu tablosunda "Ölü kare" satırı var mı? *(16 Kasım; K1'de ~20. sn'deki boş parşömen sayfası)*
 - **Okunurluk:** Altyazı, kartuş ve resmin içindeki yazılar telefonda okunuyor mu, çerçevelerine sığıyor mu?
 - **Estetik:** Hemdem Minyatür'e sadık mı (düz pigment, kalın kontur, üstübeç noktalar, kare kare varak)? Karmaşık, çocuksu ya da "düz vektör çizim" gibi duran kare var mı? Altın sarı boyaya dönmüş mü?
 - **Senkron:** Her altyazı satırı sesle uyumlu mu? 🔴 *(13 Kasım dersi: Z3 senkron yüzünden iptal edildi.)* Altyazılar artık sesin kelime zamanlarından otomatik geliyor; Video Üretici 3 noktada (ilk cümle, Sav, kapanış) karşılaştırmayı notuna yazar. Bir noktada sapma 0.3 sn'yi geçiyorsa öneri "geri gönder"dir. Şef ayrıca en az 3 noktada (açılış, Sav, kapanış) kareyi ve o andaki sesi kendisi kontrol eder.
@@ -82,5 +85,6 @@
 - **Etiketler:** 3–5 etiket, `#hemdem` dahil, konuya özel mi? (Instagram sınırı 5.)
 - **Ton:** Sorar ama söylemez; öğüt, hüküm, klişe çağrı ("kaydet, sonra lazım olur"), tıklama tuzağı yok mu? 🔴
 - **Son satır:** İzleyiciyi kendi hikâyesini yazmaya davet eden açık bir soru mu?
+- **Gönderme daveti:** Videonun ilişkisine özel, kalıp olmayan bir "ona gönder" daveti var mı, önceki paketlerdekiyle aynı değil mi? *(16 Kasım)*
 - **Paylaşıma hazırlık:** Paket Şef'in kopyalayıp yapıştırabileceği bloklarda mı; `final-instagram.mp4` (10 MB altı) var mı? *(16 Kasım)*
 - **Yapay zekâ etiketi ve açık kontroller:** Paket, "Yapay zekâ bilgisi" etiketini ve yayından önce zorunlu açık kontrolleri hatırlatıyor mu?

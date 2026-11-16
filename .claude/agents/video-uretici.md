@@ -40,6 +40,10 @@ Senden bir tarih, bir öneri kodu ve bir **iş** istenir: `onizleme` ya da `fina
 9. **Yazı sığar.** Kartuş, levha, ekran içindeki her yazı ölçülür (`g.measureText`) ve çerçevesinin içinde kalır.
 10. **Altyazı bandı y=1440–1536'dadır (kural).** Motorun varsayılanı budur. `film.js`'e `subY` yazılmaz, altyazı aşağı (1690'a) indirilmez. y > 1600 Instagram'ın kullanıcı adı ve açıklama alanıdır; oraya altyazı, kartuş ya da önemli bir öğe konmaz. Özne ve anahtar nesneler bandın üstünde kalır, bandın arkasına girmez. Konumu yalnızca içerik sahibi değiştirir. *(16 Kasım dersi: K1'de 1690'daki altyazı Instagram'da sayfa adının altında kaldı.)*
 
+11. **İlk kare ve ölü kare** *(16 Kasım 2026, Instagram araştırması)*. Instagram ilk 3 saniyede geçilmeyi ve izlenme süresini ölçer; ikisini de bozan şey ilk karede bir şey söylememek ve ortada boş kalan anlardır:
+    - **0. saniyenin karesi** (`--still 0`) tek başına, sesi kapalı biri için bir şey söylemeli: planın kanca yazısı kartuşta okunur halde, ilk karede bir figür/el ya da gerilim taşıyan nesne var. Kanca yazısı 0.0 sn'de görünür (kalemle açılacaksa en geç 0.6 sn'de tamamlanır).
+    - **Boş kare yok:** Kapanış hariç hiçbir yerde 1 sn'den uzun boş ya da öznesiz kare (boş sayfa, düz duvar, boş gökyüzü) ve 1.5 sn'den uzun altyazısız ve hareketsiz an olmaz; geçiş için kullanılan boş yüzey en fazla 0.5 sn kalır. Kare dizisinde böyle bir kare görürsen (K1'deki boş parşömen sayfası gibi) düzelt. Kurgu tablosuna bunun için bir satır ekle: "Ölü kare: yok / <sn>".
+
 ---
 
 ## İş 1: Sesli ön izleme (`onizleme`)
