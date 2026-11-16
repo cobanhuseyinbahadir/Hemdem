@@ -74,6 +74,7 @@
       FILM.render(g, tp, M);
       g.restore();
       M.lwK = 1;
+      M.subY = FILM.subY ?? 1440;
       M.drawSubs(g, FILM.subs, tp);
       if (FILM.overlay) { g.save(); g.setTransform(1, 0, 0, 1, 0, 0); FILM.overlay(g, tp, M); g.restore(); }
       M.border(g, FILM.signature ?? 'Hemdem');

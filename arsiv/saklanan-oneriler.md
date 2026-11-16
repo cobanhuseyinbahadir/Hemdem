@@ -5,4 +5,4 @@
 | Kayıt tarihi | Kod (o günkü) | Başlık | Sav | Kaynak dosya | Ne zaman önerilsin | Durum |
 |---|---|---|---|---|---|---|
 | 2026-11-16 | Z3 | Kendi düşen | "Kendi düşen ağlamaz." (atasözü, TDK) | gunluk/2026-11-16/01-konular.md → Z3 | 2026-11-17 | bekliyor |
-| 2026-11-16 | K1 | Aynı nefesi paylaşan | **hemdem** (Farsça hem + dem; TDK) | gunluk/2026-11-16/01-konular.md → K1 | 2026-11-17 | bekliyor |
+| 2026-11-16 | K1 | Aynı nefesi paylaşan | **hemdem** (Farsça hem + dem; TDK) | gunluk/2026-11-16/01-konular.md → K1 | 2026-11-16 (öğleden sonra, ilk paylaşım) | seçildi — içerik sahibinin örnek metni: gunluk/2026-11-16/durum.md |

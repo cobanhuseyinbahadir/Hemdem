@@ -46,7 +46,7 @@ Başlıca araçlar (`minyatur.js`):
 
 Örnek kurgu: **`ornekler/minyatur-sahneli.js`** (5 çekim, 4 geçiş; yeni filmler bu yapıyla yazılır). `ornekler/minyatur-kahvehane.js` yalnızca çizim araçlarının örneğidir (tek resim; kurgu örneği değil).
 
-## Hazır parçalar (16 Kasım 2026, Z1'de çizildi)
+## Hazır parçalar (16 Kasım 2026, Z1 ve K1'de çizildi)
 
 `M.parcalar(g)` Z1'de çizilen ve denetlenen parçaları hazır verir. Mevcut API'ye dokunmaz; film dosyasında `const P = M.parcalar(g);` ile alınır, parçalar her karede yeniden çağrılır. **Önce buradan bak, aynı nesneyi yeniden çizme** (yeni nesne yine tek başına büyük çizilip denetlenir).
 
@@ -63,6 +63,10 @@ Başlıca araçlar (`minyatur.js`):
 | `P.el`, `P.kalem(x, y, a, L)`, `P.lale(x, y, s)`, `P.kilim(x0, y0, x1, y1)` | küçük parçalar | |
 | `P.yerel(o, wx, wy)`, `P.dunya(o, lx, ly)`, `P.figT`, `P.ek`, `P.lerp` | figür koordinat yardımcıları | |
 | `P.BABA`, `P.TORUN`, `P.KURSUN` | Z1'in figür renkleri ve kurşun rengi | |
+| `P.bardak(x, yTaban, o)` | ince belli çay bardağı (K1) | `o`: `s`, `f` dolum 0..1, `kenar` `'altin'`/`'firuze'`, `lit`, `catlak` açı (π/2 tam önde), `catlakAltin` 0..1, `rot` |
+| `P.tabak(x, y, s)`, `P.caydanlik(x, yTaban, s)` | çay tabağı; iki katlı çaydanlığın bakır alt gövdesi (K1) | |
+| `P.demlik(o)`, `P.demlikKulp(x, y, s)`, `P.akis(x0, y0, x1, y1, bas, son, s)` | porselen lale nakışlı demlik (K1); `o`: `x, y` ya da `el: [x,y]` + `a` açı, emzik ucunu döndürür; `akis` emzikten akan çay | |
+| `P.buhar(x, y, t, o)` | iki ince buhar ipliği (K1); `o`: `h, a, kal` | Birleşen buhar motorda yok (içerik sahibinin kararı); K1'in `film.js`'inde durur |
 
 `P.odaArka` ve `P.SAND` (Z1'in sandık odası) Z1'e özgüdür, taşınmadı; `gunluk/2026-11-16/04-video-Z1/film.js` içinde durur. Z1'in `film.js`'i kendi kopyasıyla çalışmaya devam eder (değiştirilmedi).
 
@@ -189,6 +193,7 @@ Ses videodan önce üretilir (`ses-uret.js`). `render.js`, film dosyasının kla
 | `M.sesSure` | seslendirmenin toplam süresi |
 | `subs: 'ses'` | altyazılar cümlelerden otomatik kurulur; parşömene sığmayan cümle kelime sınırından ikiye bölünür, her parça kendi kelimesinin söylendiği anda gelir |
 | `gizli: [12]` | bu cümleler altyazıda gösterilmez (ör. Sav kartuşta yazılırken) |
+| `subY: 1440` | parşömen altyazının üst kenarı (varsayılan 1440, bant 1440–1536). 16 Kasım'a kadar 1690'dı; Instagram'ın alttaki kullanıcı adı ve açıklama alanıyla (y ≈ 1650 ve aşağısı) çakışıyordu. Önemli öğeler bandın üstünde kalır |
 | `kapanis: 2.5` | son cümleden sonra ekranda kalma süresi; `duration` verilmezse süre = ses + kapanış |
 
 ```js

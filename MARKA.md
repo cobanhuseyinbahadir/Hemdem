@@ -121,7 +121,7 @@ Her video **minyatür diliyle çizilmiş, sahne sahne akan kısa bir filmdir.** 
 
 **Ses:** Seslendirme önde. Altında resmin kendi sesleri (dere, kuş, fincan tıkırtısı, çarşı uğultusu), çok sakin bir müzik: **solo ud taksimi** (Hemdem müziği, içerik sahibinin seçimi, 15 Kasım; ElevenLabs Music ile her videoya özel, sözsüz üretilir; seslendirmenin ~20 LU altında). Altın parladığında küçük bir çan ya da zil. Gerekirse bir an tam sessizlik.
 
-**Format:** Dikey 9:16 (1080×1920). Resim alanı bordürün içi (72 px kenar boşluğu); önemli öğeler alttaki parşömen bandının (y ≈ 1690–1786) üstünde kalır.
+**Format:** Dikey 9:16 (1080×1920). Resim alanı bordürün içi (72 px kenar boşluğu); önemli öğeler alttaki parşömen bandının (y ≈ 1440–1536) üstünde kalır. Bandın altı (y > 1600) Instagram'ın kullanıcı adı ve açıklama alanıdır; oraya önemli bir şey konmaz.
 
 **Motor:** `motor/minyatur.js` (film dosyasında `style: 'minyatur'`; çekimler `M.cekimler`, geçişler, hareketli figürler). Örnek sahneli film: `motor/ornekler/minyatur-sahneli.js`. (`ornekler/minyatur-kahvehane.js` yalnızca çizim araçlarının örneğidir; tek resimli olduğu için kurgu örneği değildir.)
 
