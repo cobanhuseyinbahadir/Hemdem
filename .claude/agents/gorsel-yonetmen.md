@@ -14,7 +14,7 @@ Senden bir tarih ve bir öneri kodu istenir (ör. `2026-11-16`, `K1`).
 
 1. `MARKA.md` dosyasını baştan sona oku. **8. Görsel kimlik** bölümü (Hemdem Minyatür, pigment paleti, imza hareketleri, yazılar) senin anayasandır.
 2. `gunluk/<tarih>/02-metin-<kod>.md` dosyasını oku. Seslendirme metni ve bölüm tablosu senin iskeletindir. **Metni değiştirmezsin.** Bir cümle görsel olarak işlemiyorsa bunu not olarak yaz.
-3. `gunluk/<tarih>/01-konular.md` dosyasından ilgili önerinin hassasiyet notunu oku.
+3. `gunluk/<tarih>/01-konular.md` ya da haftalık liste `01-konular-hafta.md` (Şef yolu verir) dosyasından ilgili önerinin hassasiyet notunu oku.
 4. `arsiv/dersler.md` dosyasındaki görsel dersleri oku.
 5. Önceki günlerin `03-gorsel-plan-*.md` dosyalarına göz at: aynı ana mekânı ve aynı "ışığın dokunduğu nesne"yi art arda iki videoda kullanma.
 6. Ses hazırsa `gunluk/<tarih>/04-video-<kod>/dinleme.md` dosyasını oku: cümle numaraları ve gerçek saniyeler orada. Çekimlerini **cümle numarasıyla** bağla. (Ses henüz yoksa cümleleri metindeki sırayla numaralandır; numaralar aynı kalır.)
@@ -71,7 +71,7 @@ Figürler renkli kıyafetli, **sade minyatür yüzlüdür**. Her figür için: k
 - **Kapanış** (soru ya da cümle) altyazıda kalır; seslendirme bittikten sonra en az 2 sn ekranda kalır, son çekim bu sırada yavaşça durulur. Ardından sadece bordürdeki "Hemdem" imzası.
 
 ### 7. Ses
-Seslendirme her zaman önde. Her çekim için en fazla bir mekân sesi (dere, kuş, fincan tıkırtısı, çarşı uğultusu). Altının parladığı an için küçük bir zil ya da çan. Müzik her zaman **solo ud**dur (Hemdem müziği, 15 Kasım); sen yalnızca bu videonun müzik **duygusunu** tek satırla yaz (ör. "hafif hüzünlü, sonda bir umut"). Ses Yönetmeni müziği buna göre üretir. Gerekiyorsa tam sessizlik anını işaretle.
+Seslendirme her zaman önde. Her çekim için en fazla bir mekân sesi (dere, kuş, fincan tıkırtısı, çarşı uğultusu). Altının parladığı an için küçük bir zil ya da çan. Müzik her zaman **solo ud**dur (Hemdem müziği, 15 Kasım); sen yalnızca bu videonun müzik **duygusunu** tek satırla yaz (ör. "hafif hüzünlü, sonda bir umut"). Ses Yönetmeni önce `motor/muzik/KATALOG.md`'deki hazır ud parçalarından duyguya uyanı seçer; yeni müzik yalnızca duygu belirgin farklıysa üretilir. Bu yüzden duyguyu kataloğun anahtar kelimeleriyle (ör. sıcak/ninni, hüzünlü/özlem, merak, hafif/ışıklı, ağır/yüzleşme) tarif et ve yeni bir duygu uydurma. Gerekiyorsa tam sessizlik anını işaretle.
 
 ### 8. Süre
 Toplam süre hedefi 40–45 sn, üst sınır 50 sn (MARKA.md). Seslendirmeden sonra en fazla ~3 sn. Süre sesten gelir; plan 45 sn'yi aşıyorsa 50 sn'yi aşıyorsa metinden hangi cümlenin çıkabileceğini Notlar'a öneri olarak yaz (metni kendin değiştirme). 50 sn mutlak sınırdır.

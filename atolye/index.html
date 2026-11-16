@@ -838,17 +838,17 @@ async function yokla() {
 
 function demoBaslat() {
   $('altnot').textContent = 'Demo: veriler uydurma, sunucuya istek atılmaz.';
-  const ist = ['Konu', 'Metin', 'Doğrulama', 'Görsel plan', 'Okuma kartı', 'Taslak', 'Ses', 'Final', 'Yayın'];
-  const istAjan = ['konu-avcisi', 'senarist', 'dogrulayici', 'gorsel-yonetmen', 'ses-yonetmeni', 'video-uretici', 'ses-yonetmeni', 'video-uretici', null];
-  const gorev = ['G2 için gündem taraması', 'G2 için metin yaz', 'G2 metnini doğrula', 'G2 için görsel plan', 'G2 için okuma kartı', 'G2 taslak video üret', 'G2 sesini temizle', 'G2 final video', ''];
+  const ist = ['Konu', 'Metin', 'Doğrulama', 'Görsel plan', 'Ses', 'Kare dizisi', 'Ön izleme', 'Final', 'Yayın'];
+  const istAjan = ['konu-avcisi', 'senarist', 'dogrulayici', 'gorsel-yonetmen', 'ses-yonetmeni', 'video-uretici', 'video-uretici', 'video-uretici', null];
+  const gorev = ['Z1 için konu taraması', 'Z1 için metin yaz', 'Z1 metnini doğrula', 'Z1 için görsel plan', 'Z1 sesini üret', 'Z1 kare dizisi', 'Z1 sesli ön izleme', 'Z1 final video', ''];
   const araclar = [
-    [['WebSearch', 'deprem sonrası yalnızlık'], ['WebFetch', 'bianet.org'], ['Write', '01-konular.md']],
-    [['Read', '01-konular.md'], ['Read', 'MARKA.md'], ['Write', '02-metin-G2.md']],
-    [['WebSearch', 'Cemal Süreya söz kaynağı'], ['Write', '02b-dogrulama-G2.md']],
-    [['Read', '02-metin-G2.md'], ['Write', '03-gorsel-plan-G2.md']],
-    [['Read', '02-metin-G2.md'], ['Write', '02c-okuma-G2.md']],
-    [['Write', 'film.js'], ['Bash', 'Sahne karelerini çiz'], ['Bash', 'Taslak videoyu birleştir']],
-    [['Bash', 'Gürültüyü temizle'], ['Write', 'zaman-haritasi.json']],
+    [['Read', 'arsiv/islenen-konular.md'], ['WebSearch', 'TDK unutulan kelimeler'], ['Write', '01-konular.md']],
+    [['Read', '01-konular.md'], ['Read', 'MARKA.md'], ['Write', '02-metin-Z1.md']],
+    [['WebFetch', 'sozluk.gov.tr/gts'], ['Write', '02b-dogrulama-Z1.md']],
+    [['Read', '02-metin-Z1.md'], ['Write', '03-gorsel-plan-Z1.md']],
+    [['Write', 'yonerge.json'], ['Bash', 'ses-uret.js'], ['Bash', 'muzik-uret.js']],
+    [['Write', 'film.js'], ['Bash', 'Çekim karelerini çiz'], ['Bash', 'Kare dizisini birleştir']],
+    [['Bash', 'Ön izlemeyi çiz'], ['Bash', 'Ses ve müziği ekle']],
     [['Bash', 'Final videoyu üret'], ['Read', 'final.mp4']],
   ];
   let adim = 0, alt = 0, onay = false;

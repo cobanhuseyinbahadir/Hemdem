@@ -16,7 +16,7 @@
 
 Hemdem, psikoloji ve felsefe temalı, 40–45 saniyelik Türkçe reels'leri **baştan sona** üreten bir sistemdir: konuyu bulur, metni yazar, sözleri doğrular, sahneleri kurgular, seslendirir, müziği besteler ve videoyu **kodla çizer**.
 
-Sistem, [Claude Code](https://claude.com/claude-code) üzerinde çalışan **bir Şef ve altı uzman agent**'tan oluşur. Her agent tek bir işi yapar; bir sonraki adıma ancak içerik sahibi onay verince geçilir. İçerik sahibi yalnızca Şef'le konuşur.
+Sistem, [Claude Code](https://claude.com/claude-code) üzerinde çalışan **bir Şef ve yedi uzman agent**'tan oluşur. Her agent tek bir işi yapar; bir sonraki adıma ancak içerik sahibi onay verince geçilir. İçerik sahibi yalnızca Şef'le konuşur.
 
 Her videonun merkezinde bir **Sav** durur: bir atasözü, bir deyim, bir şairin dizesi ya da unutulmaya yüz tutmuş bir kelime. Video bu sözü bugünün tanıdık bir anıyla buluşturur ve cevap vermeden, düşündüren bir soruyla ya da cümleyle biter.
 
@@ -39,6 +39,7 @@ flowchart LR
     SEF --> SY["🎙️ Ses Yönetmeni"]
     SEF --> GY["🎨 Görsel Yönetmen"]
     SEF --> VU["🎬 Video Üretici"]
+    SEF --> YA["📣 Yayıncı"]
 ```
 
 | Agent | Ne yapar | Ürettiği |
@@ -50,6 +51,7 @@ flowchart LR
 | **Ses Yönetmeni** | Metni ElevenLabs ile seslendirir. Her cümleye kendi tonunu verir (sakin, kaygılı, fısıltı, ağır…), sesi cümle cümle üretir, her kelimenin zamanını çıkarır. Geri bildirimde yalnızca istenen cümleyi yeniden üretir. Her videoya özel solo ud müziği besteler. | `ses.wav`, `hizalama.json`, `muzik.mp3` |
 | **Görsel Yönetmen** | Metni sahne sahne akan bir minyatür filme çevirir: mekânlar, 5–9 çekim, her çekimdeki aksiyon, kamera, çekimler arası geçişler, ışık ve altın. | `03-gorsel-plan-<kod>.md` |
 | **Video Üretici** | Planı motorla **kodla çizer**. Önce her çekimden kareleri (storyboard), sonra sesli ön izlemeyi, onaydan sonra finali üretir. Her kareyi "bir yabancı burada ne görür?" diye kendisi denetler. | `film.js`, `onizleme.mp4`, `final.mp4` |
+| **Yayıncı** | Instagram paylaşım paketini hazırlar: ilk satırında anahtar kelime olan açıklama, 3–5 etiket, alt metin, kapak yazısı, paylaşım saati. Yayıncı paylaşmaz; paylaşımı Şef, içerik sahibinin açık onayıyla yapar. | `05-yayin-<kod>.md` |
 
 ---
 
@@ -63,10 +65,11 @@ flowchart TD
     C -->|metin onaylanır| F["3c · Görsel plan<br/><i>Görsel Yönetmen</i>"]
     D -->|yönerge onaylanır| E["3b · Ses + ud müziği<br/><i>ElevenLabs</i>"]
     E -->|ses onaylanır| G
-    F -->|plan onaylanır| G["4 · Kare dizisi<br/><i>Video Üretici</i>"]
-    G -->|dizi onaylanır| H["4b · Sesli ön izleme"]
+    F -->|plan onaylanır| G["4 · Kare dizisi + sesli ön izleme<br/><i>Video Üretici</i>"]
+    G --> H["4b · Ön izleme onayı"]
     H -->|ön izleme onaylanır| I["4c · Final video"]
-    I --> J(["Yayın · içerik sahibi paylaşır"])
+    I -->|final onaylanır| Y["5 · Yayın paketi<br/><i>Yayıncı</i>"]
+    Y --> J(["Şef paylaşır<br/><i>içerik sahibinin açık onayıyla</i>"])
 ```
 
 - **Her okun üstünde bir kapı var:** içerik sahibi onaylamadan bir sonraki adım başlamaz.
@@ -144,7 +147,7 @@ Hemdem/
 ├── MARKA.md                marka rehberi
 ├── sef-kriterleri.md       değerlendirme kriterleri
 ├── .claude/
-│   ├── agents/             altı uzman agent
+│   ├── agents/             yedi uzman agent
 │   └── skills/sef/         Şef
 ├── motor/                  kodla video, ses ve müzik üretimi
 ├── arsiv/                  ders defteri, konular, savlar

@@ -46,6 +46,30 @@ Başlıca araçlar (`minyatur.js`):
 
 Örnek kurgu: **`ornekler/minyatur-sahneli.js`** (5 çekim, 4 geçiş; yeni filmler bu yapıyla yazılır). `ornekler/minyatur-kahvehane.js` yalnızca çizim araçlarının örneğidir (tek resim; kurgu örneği değil).
 
+## Hazır parçalar (16 Kasım 2026, Z1'de çizildi)
+
+`M.parcalar(g)` Z1'de çizilen ve denetlenen parçaları hazır verir. Mevcut API'ye dokunmaz; film dosyasında `const P = M.parcalar(g);` ile alınır, parçalar her karede yeniden çağrılır. **Önce buradan bak, aynı nesneyi yeniden çizme** (yeni nesne yine tek başına büyük çizilip denetlenir).
+
+| Parça | Çağrı | Not |
+|---|---|---|
+| `P.defter(sx, cy, s, o)` | sırt x, orta y, ölçek; `o`: `ac` 0 kapalı..1 açık, `lit`, `satir` 0..1, `cevir` 0..n (dönen sayfa), `yat` | Kapalıyken `[sx, sx+90s] × 120s` |
+| `P.sandik(x0, yOn, w, h, d, a, o)` | ön yüz `x0..x0+w × yOn..yOn+h`, ağız derinliği `d`, kapak `a` 0..1 | `o.ic()` ağız içi (kırpılı), `o.icUst()` taşan |
+| `P.mendil(cx, cy, r, o)` | eşkenar dörtgen mendil | `o`: `ry`, `kanat` 0..1, `iz: [w,h]`, `ic()` |
+| `P.telefon(cx, cy, s, o)` | orta nokta | `o`: `ekran` 0..1, `ters` 0..1, `rot`, `yat` |
+| `P.nazarlik(x, y, r, sw)` | çengel noktası; `sw` sallanma açısı | tek nazarlık |
+| `P.bebek(o)` | `o`: `x, y, dir, scale, step, bob, sway, oturur, kol` | ~1 yaş, ayak hizası (0,0) |
+| `P.oturan(o)` | oturan figür, kalın konik kol | `o`: `x, y, dir, scale, lean, bob, hand: [hx,hy], coat, coatD, sash, scarf/hair…` |
+| `P.kol(sx, sy, hx, hy, coat, coatD, w, w1)`, `P.kolCiz`, `P.kolUst(o)` | yerel koordinatta kol; el nesnenin üstünde kalsın diye kol yeniden çizilir | |
+| `P.el`, `P.kalem(x, y, a, L)`, `P.lale(x, y, s)`, `P.kilim(x0, y0, x1, y1)` | küçük parçalar | |
+| `P.yerel(o, wx, wy)`, `P.dunya(o, lx, ly)`, `P.figT`, `P.ek`, `P.lerp` | figür koordinat yardımcıları | |
+| `P.BABA`, `P.TORUN`, `P.KURSUN` | Z1'in figür renkleri ve kurşun rengi | |
+
+`P.odaArka` ve `P.SAND` (Z1'in sandık odası) Z1'e özgüdür, taşınmadı; `gunluk/2026-11-16/04-video-Z1/film.js` içinde durur. Z1'in `film.js`'i kendi kopyasıyla çalışmaya devam eder (değiştirilmedi).
+
+## Müzik kütüphanesi (16 Kasım 2026)
+
+`motor/muzik/` hazır ud parçalarını ve `KATALOG.md` künyelerini tutar. Yeni müzik üretmeden önce katalogdan duyguya uyan parça seçilir. `birlestir.js` parçayı videonun süresine keser, girişte 1 sn, çıkışta 2 sn solar ve sesin 20 LU altına oturtur; parça videodan **kısaysa** kullanılmaz (yeni üretim).
+
 ## Eskiz (eski)
 
 Gerekenler: Node 20+, ffmpeg, Chrome ya da Edge. Kurulum: bu klasörde `npm install`.

@@ -17,7 +17,7 @@ Sen Hemdem'in **Senarist**isin. Konu Avcısı'nın bulduğu bir konudan, Hemdem 
 Senden bir tarih ve bir öneri kodu istenir (ör. `2026-11-12`, `Z3` ya da `5`).
 
 1. `MARKA.md` dosyasını baştan sona oku.
-2. `gunluk/<tarih>/01-konular.md` dosyasından o öneriyi bul. Sav, kaynak, baskı, yaklaşım, kanca, ana fikir ve hassasiyet notlarını oku. Bunlar senin hammaddendir, ama birebir kopyalamak zorunda değilsin. Daha iyi bir kanca ya da daha iyi bir yol bulursan kullan.
+2. `gunluk/<tarih>/01-konular.md` ya da haftalık liste `01-konular-hafta.md` (Şef yolu verir) dosyasından o öneriyi bul. Sav, kaynak, baskı, yaklaşım, kanca, ana fikir ve hassasiyet notlarını oku. Bunlar senin hammaddendir, ama birebir kopyalamak zorunda değilsin. Daha iyi bir kanca ya da daha iyi bir yol bulursan kullan.
 3. İçerik sahibi ek bir yön verdiyse (ton, vurgu, uzunluk) o önceliklidir.
 
 ## Metnin yapısı

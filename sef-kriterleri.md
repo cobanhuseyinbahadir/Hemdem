@@ -12,7 +12,7 @@
 - **Hemdem'e uygunluk:** Tanıdık acı + tanıdık söz + "yalnız değilsin" üçlüsü var mı?
 - **Özgünlük:** Bu söz bu açıdan daha önce çok işlenmiş mi?
 - **Risk:** Siyaset, taze trajedi, kutuplaşma 🔴
-- **Denge:** Son günlerde benzer konu/ton seçildi mi?
+- **Denge:** Son günlerde benzer konu/ton seçildi mi? Haftalık listede Z ve K karışık mı, günlük 2 video (öğlen K, akşam Z) için yeterli çeşit var mı? *(16 Kasım)*
 - **Haber yok:** Öneriler haber ya da trendden gelmiyor; zamansız ya da Türkiye'ye özgü bir özel günden geliyor. Ö önerisi yalnızca özel güne 1–2 gün kala geliyor. 🔴 *(15 Kasım)*
 - **Kelime önerileri (K1, K2):** Kelime sözlük dersi gibi değil, bir anı ve duyguyu açıyor mu? Anlam ve köken güvenilir bir sözlükte doğrulanmış mı? K2 çok işlenmiş bir kelimeyse (hygge, ikigai…) yeni ve doğru bir açısı var mı? *(15 Kasım)*
 - **Özel gün (Ö):** Günün kendisini değil, altındaki duyguyu işliyor mu? Siyasete ya da vaaz tonuna kaçmıyor mu? 🔴
@@ -51,8 +51,8 @@
 - **Uygulanabilirlik:** Çizimi zor öğelerin yedeği var mı?
 
 ## 4. Video
-*(15 Kasım 2026: video sesten sonra üretilir; önce kare dizisi, sonra sesli ön izleme.)*
-- **Kare dizisi:** Her çekimin başı ve anahtar anı ile her geçişin ortası tek görselde dizili mi? Dizi bir hikâye anlatıyor mu, her çekimde bir şey oluyor mu? Video Üretici'nin yabancı testi satırları planla örtüşüyor mu? Tanınmayan öğe yok mu? 🔴
+*(15 Kasım 2026: video sesten sonra üretilir. 16 Kasım: kare dizisi ayrı onay kapısı olmaktan çıktı; Video Üretici kare dizisini ve kurgu tablosunu ön izleme işinin içinde yapar, dizi ön izlemeyle birlikte sunulur.)*
+- **Kare dizisi (ön izlemeyle birlikte, ayrı kapı değil):** Her çekimin başı ve anahtar anı ile her geçişin ortası tek görselde dizili mi? Dizi bir hikâye anlatıyor mu, her çekimde bir şey oluyor mu? Video Üretici'nin yabancı testi satırları planla örtüşüyor mu? Tanınmayan öğe yok mu? 🔴
 - **Kurgu tablosu:** Her çekim için "plan: görülmesi gereken / karede gördüğüm" tablosu var mı, hepsi ✔ mi? Tablo yoksa ya da ✘ varsa ön izleme sunulmaz. 🔴
 - **Tek özne ve anahtar an:** Her çekimde kadrajın tek bir öznesi var mı? Cümlenin anahtar kelimesi söylendiği anda görüntüde karşılığı oluyor mu?
 - **Zamanlar sesten:** `film.js`'te elle yazılmış saniye yok mu (her zaman `M.c` / `M.k`)? Altyazılar `subs: 'ses'` ile mi geliyor?
@@ -64,11 +64,23 @@
 
 ## 5. Ses
 *(15 Kasım 2026: seslendirme ElevenLabs ile yapılıyor; kayıt kalitesi ve cümle ayrımı kriterleri yerini aşağıdakilere bıraktı.)*
-- **Yönerge (4b):** Her cümlenin bir ton etiketi var mı? Tonlar metnin anlamını izliyor mu (açılış, anı, gerilim, Sav, kapanış), aynı ton art arda yığılmıyor mu? Fısıltı en fazla 1–2 yerde mi? Metnin kelimeleri onaylı metinle birebir aynı mı? 🔴
+- **Yönerge (4b):** Her cümlenin bir ton etiketi var mı? Tonlar metnin anlamını izliyor mu (açılış, anı, gerilim, Sav, kapanış), aynı ton art arda yığılmıyor mu? Fısıltı en fazla 1–2 yerde mi? `softly`, `quietly`, `hushed` gibi kısık/yumuşak etiketler de fısıltı sayılır: toplam en fazla 1–2 yer. Komşu cümleler arasında duygu kademeli mi (ana ton tek, sıcak bir anlatıcı sesi; 18 cümlede 15 farklı etiket yok)? *(16 Kasım dersi)* Metnin kelimeleri onaylı metinle birebir aynı mı? 🔴
 - **Tek ton değil:** Dinleyince ses bölüm bölüm duygu değiştiriyor mu, yoksa baştan sona aynı mı? Sav ağırlıklı, kapanış yavaş mı?
 - **Doğru okuma:** Kelime atlanmış, fazladan söylenmiş, etiket sesli okunmuş ya da yanlış telaffuz edilmiş yer yok mu? (Ses Yönetmeni'nin "Kendi denetimim" bölümü) 🔴
 - **Süre:** Toplam seslendirme ≤ 45 sn hedefinde mi; video 50 sn'yi geçmiyor mu? Geçiyorsa önce duraklar kısalır; yine geçiyorsa metin kısaltılır. Konuşma asla hızlandırılmaz.
 - **Seri akış:** Konuşma acele etmiyor ama cümleler arasında boşluk hissi yok mu? Duraklar 0.5 sn'yi geçmiyor mu? *(İçerik sahibinin kuralı, 15 Kasım)*
 - **Düzeltme turu:** İçerik sahibinin notu yalnızca ilgili cümlelere işlenmiş mi, diğer cümleler aynı sürümde kalmış mı?
 - **Ses şiddeti:** Final video **-14 LUFS Integrated (±1 LU), True Peak ≤ -1.0 dBTP**. Ölçüm Ses Yönetmeni'nin ve Video Üretici'nin notunda sayıyla yazılı olmalı; yazılı değilse geri gönderilir. *(13 Kasım)*
+- **Müzik:** Önce `motor/muzik/KATALOG.md`'den duyguya uyan parça seçilmiş mi, yeni üretim yalnızca gerekçeliyse (duygu belirgin farklı / uygun parça yok) ve en fazla 2 denemeyle mi yapılmış? İyi çıkan yeni parça kataloğa eklenmiş mi? *(16 Kasım)*
+- **Ses notları tek turda:** İçerik sahibinin notları toplanıp tek `duzelt` turunda uygulanmış mı? *(16 Kasım)*
 - **Kota:** Ses Yönetmeni harcanan ve kalan karakteri yazmış mı? Kalan 5.000'in altındaysa içerik sahibine söylenir.
+
+## 6. Yayın paketi
+*(15 Kasım 2026: Yayıncı kuruldu.)*
+- **İlk satır:** Ana anahtar kelime ve kanca ilk satırda mı, "devamını gör"den önce (~125 karakter) okunuyor mu? Videonun ilk cümlesini kopyalamıyor mu?
+- **Sav:** Doğrulayıcı'nın onayladığı biçimle ve kaynağıyla mı yazılmış? 🔴
+- **Etiketler:** 3–5 etiket, `#hemdem` dahil, konuya özel mi? (Instagram sınırı 5.)
+- **Ton:** Sorar ama söylemez; öğüt, hüküm, klişe çağrı ("kaydet, sonra lazım olur"), tıklama tuzağı yok mu? 🔴
+- **Son satır:** İzleyiciyi kendi hikâyesini yazmaya davet eden açık bir soru mu?
+- **Paylaşıma hazırlık:** Paket Şef'in kopyalayıp yapıştırabileceği bloklarda mı; `final-instagram.mp4` (10 MB altı) var mı? *(16 Kasım)*
+- **Yapay zekâ etiketi ve açık kontroller:** Paket, "Yapay zekâ bilgisi" etiketini ve yayından önce zorunlu açık kontrolleri hatırlatıyor mu?

@@ -1,6 +1,7 @@
 ---
 name: dogrulayici
 description: Hemdem için Senarist'in yazdığı metni yayından önce denetler; sözlerin doğruluğu ve kime ait olduğu, telif durumu, tarih ve olgu iddiaları, MARKA.md kırmızı çizgileri ve ton. Net bir karar verir (hazır / düzeltme gerekli / kullanma). "Doğrula", "kontrol et", "<kod> metnini denetle" gibi isteklerde kullanılır.
+model: sonnet
 tools: Read, Write, Glob, Grep, WebSearch, WebFetch
 ---
 
@@ -14,7 +15,7 @@ Senden bir tarih ve bir öneri kodu istenir (ör. `2026-11-12`, `Z3`).
 
 1. `MARKA.md` dosyasını oku, özellikle **Ses ve ton** ile **Kırmızı çizgiler** bölümlerini.
 2. `gunluk/<tarih>/02-metin-<kod>.md` dosyasını oku. Ana denetim nesnen bu.
-3. `gunluk/<tarih>/01-konular.md` dosyasındaki ilgili önerinin hassasiyet notunu oku.
+3. `gunluk/<tarih>/01-konular.md` ya da haftalık liste `01-konular-hafta.md` (Şef yolu verir) dosyasındaki ilgili önerinin hassasiyet notunu oku.
 
 ## Neyi denetlersin?
 
