@@ -66,10 +66,11 @@ Figürler renkli kıyafetli, **sade minyatür yüzlüdür**. Her figür için: k
 - **Sayılar sabit.** Bir çekimde kaç nesne varsa çekim boyunca o kadar kalır; sonradan fazladan nesne belirmez. Değişecekse planda açıkça yaz. *(13 Kasım: beliren üçüncü fincan)*
 - **Aynı yazı iki kez görünmez** (kartuş ve altyazı aynı anda aynı cümleyi göstermez; konuşma balonu ile altyazı birlikte kullanılmaz).
 - **Yazı çerçevesine sığar.** Resmin içindeki bir yazı (levha, telefon ekranı, mektup) varsa en fazla kaç karakter olacağını ve çerçevenin boyutunu yaz; telefon gibi ekranlar kadrajın ortasında olsun. *(13 Kasım: taşan "iyi bayramlar" yazısı)*
+- **Instagram'ın kör noktaları.** Sağ kenar şeridi (resmin sağdaki ~%10'u, ekranın ortasından alt kenara kadar) beğeni/yorum/gönder düğmelerinin altında kalır; alt şerit kullanıcı adı ve açıklamanın, üst köşeler geri oku ve kamera simgesinin altında kalır. Özne, yüz, dönüş anının nesnesi ve resmin içindeki yazılar bu alanlara yerleştirilmez; kompozisyon ortaya ve biraz sola yaslanır. *(17 Kasım 2026)*
 
 ### 6. Yazılar
 - **Kartuş (üstte):** Sav ya da kelime, altın kenarlı parşömen kartuşta, kalemle soldan sağa açılarak yazılır; en az 3 sn ekranda kalır. Ne zaman açılacağını yaz (genelde Sav'ın söylendiği an). Sav kartuştayken altyazıda aynı cümle gösterilmez (gizli satır).
-- **Altyazı (altta):** Sabit parşömen kuşağı; seslendirmeyle kelimesi kelimesine aynı, tek satır (~44 karakter). **Her altyazı en az 1.2 sn** ekranda kalır; çok kısa cümleleri birleştir ("Mesajı yazdın. Sildin."). Altyazı izleyiciyi koşturmamalı. Kahraman ve önemli öğeler bu bandın arkasında kalmasın.
+- **Altyazı (altta):** Sabit parşömen kuşağı; seslendirmeyle kelimesi kelimesine aynı, tek satır (~28 karakter; uzun cümleyi motor kendisi parçalara böler, sağdaki düğme sütununa girmesin diye parşömen daraldı). **Her altyazı en az 1.2 sn** ekranda kalır; çok kısa cümleleri birleştir ("Mesajı yazdın. Sildin."). Altyazı izleyiciyi koşturmamalı. Kahraman ve önemli öğeler bu bandın arkasında kalmasın.
 - **Kelime videoları (K1, K2):** Kelime kartuşta büyük yazılır; yabancı kelimede altında küçük satır olarak okunuşu. Kelime, ışığın dokunuşuyla aynı anda gelebilir. Önce an anlatılır, kelime sonra gelir.
 - **Kapanış** (soru ya da cümle) altyazıda kalır; seslendirme bittikten sonra en az 2 sn ekranda kalır, son çekim bu sırada yavaşça durulur. Ardından sadece bordürdeki "Hemdem" imzası.
 

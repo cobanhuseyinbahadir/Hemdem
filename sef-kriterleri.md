@@ -10,7 +10,7 @@
 - **Dokunma gücü:** İzleyici ilk cümlede "bu benim" der mi?
 - **Sav'ın gücü:** Söz ya da deyim kendi başına çarpıcı mı? Gündelik hayata güçlü bir bağ kurulabilir mi?
 - **Hemdem'e uygunluk:** Tanıdık acı + tanıdık söz + "yalnız değilsin" üçlüsü var mı?
-- **Özgünlük:** Bu söz bu açıdan daha önce çok işlenmiş mi?
+- **Özgünlük:** Bu söz bu açıdan daha önce çok işlenmiş mi? Açı beklenmedik mi, yoksa kelimenin ilk akla gelen imgesine (babaanne, sandık, eski eşya) mi yaslanıyor? Aynı imge üst üste iki videoda var mı? *(17 Kasım, içerik sahibinin kuralı)*
 - **Risk:** Siyaset, taze trajedi, kutuplaşma 🔴
 - **Gönderilebilirlik:** İzleyici bunu kime gönderir? Cevap somut bir ilişki mi (anne, babaanne, eski dost, eş)? Instagram'da bizi takip etmeyenlere ulaşmanın en güçlü yolu DM ile gönderilmek. *(16 Kasım, Instagram araştırması)*
 - **Denge:** Son günlerde benzer konu/ton seçildi mi? Haftalık listede Z ve K karışık mı, günlük 2 video (öğlen K, akşam Z) için yeterli çeşit var mı? *(16 Kasım)*
@@ -61,6 +61,7 @@
 - **İlk kare:** Durduruyor mu, boş mu? 0. saniyede kartuşta en fazla 5 kelimelik kanca yazısı okunuyor mu, ilk karede figür/el ya da gerilim taşıyan nesne var mı? 🔴 *(16 Kasım)*
 - **Ölü kare yok:** Kapanış hariç 1 sn'den uzun boş/öznesiz kare ya da 1.5 sn'den uzun altyazısız ve hareketsiz an yok mu? Kurgu tablosunda "Ölü kare" satırı var mı? *(16 Kasım; K1'de ~20. sn'deki boş parşömen sayfası)*
 - **Okunurluk:** Altyazı, kartuş ve resmin içindeki yazılar telefonda okunuyor mu, çerçevelerine sığıyor mu?
+- **Kör nokta:** Instagram'ın kör noktalarında (sağdaki beğeni/yorum/gönder sütunu, alttaki kullanıcı adı/açıklama, üst köşelerdeki simgeler) özne, yüz ya da yazı yok mu? Bordür telefonda dört kenardan görünüyor mu? Video Üretici'nin `--maske` karelerine ve kurgu tablosundaki "Kör nokta" satırına bakılır. *(17 Kasım; K1'de bordür kırpıldı, altyazı arayüzün altında kaldı)*
 - **Estetik:** Hemdem Minyatür'e sadık mı (düz pigment, kalın kontur, üstübeç noktalar, kare kare varak)? Karmaşık, çocuksu ya da "düz vektör çizim" gibi duran kare var mı? Altın sarı boyaya dönmüş mü?
 - **Senkron:** Her altyazı satırı sesle uyumlu mu? 🔴 *(13 Kasım dersi: Z3 senkron yüzünden iptal edildi.)* Altyazılar artık sesin kelime zamanlarından otomatik geliyor; Video Üretici 3 noktada (ilk cümle, Sav, kapanış) karşılaştırmayı notuna yazar. Bir noktada sapma 0.3 sn'yi geçiyorsa öneri "geri gönder"dir. Şef ayrıca en az 3 noktada (açılış, Sav, kapanış) kareyi ve o andaki sesi kendisi kontrol eder.
 - **Süre:** Hedef 40–45 sn, ≤ 50 sn 🔴

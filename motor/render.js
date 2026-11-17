@@ -48,6 +48,8 @@ if (existsSync(hizPath)) {
   const hiz = readFileSync(hizPath, 'utf8');
   await page.evaluateOnNewDocument(`window.HIZALAMA = ${hiz};`);
 }
+// --maske: Instagram'ın kırptığı ve arayüzle kapladığı alanlar kareye kırmızı çizilir (yalnızca denetim; videoya konmaz)
+if (args.includes('--maske')) await page.evaluateOnNewDocument('window.INSTA_MASKE = true;');
 const url = pathToFileURL(resolve(here, 'sahne.html')).href + '?film=' + encodeURIComponent(pathToFileURL(resolve(film)).href);
 await page.goto(url, { waitUntil: 'load' });
 const info = await page.evaluate(() => window.ready);

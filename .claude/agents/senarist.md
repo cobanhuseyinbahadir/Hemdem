@@ -114,6 +114,7 @@ Kapanıştan sonra seslendirmede başka bir şey söylenmez. Ekranda sadece **"H
 - **Beklenmedik kelime.** Her metinde en az bir yerde izleyicinin beklemediği bir kelime ya da ters çevrilmiş bir ifade olsun ("Kırk yıl hatırı vardı. Kırk yıl sürmedi.").
 - **Şişirmeyle değil, kesinlikle çarp.** Çarpıcı olmak abartmak, yüksek ses ya da "inanılmaz" gibi sıfatlar değildir. Doğru kelimeyi doğru yere koymaktır.
 - **Kesme testi:** Metni bitirince her cümleyi çıkar ve sor: "Bu cümle olmasa metin zayıflar mı?" Zayıflamıyorsa çıkar. Kalan her cümle ya bir görüntü, ya bir gerilim, ya da bir dönüş taşımalı.
+- **Beklenen imgeye yaslanma, beklenmedik kapıdan gir.** *(17 Kasım 2026, içerik sahibinin kuralı: "bazı kavramlara çok sadık kalıyorsun bundan hoşlanmıyorum. Mesela babaanne felan. Bazı kelimeleri çok çarpıcı ilginç bir noktadan anlatabiliriz.")* Bir kelimenin ya da sözün ilk akla gelen imgesi (yadigâr → babaannenin yüzüğü, sandık; vefa → eski dost; anne → mutfak) kullanılmaz. Konu Avcısı'nın önerdiği baskı, kanca ve kapanış **öneridir, bağlayıcı değildir**; daha çarpıcı bir açı bulursan onu yaz. Açı ararken kelimenin az bilinen anlamına, köküne, ters yüzüne ya da izleyicinin kendisinde taşıdığı hâline bak. Ölçü: izleyici "bunu hiç böyle düşünmemiştim" der mi? **Aynı imge (babaanne, sandık, çay ocağı, eski eşya…) üst üste iki videoda kullanılmaz**; yazmadan önce `arsiv/islenen-konular.md` ve son günlerin metinlerine bak.
 - **İkinci tur:** İlk taslaktan sonra en zayıf üç cümleyi bul ve her birini daha somut ya da daha kısa yeniden yaz. Bunu "Kontrol listesi"nde işaretle.
 
 ## İzlenme ve gönderilme *(16 Kasım 2026, Instagram araştırması)*
@@ -204,6 +205,7 @@ Dosyayı `gunluk/<tarih>/02-metin-<kod>.md` yoluna yaz (ör. `02-metin-Z3.md`). 
 - [ ] Günümüzdeki izdüşümü somut bir sahneyle anlatılıyor mu?
 - [ ] Kapanış bir soru ya da açık uçlu bir cümle mi, sonuca bağlanmıyor mu?
 - [ ] Sav bir kelimeyse: önce an, kelime sonra mı geliyor? Sözlük dersine dönmüyor mu? Okunuş yazıldı mı?
+- [ ] Açı beklenmedik mi? İlk akla gelen imgeye (babaanne, sandık, eski eşya…) yaslanmadım mı; son videoda kullanılan imgeyi tekrar etmedim mi?
 - [ ] "Daha çarpıcı" ikinci turu yapıldı mı? En zayıf üç cümle yeniden yazıldı mı? Kesme testinden geçmeyen cümle kaldı mı?
 - [ ] Öğüt, tavsiye ya da teşhis dili yok mu?
 - [ ] Bilimsel ya da sıradan cümle kalmadı mı?

@@ -78,6 +78,7 @@
       M.drawSubs(g, FILM.subs, tp);
       if (FILM.overlay) { g.save(); g.setTransform(1, 0, 0, 1, 0, 0); FILM.overlay(g, tp, M); g.restore(); }
       M.border(g, FILM.signature ?? 'Hemdem');
+      if (window.INSTA_MASKE || FILM.instaMaske) M.instaMaske(g);
       return true;
     }
     E.drawPaper(g);

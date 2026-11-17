@@ -191,9 +191,12 @@ Ses videodan önce üretilir (`ses-uret.js`). `render.js`, film dosyasının kla
 | `M.c(n)` | n. cümle: `{ bas, son, metin, kelimeler }` (gerçek saniye, 1'den başlar) |
 | `M.k(n, 'kelime', sira?)` | n. cümlede o kelimenin başladığı saniye (büyük/küçük harf, noktalama önemsiz; ek almış hâli de bulur) |
 | `M.sesSure` | seslendirmenin toplam süresi |
-| `subs: 'ses'` | altyazılar cümlelerden otomatik kurulur; parşömene sığmayan cümle kelime sınırından ikiye bölünür, her parça kendi kelimesinin söylendiği anda gelir |
+| `subs: 'ses'` | altyazılar cümlelerden otomatik kurulur; parşömene sığmayan cümle kelime sınırından bölünür (gerekirse 3 parçaya), her parça kendi kelimesinin söylendiği anda gelir |
 | `gizli: [12]` | bu cümleler altyazıda gösterilmez (ör. Sav kartuşta yazılırken) |
 | `subY: 1440` | parşömen altyazının üst kenarı (varsayılan 1440, bant 1440–1536). 16 Kasım'a kadar 1690'dı; Instagram'ın alttaki kullanıcı adı ve açıklama alanıyla (y ≈ 1650 ve aşağısı) çakışıyordu. Önemli öğeler bandın üstünde kalır |
+| `instaMaske: true` | Instagram'ın kırptığı ve arayüzle kapladığı alanlar (`M.KOR`) kareye yarı saydam kırmızı çizilir; yalnızca denetim içindir, final videoda kullanılmaz. Komut satırından: `node render.js <film.js> --still 4.5 --maske --out maske.png` |
+
+**Instagram güvenli alanı (17 Kasım 2026).** Instagram Reels'i telefonda ekranı dolduracak kadar büyütür; yanlardan ~55 px, üst-alttan ~10–15 px gider (K1 karesi ile telefon ekran görüntüsü karşılaştırılarak ölçüldü). Bu yüzden bordür içeri alındı: `M.PAY = { x: 60, y: 22 }` düz lacivert pay, `M.BW = 72` bordür, resim alanı `M.PIC` x 132–948, y 94–1826. Altyazı parşömeni en fazla `M.SUB_MAXW = 620` px (sağdaki beğeni/yorum sütunu x > 885'te); `subs: 'ses'` uzun cümleleri gerekirse 3 parçaya böler, bölünemeyen satırın yazısı küçülür. Kartuş x 170–910 arasında (üst köşelerde geri oku ve kamera simgesi), sığmayan satır küçülür. Kör noktaların listesi `M.KOR`.
 | `kapanis: 2.5` | son cümleden sonra ekranda kalma süresi; `duration` verilmezse süre = ses + kapanış |
 
 ```js

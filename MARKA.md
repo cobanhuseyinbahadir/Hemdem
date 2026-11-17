@@ -121,7 +121,7 @@ Her video **minyatür diliyle çizilmiş, sahne sahne akan kısa bir filmdir.** 
 
 **Ses:** Seslendirme önde. Altında resmin kendi sesleri (dere, kuş, fincan tıkırtısı, çarşı uğultusu), çok sakin bir müzik: **solo ud taksimi** (Hemdem müziği, içerik sahibinin seçimi, 15 Kasım; ElevenLabs Music ile her videoya özel, sözsüz üretilir; seslendirmenin ~20 LU altında). Altın parladığında küçük bir çan ya da zil. Gerekirse bir an tam sessizlik.
 
-**Format:** Dikey 9:16 (1080×1920). Resim alanı bordürün içi (72 px kenar boşluğu); önemli öğeler alttaki parşömen bandının (y ≈ 1440–1536) üstünde kalır. Bandın altı (y > 1600) Instagram'ın kullanıcı adı ve açıklama alanıdır; oraya önemli bir şey konmaz.
+**Format:** Dikey 9:16 (1080×1920). Instagram videoyu telefonda büyütüp kenarlardan kırpar (yanlardan ~55 px, üst-alttan ~15 px); bu yüzden bordür kenardan içeri alınmıştır (dışında 60 px yan, 22 px üst-alt düz lacivert pay). Resim alanı bordürün içi: x 132–948, y 94–1826. **Kör noktalar** (Instagram arayüzü üstüne biner; önemli öğe, yazı ya da yüz konmaz): sağdaki beğeni/yorum/gönder/kaydet sütunu (x > 885, y ≈ 860–1760), alttaki kullanıcı adı ve açıklama (y > 1690), üst köşelerdeki geri oku ve kamera simgesi (y ≈ 160–270). Altyazı parşömeni y 1440–1536'da, en fazla 620 px genişlikte ortada durur; üst kartuş x 170–910 arasındadır. *(17 Kasım 2026)*
 
 **Motor:** `motor/minyatur.js` (film dosyasında `style: 'minyatur'`; çekimler `M.cekimler`, geçişler, hareketli figürler). Örnek sahneli film: `motor/ornekler/minyatur-sahneli.js`. (`ornekler/minyatur-kahvehane.js` yalnızca çizim araçlarının örneğidir; tek resimli olduğu için kurgu örneği değildir.)
 

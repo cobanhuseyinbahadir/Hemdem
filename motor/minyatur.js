@@ -79,17 +79,20 @@
     cs.forEach((c, i) => {
       const words = c.metin.split(/\s+/).filter(Boolean);
       const sameWords = words.length === c.kelimeler.length; // "soyle" kullanılmadıysa kelimeler eşleşir
-      let parts = [[0, words.length]];
-      if (sameWords && g.measureText(c.metin).width > maxW) {
-        // en dengeli bölme noktası; virgül/iki nokta sonrası tercih edilir
+      // sığmayan cümle, her parça maxW'ye sığana kadar en dengeli noktalardan bölünür
+      // (17 Kasım 2026: altyazı Instagram'ın sağ düğme sütununa girmesin diye maxW daraldı;
+      // bir cümle artık 3 parçaya da bölünebilir). Virgül/iki nokta sonrası tercih edilir.
+      const wOf = (s, e) => g.measureText(words.slice(s, e).join(' ')).width;
+      const split = (s, e) => {
+        if (!sameWords || e - s < 2 || wOf(s, e) <= maxW) return [[s, e]];
         let best = null;
-        for (let j = 1; j < words.length; j++) {
-          const l = g.measureText(words.slice(0, j).join(' ')).width, r = g.measureText(words.slice(j).join(' ')).width;
-          const score = Math.max(l, r) - (/[,:;]$/.test(words[j - 1]) ? 120 : 0);
+        for (let j = s + 1; j < e; j++) {
+          const score = Math.max(wOf(s, j), wOf(j, e)) - (/[,:;]$/.test(words[j - 1]) ? 120 : 0);
           if (!best || score < best.s) best = { j, s: score };
         }
-        parts = [[0, best.j], [best.j, words.length]];
-      }
+        return [...split(s, best.j), ...split(best.j, e)];
+      };
+      const parts = split(0, words.length);
       parts.forEach(([s, e]) => out.push({ text: words.slice(s, e).join(' '), a: sameWords ? c.kelimeler[s].bas : c.bas, cumle: i + 1 }));
     });
     g.restore();
@@ -109,7 +112,7 @@
     if (M.ses) M.sesSure = M.ses.toplamSure;
     if (film.subs === 'ses') {
       if (!M.ses) throw new Error("subs: 'ses' için film klasöründe hizalama.json gerekli");
-      film.subs = M.sesSubs(g, W - 300, film.kapanis ?? 2.5);
+      film.subs = M.sesSubs(g, M.SUB_MAXW - 110, film.kapanis ?? 2.5);
       // gizli: [12] → 12. cümle altyazıda görünmez (ör. Sav kartuşta yazılırken)
       for (const s of film.subs) if ((film.gizli || []).includes(s.cumle)) s.hidden = true;
     }
@@ -144,7 +147,7 @@
     g.save(); g.font = M.subFont;
     const longest = Math.max(0, ...(film.subs || []).filter(s => !s.hidden).map(s => g.measureText(s.text).width));
     g.restore();
-    M.scrollW = Math.min(W - 180, Math.max(560, longest + 110));
+    M.scrollW = Math.min(M.SUB_MAXW, Math.max(460, longest + 110));
   };
 
   // ---- yol yardımcıları ----
@@ -355,19 +358,28 @@
   // ---- ekrandaki yazılar ----
   M.subFont = '500 38px "Fraunces Variable"';
   // üst kartuş (Sav ya da kelime). lines: ['satır', {text, italic}], p: kalemle sağa doğru açılma (0..1)
-  M.cartouche = function (g, lines, p = 1, y = 104, h = 158) {
+  // 17 Kasım 2026: kartuş daraldı (gövde 220–860, kıvrımlarla 170–910). Instagram'ın üstteki
+  // geri oku (x ≈ 130–160) ve kamera simgesi (x ≈ 915–970), y ≈ 180–260'ta kartuşun uçlarına biniyordu.
+  // Sığmayan satırın yazısı kendiliğinden küçülür.
+  M.cartouche = function (g, lines, p = 1, y = 118, h = 158) {
     if (p <= 0) return;
-    const cart = M.P(q => { q.moveTo(140, y); q.lineTo(940, y); q.quadraticCurveTo(990, y + h / 2, 940, y + h); q.lineTo(140, y + h); q.quadraticCurveTo(90, y + h / 2, 140, y); q.closePath(); });
+    const L = 220, R = 860, cx = (L + R) / 2;
+    const cart = M.P(q => { q.moveTo(L, y); q.lineTo(R, y); q.quadraticCurveTo(R + 50, y + h / 2, R, y + h); q.lineTo(L, y + h); q.quadraticCurveTo(L - 50, y + h / 2, L, y); q.closePath(); });
     g.save();
-    g.beginPath(); g.rect(80, y - 20, 920 * M.ease(p) + 10, h + 40); g.clip();
+    g.beginPath(); g.rect(L - 60, y - 20, (R - L + 110) * M.ease(p) + 10, h + 40); g.clip();
     g.save(); g.shadowColor = 'rgba(0,0,0,.25)'; g.shadowBlur = 10; g.fillStyle = M.PAT.VELLUM; g.fill(cart); g.restore();
     g.save(); g.clip(cart); g.lineWidth = 14; g.strokeStyle = M.PAT.GOLD; g.stroke(cart); g.restore();
     g.lineWidth = 3; g.strokeStyle = C.INK; g.stroke(cart);
-    const inner = M.P(q => { q.moveTo(156, y + 16); q.lineTo(924, y + 16); q.quadraticCurveTo(966, y + h / 2, 924, y + h - 16); q.lineTo(156, y + h - 16); q.quadraticCurveTo(114, y + h / 2, 156, y + 16); q.closePath(); });
+    const inner = M.P(q => { q.moveTo(L + 16, y + 16); q.lineTo(R - 16, y + 16); q.quadraticCurveTo(R + 26, y + h / 2, R - 16, y + h - 16); q.lineTo(L + 16, y + h - 16); q.quadraticCurveTo(L - 26, y + h / 2, L + 16, y + 16); q.closePath(); });
     g.lineWidth = 1.4; g.stroke(inner);
     g.fillStyle = C.INK; g.textAlign = 'center'; g.textBaseline = 'middle';
-    const n = lines.length, lh = n > 1 ? 54 : 0, y0 = y + h / 2 - lh * (n - 1) / 2;
-    lines.forEach((l, i) => { const o = typeof l === 'string' ? { text: l } : l; g.font = `${o.italic ? 'italic ' : ''}500 ${o.size || 50}px "Fraunces Variable"`; g.fillText(o.text, 540, y0 + i * lh); });
+    const n = lines.length, lh = n > 1 ? 54 : 0, y0 = y + h / 2 - lh * (n - 1) / 2, maxT = R - L - 30;
+    lines.forEach((l, i) => {
+      const o = typeof l === 'string' ? { text: l } : l, font = (s) => `${o.italic ? 'italic ' : ''}500 ${s}px "Fraunces Variable"`;
+      let s = o.size || 50; g.font = font(s);
+      const tw = g.measureText(o.text).width; if (tw > maxT) { s = Math.floor(s * maxT / tw); g.font = font(s); }
+      g.fillText(o.text, cx, y0 + i * lh);
+    });
     g.restore();
   };
 
@@ -394,15 +406,59 @@
       const fadeIn = M.clamp((t - cur.a) / .25), fadeOut = 1 - M.clamp((t - cur.b) / .3);
       g.save(); g.beginPath(); g.rect(sx0, sy, w * M.easeOut((t - cur.a) / .35), sh); g.clip();
       g.globalAlpha = Math.min(fadeIn, fadeOut); g.fillStyle = C.INK; g.font = M.subFont; g.textAlign = 'center'; g.textBaseline = 'middle';
+      // bölünemeyen (elle yazılmış) uzun satır parşömenden taşmasın: yazı küçülür
+      const tw = g.measureText(cur.text).width, maxT = w - 60;
+      if (tw > maxT) g.font = M.subFont.replace(/\d+px/, Math.floor(38 * maxT / tw) + 'px');
       g.fillText(cur.text, 540, sy + sh / 2 + 2); g.restore();
     }
     g.restore();
   };
 
   // tezhip bordürü (ekran koordinatında, her karenin üstüne)
-  M.border = function (g, signature = 'Hemdem') {
-    const X0 = 72, Y0 = 72, X1 = W - 72, Y1 = H - 72;
+  // =====================================================================
+  // INSTAGRAM GÜVENLİ ALANI (17 Kasım 2026)
+  // Instagram Reels'i telefonda ekranı dolduracak kadar büyütür: K1'in gerçek karesiyle
+  // telefon ekran görüntüsü karşılaştırıldı → her iki yandan ~55 px, üstten ve alttan ~10–15 px
+  // gidiyor (iPhone, 19.5:9). Bordür eskiden kenara dayalıydı ve yarısı kesiliyordu.
+  // Artık bordür içeri alınır; dışında kesilse de olur düz lacivert bir pay kalır.
+  //   M.PAY: bordürün dışındaki düz pay (yan / üst-alt)
+  //   M.SUB_MAXW: altyazı parşömeninin en büyük genişliği. Sağdaki beğeni/yorum/gönder sütunu
+  //     videoda x ≈ 890–1000, y ≈ 880–1720 aralığına düşer; parşömen (kıvrımlarıyla) x ≤ 860'ta biter.
+  //   M.KOR: Instagram arayüzünün üstüne bindiği alanlar (önemli öğe, yazı, yüz konmaz).
+  //     Film dosyasında `instaMaske: true` yazınca kareye yarı saydam kırmızı olarak çizilir (yalnızca denetim için).
+  M.PAY = { x: 60, y: 22 };
+  M.BW = 72; // bordürün kalınlığı
+  M.SUB_MAXW = 620;
+  M.KOR = [
+    { ad: 'kırpılan sol kenar', x: 0, y: 0, w: 60, h: H },
+    { ad: 'kırpılan sağ kenar', x: W - 60, y: 0, w: 60, h: H },
+    { ad: 'durum çubuğu', x: 0, y: 0, w: W, h: 110 },
+    { ad: 'geri oku', x: 0, y: 160, w: 175, h: 110 },
+    { ad: 'kamera', x: W - 180, y: 160, w: 180, h: 110 },
+    { ad: 'beğeni·yorum·paylaş·gönder·kaydet', x: 885, y: 860, w: W - 885, h: 900 },
+    { ad: 'kullanıcı adı ve açıklama', x: 0, y: 1690, w: W, h: H - 1690 },
+  ];
+  M.instaMaske = function (g) {
     g.save(); g.setTransform(1, 0, 0, 1, 0, 0);
+    g.fillStyle = 'rgba(230,30,30,.28)'; g.strokeStyle = 'rgba(200,0,0,.9)'; g.lineWidth = 2;
+    g.font = '600 22px sans-serif'; g.textBaseline = 'top';
+    for (const k of M.KOR) { g.fillStyle = 'rgba(230,30,30,.28)'; g.fillRect(k.x, k.y, k.w, k.h); g.strokeRect(k.x, k.y, k.w, k.h); }
+    for (const k of M.KOR) if (k.w > 150 && k.h > 80) { g.fillStyle = '#fff'; g.fillText(k.ad, k.x + 8, k.y + 8); }
+    g.restore();
+  };
+
+  M.border = function (g, signature = 'Hemdem') {
+    const px = M.PAY.x, py = M.PAY.y;
+    // düz pay (kırpılırsa kaybolan kısım)
+    g.save(); g.setTransform(1, 0, 0, 1, 0, 0);
+    g.fillStyle = C.LAPIS_D; g.fill(M.P(p => { p.rect(0, 0, W, H); p.rect(px, py, W - 2 * px, H - 2 * py); }), 'evenodd');
+    g.restore();
+    // bordür, payın içine eskisiyle aynı çizimle yerleşir
+    M._border(g, signature, px, py, W - 2 * px, H - 2 * py);
+  };
+  M._border = function (g, signature, ox, oy, W, H) {
+    const X0 = 72, Y0 = 72, X1 = W - 72, Y1 = H - 72;
+    g.save(); g.setTransform(1, 0, 0, 1, ox, oy);
     const outer = M.P(p => { p.rect(0, 0, W, H); p.rect(X0, Y0, X1 - X0, Y1 - Y0); });
     g.fillStyle = M.PAT.LAPIS; g.fill(outer, 'evenodd');
     const rule = (m, w, c) => { g.lineWidth = w; g.strokeStyle = c; g.strokeRect(m, m, W - 2 * m, H - 2 * m); };
@@ -418,7 +474,8 @@
     g.restore();
   };
   // resim alanı (bordürün içi)
-  M.PIC = { x: 72, y: 72, w: W - 144, h: H - 144 };
+  // 17 Kasım 2026: bordür içeri alındığı için resim alanı daraldı (x 132–948, y 94–1826)
+  M.PIC = { x: M.PAY.x + M.BW, y: M.PAY.y + M.BW, w: W - 2 * (M.PAY.x + M.BW), h: H - 2 * (M.PAY.y + M.BW) };
 
   // =====================================================================
   // ÇEKİMLER VE GEÇİŞLER (15 Kasım 2026)

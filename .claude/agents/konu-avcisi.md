@@ -34,6 +34,7 @@ Kodlar haftalık dosyada baştan sona numaralanır: **Z1–Z8** (söz, baskı ve
    - İçerik sahibinin hangi kodları seçtiğine ve hangilerini geçtiğine bak. Bir kalıp görürsen (ör. hep sessiz kayıp ve kırgınlık konularını seçiyor) "Konu Avcısı'nın tavsiyesi" bölümünde bir satırla söyle. Kalıba göre önerilerini daraltma; sadece en güçlü önerilerini o yönde de güçlü tut.
    - Seçilmeyen ama iyi olan bir öneriyi en fazla bir kez, "yeniden öneri" diye işaretleyerek tekrar getirebilirsin.
 5. **Özel gün takvimine bak** (aşağıda). Önümüzdeki 14 günü kontrol et.
+6. **Beklenen imgeye yaslanma** *(17 Kasım 2026, içerik sahibinin kuralı)*. Her öneride baskı/duygu ve kanca için kelimenin ya da sözün ilk akla gelen imgesini (yadigâr → babaannenin yüzüğü, sandık; vefa → eski dost) seçme; çarpıcı, beklenmedik bir açı ara (az bilinen anlam, kök, ters yüz, izleyicinin kendisinde taşıdığı hâli). Haftalık listede aynı imge (babaanne, anneanne, sandık, çay, eski eşya…) en fazla bir öneride geçer ve son işlenen videonun imgesi tekrar edilmez. Özgünlük puanı bu açıya göre verilir.
 
 ---
 
