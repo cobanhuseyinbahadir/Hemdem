@@ -83,6 +83,17 @@ Yeniden okuma Hemdem'in en ayırt edici özelliğidir. Kültürle alay etmez, on
 ### Genel his
 **Sıcak, zengin, akan.** Görsel hiçbir zaman sesin ve sözün önüne geçmez; sözü sahne sahne taşıyan, minyatür diliyle çizilmiş kısa bir filmdir.
 
+### İki stil, video başına seçilir *(19 Kasım 2026)*
+
+İçerik sahibi her video için **Hemdem Minyatür** ya da **Hemdem Crayon** der; Şef `durum.md`'ye "Stil" olarak yazar. Hangisi seçilirse seçilsin **ortak kurallar** geçerlidir:
+- **Sade yüzler** (nokta göz, ince kaş); duygu duruşla, mesafeyle, ışıkla.
+- **Kadın figürler çoğunlukla açık saçlı**; başörtüsü varsayılan değil, en fazla bir figürde.
+- **Kartuş ızgara güvenli alanı:** kapakta kartuş y ≈ 300–470, her videoda aynı yükseklik ve biçim; Instagram kör noktaları (aşağıdaki Format) iki stilde de geçerli.
+- **Akan 5–9 çekimli kurgu**; her çekimde aksiyon, her çekimde yürüyen kamera, tasarlanmış geçişler; tek resim + zoom yok.
+- Tanınabilirlik, dünyevi motifler (dini motif/ayet/hat yok), Türkiye'den mekânlar, altyazı bandı ve ses kuralları aynı.
+
+Stile özel kurallar: Minyatür için aşağıdaki "Stil: Hemdem Minyatür" (düz pigment, altın varak, lacivert/altın gökyüzü, tezhip bordürü). Crayon için "Stil: Hemdem Crayon" (bu bölümün sonunda).
+
 ### Stil: Hemdem Minyatür *(15 Kasım 2026'dan itibaren)*
 
 Her video **minyatür diliyle çizilmiş, sahne sahne akan kısa bir filmdir.** Durağan olan resmin **tarzıdır** (düz boya, altın, kalın kontur), filmin kendisi değil: çekimler değişir, figürler hareket eder, kamera her çekimde yürür. *(15 Kasım düzeltmesi: ilk uygulama "tek resim + zoom" olarak yanlış kuruldu; içerik sahibi: "Video sahneler arası kurgulansın, aksın.")* İlham kaynağı: Osmanlı minyatür ve tezhip geleneği ile Lemo-Opuscar'daki "Gilded Illumination" stili (kod MIT; stil tarifi Hemdem'e özgüdür, Opuscar metni kopyalanmaz). Ayrıntı: `tasarim/REFERANSLAR.md`.
@@ -154,6 +165,15 @@ Mavi ile altın gözün gittiği çifttir; en geniş mavi alan ve en parlak alt�
 | **İmza** | **Fraunces** (600) | Bordürdeki "Hemdem" |
 
 Fraunces Türkçe karakterleri destekler ve motorda yerel olarak yüklüdür.
+
+### Stil: Hemdem Crayon *(19 Kasım 2026)*
+
+Mum boya ve sulu boya çocuk kitabı sıcaklığı: **grenli kâğıt, tarama izli mum boya dolgu, kırık çift kontur, üstüne yarı saydam sulu boya yıkaması.** İlham: Lemo-Opuscar "Crayon Picture Book" (kod MIT; STYLE/DEMO metinleri CC BY-NC, kopyalanmaz; tarif Hemdem'e özgüdür).
+- **Bordür ve altın yok;** resim tam kadraj. Altın varak, parıltı halkaları ve minyatür gökyüzü kullanılmaz. Işık **yumuşak sıcak bir yıkamadır** (`CR.isik`); halka ya da ışın çizilmez (saat/güneş gibi durur).
+- **Beyaz mum çizgileri** (yıldız, ay, ışık izi) yıkama gelince belirir; bu stilin imza hareketidir. Yıkama yavaş yayılır (ıslak cephe).
+- **Yıkama kenarı nesnenin ortasına denk gelmez;** zemin/duvar yıkaması nesne kenarında biter, yoksa nesne yatay şeritle bölünür.
+- Zemin kâğıt rengidir; palet sıcak ve doygun ama pastel değil (kırmızımsı kanepe, çam yeşili halı, lacivert gece camı, safran ışık). Neon yok.
+- Tarama ve kâğıt beneği abartılmaz; yüz ve küçük nesnelerde okunurluk önce gelir.
 
 ### Önceki stil: Hemdem Eskiz (12–15 Kasım 2026)
 

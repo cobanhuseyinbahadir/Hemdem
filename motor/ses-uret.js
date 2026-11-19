@@ -129,6 +129,7 @@ const oku = (no, v) => JSON.parse(fs.readFileSync(path.join(CDIR, `c${pad(no)}-v
     const en = [...info.matchAll(/silence_end: ([\d.]+)/g)].map((m) => +m[1]);
     let a0 = Math.max(0, S[k] - 0.04);
     if (st.length && st[0] < 0.02 && en[0] && en[0] < S[k] + 0.3) a0 = Math.max(0, en[0] - 0.03);
+    if (c.kesBas != null) a0 = c.kesBas; // elle kesim başlangıcı (hizalama ilk kelimeyi geç gösterdiğinde, ör. Z11 'Ya')
     let a1 = Math.min(dur, E[last] + 0.12);
     const tail = st.at(-1); if (tail && tail > S[last] && (en.length < st.length || en.at(-1) >= dur - 0.05)) a1 = Math.min(a1, tail + 0.06);
     const f = path.join(TMP, `c${pad(no)}.wav`);
@@ -142,8 +143,9 @@ const oku = (no, v) => JSON.parse(fs.readFileSync(path.join(CDIR, `c${pad(no)}-v
       if (!w) w = { k: chars[j], bas: bs, son: bt }; else { w.k += chars[j]; w.son = bt; }
     }
     if (w) kel.push(w);
+    if (c.kesBas != null && kel[0]) kel[0].bas = t;
     kel.forEach((x) => { x.bas = +x.bas.toFixed(3); x.son = +Math.min(x.son, t + (a1 - a0)).toFixed(3); });
-    out.push({ no, metin: c.metin, etiket: c.etiket || '', model: d.istek.model_id, surum: v, bas: +(t + (S[k] - a0)).toFixed(3), son: +(t + (a1 - a0)).toFixed(3), kelimeler: kel });
+    out.push({ no, metin: c.metin, etiket: c.etiket || '', model: d.istek.model_id, surum: v, bas: +(c.kesBas != null ? t : t + (S[k] - a0)).toFixed(3), son: +(t + (a1 - a0)).toFixed(3), kelimeler: kel });
     t += a1 - a0;
     const durak = i === Y.cumleler.length - 1 ? (Y.sonPay ?? 0.6) : (c.durak ?? 0.6);
     sessiz(durak, `d${pad(no)}.wav`);

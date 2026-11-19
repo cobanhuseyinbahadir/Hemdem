@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Pastacı Intro Banner</title>
+<style>
+@font-face{font-family:'Fraunces';font-weight:100 900;src:url(fonts/fraunces-latin-ext-wght-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Fraunces';font-weight:100 900;src:url(fonts/fraunces-latin-wght-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Caveat';font-weight:700;src:url(fonts/caveat-latin-ext-700-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Caveat';font-weight:700;src:url(fonts/caveat-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Nunito';font-weight:800;src:url(fonts/nunito-latin-ext-800-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Nunito';font-weight:800;src:url(fonts/nunito-latin-800-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+:root{
+  --yellow:#FFC933; --yellow2:#FFB400; --cream:#FFF6E0; --choc:#2B1810; --rasp:#E8365D; --mint:#3CB89A;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:var(--cream)}
+#stage{position:relative;width:1920px;height:1080px;overflow:hidden;background:var(--cream)}
+#bg{position:absolute;inset:0;background:
+  radial-gradient(1200px 800px at 30% 20%, #FFDD6B 0%, transparent 60%),
+  radial-gradient(1000px 900px at 85% 90%, #FFA800 0%, transparent 60%),
+  linear-gradient(135deg,var(--yellow),var(--yellow2));}
+#grain{position:absolute;inset:0;opacity:.07;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55}
+.spr{position:absolute;left:0;top:0;border-radius:6px;will-change:transform}
+#hero{position:absolute;left:0;top:0;width:0;height:0}
+#hero>*{position:absolute}
+#portrait{left:-220px;top:-220px;width:440px;height:440px;border-radius:50%;overflow:hidden;background:var(--cream);box-shadow:0 30px 60px rgba(43,24,16,.28),0 0 0 10px var(--cream)}
+#portrait svg,#portrait img{width:100%;height:100%;object-fit:cover;display:block}
+#shine{position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.75) 50%,transparent 65%)}
+#rings{left:-330px;top:-330px;width:660px;height:660px;overflow:visible}
+.chip{left:-44px;top:-44px;width:88px;height:88px;border-radius:50%;background:var(--cream);box-shadow:0 8px 18px rgba(43,24,16,.25);display:grid;place-items:center}
+.chip svg{width:54px;height:54px}
+#text{position:absolute;left:800px;top:0;width:1000px;height:1080px}
+#text>*{position:absolute;left:0}
+#name{top:430px;font:800 150px/1.05 'Fraunces';color:var(--choc);white-space:nowrap;letter-spacing:-2px;display:flex}
+#name .m{display:inline-block;overflow:hidden;padding:6px 0 18px;margin:-6px 0 -18px}
+#name .m i{display:inline-block;font-style:normal;will-change:transform}
+#swirl{top:610px;width:640px;height:60px;overflow:visible}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="bg"></div>
+  <div class="blob" id="b1" style="width:700px;height:700px;background:#FFE9A0;left:-150px;top:-200px"></div>
+  <div class="blob" id="b2" style="width:800px;height:800px;background:#FF9A1F;right:-250px;bottom:-300px"></div>
+  <div id="grain"></div>
+  <div id="sprinkles"></div>
+
+  <div id="hero">
+    <svg id="rings" viewBox="-330 -330 660 660">
+      <circle id="ringA" r="262" fill="none" stroke="#FFF6E0" stroke-width="8" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1" transform="rotate(-90)"/>
+      <circle id="ringB" r="292" fill="none" stroke="#2B1810" stroke-opacity=".55" stroke-width="3" stroke-dasharray="2 14" stroke-linecap="round"/>
+    </svg>
+    <div id="portrait">
+      <!-- FOTOĞRAF: kendi fotoğrafını koymak için aşağıdaki svg'yi sil, yerine <img src="foto.jpg"> yaz -->
+      <svg viewBox="0 0 200 200">
+        <rect width="200" height="200" fill="#FFF6E0"/>
+        <circle cx="100" cy="100" r="100" fill="#FFE2A8"/>
+        <path d="M20 210 C25 160 60 150 100 150 C140 150 175 160 180 210Z" fill="#fff"/>
+        <path d="M76 150 L100 178 L124 150Z" fill="#2B1810"/>
+        <rect x="84" y="128" width="32" height="30" rx="10" fill="#E3A87C"/>
+        <ellipse cx="100" cy="102" rx="34" ry="40" fill="#EDB88E"/>
+        <path d="M66 108 C66 140 134 140 134 108 C128 128 72 128 66 108Z" fill="#2B1810"/>
+        <circle cx="87" cy="98" r="3.6" fill="#2B1810"/><circle cx="113" cy="98" r="3.6" fill="#2B1810"/>
+        <path d="M90 118 Q100 126 110 118" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <path d="M62 78 C58 40 142 40 138 78 C128 70 72 70 62 78Z" fill="#fff"/>
+        <path d="M60 66 C40 56 52 22 80 30 C84 8 120 8 122 28 C150 16 162 54 140 66Z" fill="#fff" stroke="#EAD9B8" stroke-width="2"/>
+        <rect x="62" y="66" width="76" height="14" rx="4" fill="#E8365D"/>
+      </svg>
+      <div id="shine"></div>
+    </div>
+  </div>
+
+  <div id="text">
+    <div id="name"></div>
+    <svg id="swirl" viewBox="0 0 640 60"><path id="swirlPath" fill="none" stroke="#FFF6E0" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1 1"/><circle id="swirlDot" r="9" fill="#E8365D" cy="30"/></svg>
+  </div>
+</div>
+
+<script>
+// ============ AYARLAR (burayı değiştir) ============
+const CONFIG = { name: 'Halil Kılıç' };
+const DURATION = 6.0, FPS = 60;
+// ===================================================
+
+const $ = s => document.querySelector(s);
+const clamp = (x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const prog = (t,a,b)=>clamp((t-a)/(b-a));
+const lerp = (a,b,p)=>a+(b-a)*p;
+const outCubic = p=>1-Math.pow(1-p,3);
+const inCubic = p=>p*p*p;
+const inOutCubic = p=>p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;
+const outBack = p=>{const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(p-1,3)+c1*Math.pow(p-1,2)};
+const outElastic = p=>p===0?0:p===1?1:Math.pow(2,-9*p)*Math.sin((p*10-.75)*(2*Math.PI)/3)+1;
+
+
+// isim harfleri
+const nameEl = $('#name'), letters = [];
+[...CONFIG.name].forEach(ch=>{
+  const m=document.createElement('span'); m.className='m';
+  const i=document.createElement('i'); i.textContent = ch===' '?' ':ch;
+  m.appendChild(i); nameEl.appendChild(m); letters.push(i);
+});
+
+// dalga (krema) yolu
+(function(){
+  let d='M6 30'; const W=628, n=7, A=17;
+  for(let k=0;k<n;k++){ const x0=6+k*W/n, x1=6+(k+1)*W/n, xm=(x0+x1)/2, s=k%2?1:-1;
+    d+=` Q ${xm} ${30+s*A*2} ${x1} 30`; }
+  $('#swirlPath').setAttribute('d',d);
+})();
+
+// orbit ikonları
+const ICONS = [
+ `<svg viewBox="0 0 48 48"><path d="M10 26h28l-4 16H14z" fill="#E8365D"/><path d="M12 26c-4-2-3-9 3-9 0-6 9-8 11-2 6-3 11 3 8 8-1 2-3 3-5 3z" fill="#2B1810"/><circle cx="24" cy="9" r="3.4" fill="#E8365D"/></svg>`,
+ `<svg viewBox="0 0 48 48" fill="none" stroke="#2B1810" stroke-width="3" stroke-linecap="round"><path d="M24 44V28"/><path d="M24 28C10 24 10 6 24 4c14 2 14 20 0 24z"/><path d="M24 28C18 22 18 10 24 4c6 6 6 18 0 24"/></svg>`,
+ `<svg viewBox="0 0 48 48"><rect x="12" y="19" width="26" height="12" rx="6" fill="#E3A87C" stroke="#2B1810" stroke-width="2.5" transform="rotate(-35 25 25)"/><rect x="4" y="30" width="12" height="6" rx="3" fill="#2B1810" transform="rotate(-35 10 33)"/><rect x="34" y="12" width="12" height="6" rx="3" fill="#2B1810" transform="rotate(-35 40 15)"/></svg>`,
+ `<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="18" fill="#D49A5B" stroke="#2B1810" stroke-width="2.5"/><circle cx="17" cy="18" r="3.5" fill="#2B1810"/><circle cx="29" cy="16" r="3" fill="#2B1810"/><circle cx="31" cy="29" r="3.5" fill="#2B1810"/><circle cx="18" cy="31" r="3" fill="#2B1810"/></svg>`
+];
+const chips = ICONS.map(svg=>{ const c=document.createElement('div'); c.className='chip'; c.innerHTML=svg; $('#hero').appendChild(c); return c; });
+
+// serpintiler (deterministik)
+let seed=7; const rnd=()=> (seed=(seed*16807)%2147483647)/2147483647;
+const COLS=['#E8365D','#FFF6E0','#2B1810','#3CB89A','#FFF6E0'];
+const sprs=[...Array(46)].map(()=>{
+  const el=document.createElement('div'); el.className='spr';
+  const w=10+rnd()*14, h=5+rnd()*3; el.style.width=w+'px'; el.style.height=h+'px'; el.style.background=COLS[Math.floor(rnd()*COLS.length)];
+  $('#sprinkles').appendChild(el);
+  return {el, x:rnd()*1920, y:rnd()*1180, sp:20+rnd()*50, r:rnd()*360, rv:(rnd()-.5)*120, ph:rnd()*6, a:.5+rnd()*.5, d:rnd()*.8};
+});
+
+// bg daire açılışı için yellow katmanı
+const bg=$('#bg');
+
+window.renderFrame = function(t){
+  // arka plan: krem üstüne sarı daire açılır
+  const open = inOutCubic(prog(t,0,.75));
+  bg.style.clipPath = `circle(${open*1300}px at 960px 520px)`;
+  $('#b1').style.transform=`translate(${Math.sin(t*.7)*60}px,${Math.cos(t*.6)*40}px)`;
+  $('#b2').style.transform=`translate(${Math.cos(t*.5)*70}px,${Math.sin(t*.8)*50}px)`;
+  $('#b1').style.opacity=.55*open; $('#b2').style.opacity=.55*open;
+
+  // serpintiler
+  const exitP = inCubic(prog(t,5.25,5.85));
+  sprs.forEach(s=>{
+    const y=((s.y - t*s.sp) % 1180 + 1180)%1180 - 50;
+    const x=s.x+Math.sin(t*1.2+s.ph)*24;
+    const a=clamp((t-.4-s.d)/.5)*s.a*(1-exitP);
+    s.el.style.opacity=a;
+    s.el.style.transform=`translate(${x}px,${y}px) rotate(${s.r+t*s.rv}deg)`;
+  });
+
+  // hero: portre + halkalar
+  const mv=inOutCubic(prog(t,1.75,2.55));
+  const hx=lerp(960,560,mv), hy=lerp(520,540,mv), hs=lerp(1,.84,mv);
+  const ex=exitP; // çıkış: yukarı kay + küçül
+  $('#hero').style.transform=`translate(${hx}px,${hy-ex*60}px) scale(${hs*(1-ex*.1)})`;
+  $('#hero').style.opacity=1-ex;
+
+  const pIn=outBack(prog(t,.35,1.05));
+  $('#portrait').style.transform=`scale(${Math.max(0,pIn)})`;
+  $('#shine').style.transform=`translateX(${lerp(-110,110,prog(t,1.1,1.7))}%)`;
+  $('#ringA').setAttribute('stroke-dashoffset', 1-outCubic(prog(t,.5,1.4)));
+  $('#ringA').style.opacity=1;
+  $('#ringB').setAttribute('transform',`rotate(${t*14})`);
+  $('#rings').style.opacity=clamp(prog(t,.45,.8));
+
+  chips.forEach((c,i)=>{
+    const ang=(i*90 - 45 + t*22)*Math.PI/180, R=292;
+    const sc=Math.max(0,outElastic(prog(t,.95+i*.12,1.65+i*.12)));
+    c.style.transform=`translate(${Math.cos(ang)*R}px,${Math.sin(ang)*R}px) scale(${sc}) rotate(${Math.sin(t*2+i)*8}deg)`;
+  });
+
+  // yazı bloğu
+  const tx = ex*-40;
+  $('#text').style.transform=`translateY(${-ex*60}px)`;
+  $('#text').style.opacity=1-ex;
+
+  // isim harfleri
+  letters.forEach((l,i)=>{
+    const p=outCubic(prog(t,2.2+i*.045,2.2+i*.045+.55));
+    l.style.transform=`translateY(${(1-p)*115}%) rotate(${(1-p)*8}deg)`;
+  });
+  // krema dalga
+  const wp=inOutCubic(prog(t,2.85,3.6));
+  $('#swirlPath').setAttribute('stroke-dashoffset',1-wp);
+  $('#swirlPath').style.opacity=wp>0?1:0;
+  const dp=outBack(prog(t,3.5,3.9));
+  $('#swirlDot').setAttribute('cx',634); $('#swirlDot').setAttribute('transform',`translate(0 0) scale(1)`);
+  $('#swirlDot').style.transformOrigin='634px 30px'; $('#swirlDot').style.transform=`scale(${Math.max(0,dp)})`;
+};
+window.ready={fps:FPS,duration:DURATION};
+// önizleme: dosya doğrudan açılırsa döngüde oynat
+if(!navigator.webdriver){ const t0=performance.now(); (function loop(){ const t=((performance.now()-t0)/1000)%(DURATION+.8); renderFrame(Math.min(t,DURATION)); requestAnimationFrame(loop); })(); }
+else renderFrame(0);
+</script>
+</body>
+</html>

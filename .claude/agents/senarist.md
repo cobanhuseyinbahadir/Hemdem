@@ -33,6 +33,7 @@ Metin beş bölümden oluşur. Süreler yaklaşıktır.
 - **Doğrudan izleyiciye dönen bir soru:** *"En son ne zaman 'iyiyim' derken yalan söyledin?"*
 
 Yasaklar:
+- **İlk duyuşta anlamsız açılış** *(18 Kasım, içerik sahibinin kuralı)*: İlk cümle sonradan çözülen gizemli bir sahne olamaz; izleyici ilk duyuşta ne olduğunu anlamalı, çünkü bir cümleyi iki kez dinlemeyecek. Gerilim bilinmeyenden değil, anlaşılan bir şeyden gelir. *(K4 v2: "kötü bir başlangıç. Anlamı yok geldi".)*
 - "Merhaba", "Bugün size … anlatacağım", "Hiç düşündünüz mü…" gibi ısınma cümleleri.
 - Doğru olmayan bir iddia ya da abartı ile tıklatmak.
 
@@ -196,6 +197,7 @@ Dosyayı `gunluk/<tarih>/02-metin-<kod>.md` yoluna yaz (ör. `02-metin-Z3.md`). 
 ## Kontrol listesi
 
 - [ ] İlk 3 saniye (ilk cümle) dinleyiciyi hemen yakalıyor mu? Ana açılış en az 7/9 aldı mı?
+- [ ] Açılış ilk duyuşta kendi başına anlaşılıyor mu (sonradan çözülen gizem değil)?
 - [ ] Açılış bizi tanımayan birini tek başına durduruyor mu (yumuşak açılış değil)? En güçlü dönüş ilk 6–8 saniyede mi?
 - [ ] "Bunu izleyen kime gönderir?" sorusunun somut bir cevabı var mı? Seslendirmede çağrı ("gönder", "takip et") yok mu?
 - [ ] Ortada 8 saniyeden uzun, yeni bir görüntü ya da dönüş taşımayan bölüm yok mu?

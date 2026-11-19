@@ -46,7 +46,7 @@ Başlıca araçlar (`minyatur.js`):
 
 Örnek kurgu: **`ornekler/minyatur-sahneli.js`** (5 çekim, 4 geçiş; yeni filmler bu yapıyla yazılır). `ornekler/minyatur-kahvehane.js` yalnızca çizim araçlarının örneğidir (tek resim; kurgu örneği değil).
 
-## Hazır parçalar (16 Kasım 2026, Z1 ve K1'de çizildi)
+## Hazır parçalar (16 Kasım 2026, Z1 ve K1'de çizildi; 17 Kasım: K4 ve Z7)
 
 `M.parcalar(g)` Z1'de çizilen ve denetlenen parçaları hazır verir. Mevcut API'ye dokunmaz; film dosyasında `const P = M.parcalar(g);` ile alınır, parçalar her karede yeniden çağrılır. **Önce buradan bak, aynı nesneyi yeniden çizme** (yeni nesne yine tek başına büyük çizilip denetlenir).
 
@@ -67,12 +67,53 @@ Başlıca araçlar (`minyatur.js`):
 | `P.tabak(x, y, s)`, `P.caydanlik(x, yTaban, s)` | çay tabağı; iki katlı çaydanlığın bakır alt gövdesi (K1) | |
 | `P.demlik(o)`, `P.demlikKulp(x, y, s)`, `P.akis(x0, y0, x1, y1, bas, son, s)` | porselen lale nakışlı demlik (K1); `o`: `x, y` ya da `el: [x,y]` + `a` açı, emzik ucunu döndürür; `akis` emzikten akan çay | |
 | `P.buhar(x, y, t, o)` | iki ince buhar ipliği (K1); `o`: `h, a, kal` | Birleşen buhar motorda yok (içerik sahibinin kararı); K1'in `film.js`'inde durur |
+| `P.ocak(x0, x1, yTezgah, o)` | iki gözlü ocak (K4); `o`: `beyaz` (eski ev), `alev` alevin x'i, `t` titreşim | Tezgâh üstü `yTezgah-38` |
+| `P.tava(cx, yTaban, o)` | tava (K4); `o`: `renk`, `renkD` (ör. `C.COPPER` bakır), `sap` -1 sol / 1 sağ, `sapL`, `rot`, `icRenk`, `icerik: [[x, y, tur, a]]` (ağız merkezine göre) | Varsayılan demir (`P.IRON`) |
+| `P.parca(x, y, tur, a)` | doğranmış parça (K4): `'sogan'`, `'domates'`, `'biber'` | |
+| `P.tahta(x0, x1, yTezgah)` | kesme tahtası (K4) | Üst yüz `yTezgah-20` |
+| `P.yarimSogan(cx, cy, r, o)`, `P.butunSogan(cx, cy, r)` | soğan (K4); yarımın kesik yüzü dönük, halkalar altın varak; `o.isik` 0..1 ışık içten dışa, `o.k` | |
+| `P.bicak(x, y, a, s)`, `P.kasik(hx, hy, bx, by)` | bıçak ((x,y) sapın ucu, `a` yön) ve tahta kaşık (el → kaşık ağzı) (K4) | |
+| `P.radyo(cx, cy, o)` | eski masa radyosu (K4); `o`: `renk`, `renkD`, `dugme` açı, `ibre` -1..1 | |
+| `P.pencere(x0, y0, x1, y1, ic)` | beyaz pervazlı iki kanatlı pencere (K4); `ic()` camın içini çizer (kırpılı) | Geçişte çerçeve olarak da kullanılır |
+| `P.nis(cx, top, bot, w, o)` | sivri kemerli niş (K4); `o`: `dol` 0..1 altın zemin, `ic()` içindeki küçük minyatür, `k` | |
+| `P.kase(x, y, a)` | firuze kâse, eğik (K4) | |
+| `P.vapur(x, ySu, o)`, `P.mini(x, y, coat, o)` | çift katlı İstanbul vapuru (K4); `o`: `s` ölçek, `kafalar` 0..1 güvertede üç baş. `mini`: uzaktan baş-omuz (`scarf`, `hair`) | `(x, ySu)` su hizasının ortası |
+| `P.duman(x, y, t, kal)`, `P.deniz(x0, x1, y0, y1, t)` | baca dumanı (`kal` 0..1 kalınlaşıp yayılır) ve dalgalı deniz bandı (K4) | |
+| `P.IRON`, `P.IRON_D`, `P.HAIR` | K4'ün demir ve saç renkleri | |
+| `M.head(g, x, y, { gulus, gulusAc })` | belirgin gülüş (Z7): kıvrık gülen göz, köşeleri kalkık açık ağız, yanak allığı. `gulus` 0..1 görünürlük (yüz yavaşça gülüşe döner), `gulusAc` 0..1 ağız açıklığı. Tek başına: `M.gulus(g, x, y, k, ac)` | Varsayılan kapalı. Küçük ölçekte en iyi kapalı göz + kalkık köşeli ağızla okunur |
+| `M.standing(g, { kolInce: true })`, `M.kolInce(g, s, h, w, r)` | ince, zarif kol (Z7): iki dirsekli, bileğe doğru incelir, bilekte altın manşet, ince el. `s`/`h` omuz ve el (yerel), `w` omuz genişliği, `r: [renk, koyu]` | Varsayılan kapalı (eski kalın kol çizilir) |
+
+Denetim kareleri: `ornekler/parca-denetimi/` (sınama filmi `ornekler/parca-denetimi-17kasim.js`). K4 ve Z7'nin `film.js`'leri kendi kopyalarıyla (`K.*`, `kolInce`, `gulenYuz`) çalışmaya devam eder; yeni filmler `P.*` / `gulus` / `kolInce` kullanır.
 
 `P.odaArka` ve `P.SAND` (Z1'in sandık odası) Z1'e özgüdür, taşınmadı; `gunluk/2026-11-16/04-video-Z1/film.js` içinde durur. Z1'in `film.js`'i kendi kopyasıyla çalışmaya devam eder (değiştirilmedi).
 
 ## Müzik kütüphanesi (16 Kasım 2026)
 
 `motor/muzik/` hazır ud parçalarını ve `KATALOG.md` künyelerini tutar. Yeni müzik üretmeden önce katalogdan duyguya uyan parça seçilir. `birlestir.js` parçayı videonun süresine keser, girişte 1 sn, çıkışta 2 sn solar ve sesin 20 LU altına oturtur; parça videodan **kısaysa** kullanılmaz (yeni üretim).
+
+## Stil seçimi: Minyatür ve Crayon (19 Kasım 2026)
+
+Her video tek bir stille yapılır; seçim film dosyasının `style` alanındadır (`sahne.html` buna göre çizer):
+
+| `style` | Ad | Ne çizer |
+|---|---|---|
+| `'minyatur'` | **Hemdem Minyatür** | Lacivert zemin, düz pigment, altın varak, kalın kontur; tezhip bordürü ve resim alanı kırpması (`M.PIC`) |
+| `'crayon'` | **Hemdem Crayon** (mum boya) | Grenli kâğıt, tarama izli dolgu, kırık çift kontur, sulu boya yıkaması; **bordür ve kırpma yok**, resim 1080×1920'nin tamamı |
+
+Crayon `crayon.js`'te minyatürün üstüne ince bir katmandır: `M.shape`'i `M.crayon` açıkken mum boya gibi çizer, kapalıyken eskisini çağırır; `sahne.html` `style:'crayon'`da karenin başında `CR.begin`, sonunda `CR.end` çalıştırır. Minyatür filmlerin çıktısı değişmez (19 Kasım'da `minyatur-kahvehane` karesi önce/sonra aynı md5).
+
+**Ortak (iki stilde de aynı kod):** `M.cekimler` ve geçiş türleri, `M.camera`/`M.track`/`M.lwK`, `M.c`/`M.k` ses zamanı ve `subs: 'ses'`, parşömen altyazı bandı (`M.drawSubs`, `subY`), `M.cartouche`, `M.instaMaske` (`--maske`), `overlay`, `M.seated`/`M.standing`/`M.head` ve `M.parcalar` (hepsi `M.shape` ile çizdiği için crayon'da otomatik mum boya olur), `M.yuru`/`M.gul`.
+
+**Crayon'da farklı:**
+- `render(g, t, M, CR)`: dördüncü argüman `CR`; `setup(M, CR)`. Zemin motorda kâğıttır; film zemini boyamak istiyorsa kendi şekliyle çizer.
+- **Sulu boya:** `CR.wash(g, [{ yol, renk, alpha, from, p, r, kenar, evenodd }], direnc)`; yıkama çizilmiş şekillerin üstüne *multiply* biner, bu yüzden şekillerden **sonra**, figürlerden **önce** çağrılır. `direnc(q)` beyaz mum çizgilerini (yıldız, ay) yıkamadan siler; yıkama geldikçe belirirler.
+- **Işık:** `CR.isik(g, x, y, r, renk, alpha)` yumuşak sıcak yıkama. Halka, ışın, parıltı çizgisi **yok** (saat/güneş gibi durur). Işık `p` ile yavaş açılır.
+- **Yıkama kenarı tuzağı:** Yıkamanın alt/yan kenarı bir nesnenin ortasına denk gelmemeli; yoksa nesne yatay bir şeritle ikiye bölünür (Z11 denemesinde duvar yıkaması kanepeyi kesti). Duvar yıkamasını zemine/halıya kadar uzat, kenarı nesne kenarlarına denk getir.
+- **Altın, `M.glow/flash/rings`, `silme` geçişinin lacivert servi bandı** minyatüre özgüdür; crayon'da kullanma. Geçişte `kesme`, `esles`, `cerceve` ya da `silme` + `on: fn` (kendi mum boya ön planın) kullan.
+- Tarama ve kâğıt beneği (`CR.setup`) beyaz noktaları hafifletildi (19 Kasım); fazlasını çoğaltma.
+- Altyazı parşömeni ve kartuş crayon'da da çizilir (19 Kasım'da `sahne.html`'e eklendi); kartuş ızgara güvenli alanı y 300–470.
+
+Örnek: `ornekler/crayon-deneme.js` (tek çekim, sessiz); kareler `../tasarim/crayon-deneme/` (`kare-son-v2.png` düzeltilmiş hâli). Henüz crayon ile tam film (çekimli, sesli) yapılmadı; ilk deneyim Z11.
 
 ## Eskiz (eski)
 
@@ -193,6 +234,7 @@ Ses videodan önce üretilir (`ses-uret.js`). `render.js`, film dosyasının kla
 | `M.sesSure` | seslendirmenin toplam süresi |
 | `subs: 'ses'` | altyazılar cümlelerden otomatik kurulur; parşömene sığmayan cümle kelime sınırından bölünür (gerekirse 3 parçaya), her parça kendi kelimesinin söylendiği anda gelir |
 | `gizli: [12]` | bu cümleler altyazıda gösterilmez (ör. Sav kartuşta yazılırken) |
+| `subKapat: true` | görünür altyazılar arasında 1 sn'den uzun boşluk (`gizli` cümle) varsa parşömen orada kapanır, sonraki altyazıyla kısa animasyonla yeniden açılır (K4'te c6–c7'de ~6 sn boş parşömen görünmüştü). Varsayılan kapalı: eski filmler değişmez; gizli cümle içeren yeni filmlerde açın |
 | `subY: 1440` | parşömen altyazının üst kenarı (varsayılan 1440, bant 1440–1536). 16 Kasım'a kadar 1690'dı; Instagram'ın alttaki kullanıcı adı ve açıklama alanıyla (y ≈ 1650 ve aşağısı) çakışıyordu. Önemli öğeler bandın üstünde kalır |
 | `instaMaske: true` | Instagram'ın kırptığı ve arayüzle kapladığı alanlar (`M.KOR`) kareye yarı saydam kırmızı çizilir; yalnızca denetim içindir, final videoda kullanılmaz. Komut satırından: `node render.js <film.js> --still 4.5 --maske --out maske.png` |
 

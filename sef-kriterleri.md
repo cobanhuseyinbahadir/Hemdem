@@ -22,6 +22,7 @@
 *(İçerik sahibinin kendi kriterleri, 12 Kasım 2026; 13 Kasım'da güncellendi)*
 
 - **İlk 3 saniye:** Metin ilk 3 saniyede dinleyiciyi yakalıyor mu? İlk cümle kaydırmayı durduruyor mu? 🔴 *(13 Kasım)*
+- **Açılış ilk duyuşta anlamlı:** İlk cümle sonradan çözülen gizemli bir sahne değil; izleyici ilk duyuşta ne olduğunu anlıyor mu? 🔴 *(18 Kasım; K4 v2: "kötü bir başlangıç. Anlamı yok geldi")*
 - **Yabancıya yazılmış açılış ve erken dönüş:** İlk cümle bizi hiç tanımayan birini tek başına durduruyor mu (bağlam isteyen "yumuşak açılış" değil; K1'in "Çay içer misin?" açılışı örnek)? Metnin en güçlü dönüşü ilk 6–8 saniyede mi? Ortada 8 saniyeden uzun düz anlatım yok mu? Seslendirmede "gönder / takip et" çağrısı yok mu? *(16 Kasım, Instagram araştırması)*
 - **Çarpıcı açılış ve çarpıcı son:** İlk iki cümle ve son cümle güçlü; yumuşaklığa ya da sıradanlığa kaymıyor. 🔴
 - **Yargılamıyor, düşündürüyor:** Amaç hüküm vermek değil, soru işareti uyandırmak. 🔴 *(13 Kasım)*
@@ -45,7 +46,8 @@
 - **Sahneli akış:** Video 5–9 çekimden mi oluşuyor (her biri 3–7 sn, 1–3 cümleye bağlı)? Her çekimde gerçek bir aksiyon ve hareket eden bir kamera var mı? Çekimler beş geçişten biriyle mi bağlanıyor? Tek resim + zoom kabul edilmez. 🔴 *(15 Kasım: içerik sahibi "bu video değil, sabit bir fotoğraf" dedi)*
 - **İnsan, simge değil:** Duygular simgeyle değil duruşla, mesafeyle, ışıkla anlatılıyor mu? Aynı sahnedeki figürler birbirinden ayırt ediliyor mu? *(İçerik sahibinin kriteri, 12–13 Kasım)*
 - **Tanınabilirlik:** Her çekim sesi kapalıyken tanınıyor mu? Belirsiz şekil, alakasız süs öğesi, sonradan beliren fazladan nesne yok mu? 🔴
-- **Altın ve ışık:** Tek bir ana altın nesne var mı, ışık gelene kadar sönük mü, ışığın dokunuşu hikâyenin dönüm anına mı denk geliyor?
+- **Stile uygunluk:** Plan `durum.md`'deki Stil'e (minyatür | crayon) uyuyor mu? Minyatürde altın varak/lacivert gökyüzü, crayonda yıkama + beyaz mum çizgisi + yumuşak ışık; stile ait olmayan öğe (crayonda altın/parıltı halkası, minyatürde yıkama) yok mu? Kadın figürlerin saç/örtü seçimi yazılı mı? 🔴 *(19 Kasım)*
+- **Altın ve ışık (minyatür):** Tek bir ana altın nesne var mı, ışık gelene kadar sönük mü, ışığın dokunuşu hikâyenin dönüm anına mı denk geliyor?
 - **Altyazı ritmi:** Her altyazı en az 1.2 sn; çok kısa cümleler birleştirilmiş mi? Altyazı koşturmuyor mu? *(İçerik sahibinin kriteri)*
 - **Tanıdıklık:** Mekânlar Türkiye'den, somut ve geniş kitlenin tanıdığı yerler mi?
 - **Sınırlar:** Dini motif, ayet, hat yazısı yok; gerçek kişiler tanınabilir portre olarak çizilmiyor. 🔴
@@ -62,7 +64,9 @@
 - **Ölü kare yok:** Kapanış hariç 1 sn'den uzun boş/öznesiz kare ya da 1.5 sn'den uzun altyazısız ve hareketsiz an yok mu? Kurgu tablosunda "Ölü kare" satırı var mı? *(16 Kasım; K1'de ~20. sn'deki boş parşömen sayfası)*
 - **Okunurluk:** Altyazı, kartuş ve resmin içindeki yazılar telefonda okunuyor mu, çerçevelerine sığıyor mu?
 - **Kör nokta:** Instagram'ın kör noktalarında (sağdaki beğeni/yorum/gönder sütunu, alttaki kullanıcı adı/açıklama, üst köşelerdeki simgeler) özne, yüz ya da yazı yok mu? Bordür telefonda dört kenardan görünüyor mu? Video Üretici'nin `--maske` karelerine ve kurgu tablosundaki "Kör nokta" satırına bakılır. *(17 Kasım; K1'de bordür kırpıldı, altyazı arayüzün altında kaldı)*
-- **Estetik:** Hemdem Minyatür'e sadık mı (düz pigment, kalın kontur, üstübeç noktalar, kare kare varak)? Karmaşık, çocuksu ya da "düz vektör çizim" gibi duran kare var mı? Altın sarı boyaya dönmüş mü?
+- **Kapak ızgarada:** `kapak-yan-yana.png`'de kartuş 3:4 ızgara alanında (y ≈ 240–1680) tam okunuyor mu, öncekiyle aynı yükseklikte ve aynı biçimde mi (kelime/söz + italik anlam satırı)? *(17 Kasım; K4 kartuşu ızgarada kesildi, anlam satırı yoktu)*
+- **Stile uygunluk:** `film.js`'teki `style` `durum.md`'deki Stil ile aynı mı? Crayonda: yıkama kenarı nesneyi şeritle bölmüyor mu, ışık halka/ışın değil yıkama mı, beyaz mum çizgileri yıkamayla beliriyor mu, tarama okunurluğu bozmuyor mu? 🔴 *(19 Kasım)*
+- **Estetik (minyatür):** Hemdem Minyatür'e sadık mı (düz pigment, kalın kontur, üstübeç noktalar, kare kare varak)? Karmaşık, çocuksu ya da "düz vektör çizim" gibi duran kare var mı? Altın sarı boyaya dönmüş mü?
 - **Senkron:** Her altyazı satırı sesle uyumlu mu? 🔴 *(13 Kasım dersi: Z3 senkron yüzünden iptal edildi.)* Altyazılar artık sesin kelime zamanlarından otomatik geliyor; Video Üretici 3 noktada (ilk cümle, Sav, kapanış) karşılaştırmayı notuna yazar. Bir noktada sapma 0.3 sn'yi geçiyorsa öneri "geri gönder"dir. Şef ayrıca en az 3 noktada (açılış, Sav, kapanış) kareyi ve o andaki sesi kendisi kontrol eder.
 - **Süre:** Hedef 40–45 sn, ≤ 50 sn 🔴
 
@@ -88,4 +92,5 @@
 - **Son satır:** İzleyiciyi kendi hikâyesini yazmaya davet eden açık bir soru mu?
 - **Gönderme daveti:** Videonun ilişkisine özel, kalıp olmayan bir "ona gönder" daveti var mı, önceki paketlerdekiyle aynı değil mi? *(16 Kasım)*
 - **Paylaşıma hazırlık:** Paket Şef'in kopyalayıp yapıştırabileceği bloklarda mı; `final-instagram.mp4` (10 MB altı) var mı? *(16 Kasım)*
+- **Profil ızgarası:** Paylaşım ekranında kapağın ızgara önizlemesi (3:4) kontrol edildi mi; kartuş kesilmeden ve önceki kapaklarla aynı hizada görünüyor mu? *(17 Kasım)*
 - **Yapay zekâ etiketi ve açık kontroller:** Paket, "Yapay zekâ bilgisi" etiketini ve yayından önce zorunlu açık kontrolleri hatırlatıyor mu?

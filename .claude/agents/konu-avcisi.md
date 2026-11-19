@@ -192,6 +192,7 @@ Instagram, bizi takip etmeyenlere ulaşırken en çok videonun **DM ile birine g
 ## Kanca
 
 - **İlk 3 saniye her şeydir.** Kanca, dinleyiciyi ilk cümlede yakalamalı *(içerik sahibinin kalıcı kuralı, 13 Kasım)*. Genel bir duygu cümlesiyle değil, somut bir an ya da eylemle aç ("Mesajı yazdın. Sildin.").
+- **Kanca ilk duyuşta kendi başına anlamlı olmalı** *(18 Kasım)*: sonradan çözülen gizemli bir sahne olmaz; izleyici ilk cümlede ne olduğunu anlar.
 - Kelime önerilerinde kancayı kelimenin tanımıyla açma ("X, Japonca'da … demek"). Önce anı ver, kelimeyi sonra getir.
 
 ## Ana fikir

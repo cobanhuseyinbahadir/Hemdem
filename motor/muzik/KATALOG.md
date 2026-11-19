@@ -6,7 +6,7 @@ Hemdem müziği solo ud taksimidir (sözsüz, perkusyonsuz). Her videoya yeni pa
 
 | Dosya | Duygu | Tempo | Süre | LUFS | LRA | Kullanıldığı videolar | Not |
 |---|---|---|---|---|---|---|---|
-| `ud-sicak-ninni-53s.mp3` | sıcak, şefkatli, ninni gibi | çok yavaş | 53.1 sn | -13.6 | 9.9 | 2026-11-16 Z1 (babaannenin defteri) | Kesintisiz çalar, sona kadar solmaz, son cümle havada kalır. Kaynak: `gunluk/2026-11-16/04-video-Z1/muzik.mp3` (= muzik-v6) |
-| `ud-isikli-hafif-53s.mp3` | hafif, ışıklı, gülümseten; ortada kısa düşünceli an | orta-yavaş | 53.1 sn | -16.0 | 14.7 | 2026-11-17 K4 (yadigâr) | LRA yüksek, 8.8 / 26.5 / 48.0 sn civarında kısa sessiz boşluklar var. Kaynak: `gunluk/2026-11-17/04-video-K4/muzik-v2.mp3` |
+| `ud-sicak-ninni-53s.mp3` | sıcak, şefkatli, ninni gibi | çok yavaş | 53.1 sn | -13.6 | 9.9 | 2026-11-16 Z1 (babaannenin defteri), 2026-11-17 Z7 (Elalem ne der?), 2026-11-18 K2 (sıla) | Kesintisiz çalar, sona kadar solmaz, son cümle havada kalır. Kaynak: `gunluk/2026-11-16/04-video-Z1/muzik.mp3` (= muzik-v6) |
+| `ud-isikli-hafif-53s.mp3` | hafif, ışıklı, gülümseten; ortada kısa düşünceli an | orta-yavaş | 53.1 sn | -16.0 | 14.7 | 2026-11-17 K4 (yadigâr), 2026-11-18 Z8 (cute aggression) | LRA yüksek, 8.8 / 26.5 / 48.0 sn civarında kısa sessiz boşluklar var. Kaynak: `gunluk/2026-11-17/04-video-K4/muzik-v2.mp3` |
 
 Boş duygular (ihtiyaç doğunca üretilir): hüzünlü-özlem, merak/hafif gerilim, hafif ve ışıklı (K videoları), ağır-yüzleşme.

@@ -325,11 +325,47 @@
     M.hiLine(g, q => { q.moveTo(6, -296); q.bezierCurveTo(10, -200, 4, -100, 12, -14); }, 2.4, .8);
     if (o.sash !== null) { M.shape(g, M.P(p => { p.moveTo(-50, -190); p.quadraticCurveTo(0, -178, 52, -192); p.lineTo(54, -174); p.quadraticCurveTo(0, -160, -52, -172); p.closePath(); }), o.sash || C.SAFFRON, null, 2.2); }
     const hx = (o.hand || [70, -170])[0], hy = (o.hand || [70, -170])[1];
-    const arm = M.P(p => { p.moveTo(26, -292); p.bezierCurveTo(56, -270, 66, -220, hx - 6, hy - 8); p.lineTo(hx - 10, hy + 12); p.bezierCurveTo(50, -214, 40, -250, 18, -262); p.closePath(); });
-    M.shape(g, arm, o.coat || C.VERM, o.coatD || C.VERM_D, 2.8, 10);
-    M.shape(g, M.P(p => p.ellipse(hx, hy + 2, 11, 10, 0, 0, TAU)), C.SKIN, C.SKIN_D, 2.2, 5);
+    if (o.kolInce) M.kolInce(g, [22, -284], [hx, hy], 24, [o.coat || C.VERM, o.coatD || C.VERM_D]);
+    else {
+      const arm = M.P(p => { p.moveTo(26, -292); p.bezierCurveTo(56, -270, 66, -220, hx - 6, hy - 8); p.lineTo(hx - 10, hy + 12); p.bezierCurveTo(50, -214, 40, -250, 18, -262); p.closePath(); });
+      M.shape(g, arm, o.coat || C.VERM, o.coatD || C.VERM_D, 2.8, 10);
+      M.shape(g, M.P(p => p.ellipse(hx, hy + 2, 11, 10, 0, 0, TAU)), C.SKIN, C.SKIN_D, 2.2, 5);
+    }
     M.head(g, 0, -352, o);
     g.restore();
+  };
+  // ince, zarif kol (17 Kasım 2026, Z7'de çizildi): omuz s=[x,y] → el h=[x,y] (yerel), iki dirsekli;
+  // kol bileğe doğru incelir, dirsek kıvrımı, bilekte altın manşet, ince el. w: omuz genişliği, r: [renk, koyu].
+  // M.standing'de `kolInce: true` ile açılır (varsayılan kapalı); kendi figürünü çizen film doğrudan da çağırabilir.
+  M.kolInce = function (g, s, h, w = 24, r = [C.VERM, C.VERM_D]) {
+    const seg = (a, b, w0, w1) => {
+      const dx = b[0] - a[0], dy = b[1] - a[1], l = Math.hypot(dx, dy) || 1, nx = -dy / l, ny = dx / l;
+      const p = M.poly([[a[0] + nx * w0 / 2, a[1] + ny * w0 / 2], [b[0] + nx * w1 / 2, b[1] + ny * w1 / 2], [b[0] - nx * w1 / 2, b[1] - ny * w1 / 2], [a[0] - nx * w0 / 2, a[1] - ny * w0 / 2]]);
+      M.shape(g, p, r[0], r[1], 2.4, 6); return p;
+    };
+    const Lu = 80, Lf = 104, [sx, sy] = s, [hx, hy] = h;
+    const d = Math.max(1, Math.hypot(hx - sx, hy - sy)), dd = Math.min(d, Lu + Lf - 2), th = Math.atan2(hy - sy, hx - sx);
+    let el;
+    if (d < 105) el = [sx + 30, sy + 74];   // el omza yakınken (yakayı tutma) dirsek aşağıda ve öne doğru
+    else {
+      const a = Math.acos(Math.max(-1, Math.min(1, (Lu * Lu + dd * dd - Lf * Lf) / (2 * Lu * dd))));
+      const e1 = [sx + Lu * Math.cos(th + a), sy + Lu * Math.sin(th + a)], e2 = [sx + Lu * Math.cos(th - a), sy + Lu * Math.sin(th - a)];
+      el = e1[1] > e2[1] ? e1 : e2;
+    }
+    const wu = w * .72, we = w * .5, ww = w * .36;
+    const p1 = seg([sx, sy], el, wu, we);
+    M.shape(g, M.P(p => p.arc(el[0], el[1], we * .5, 0, TAU)), r[0], null, 0);
+    const fdx = hx - el[0], fdy = hy - el[1], fl = Math.hypot(fdx, fdy) || 1, ux = fdx / fl, uy = fdy / fl;
+    const wr = [hx - ux * 9, hy - uy * 9];
+    const p2 = seg(el, wr, we, ww);
+    M.hiLine(g, q => { q.moveTo(el[0] - ux * 6 - uy * 3, el[1] - uy * 6 + ux * 3); q.quadraticCurveTo(el[0] + 4, el[1] + 2, el[0] + ux * 8, el[1] + uy * 8); }, 1.6 * (M.lwK || 1), .7);
+    const nx = -uy, ny = ux, mw = ww * .62 + 2, mc = [wr[0] - ux * 5, wr[1] - uy * 5];
+    M.shape(g, M.poly([[mc[0] + nx * mw - ux * 3.5, mc[1] + ny * mw - uy * 3.5], [mc[0] + nx * mw + ux * 3.5, mc[1] + ny * mw + uy * 3.5], [mc[0] - nx * mw + ux * 3.5, mc[1] - ny * mw + uy * 3.5], [mc[0] - nx * mw - ux * 3.5, mc[1] - ny * mw - uy * 3.5]]), C.SAFFRON, C.SAFFRON_D, 1.8, 3);
+    g.save(); g.translate(hx, hy); g.rotate(Math.atan2(uy, ux));
+    M.shape(g, M.P(p => { p.moveTo(-9, -4); p.quadraticCurveTo(2, -8, 10, -5); p.quadraticCurveTo(15, 0, 10, 5); p.quadraticCurveTo(2, 8, -9, 4); p.closePath(); }), C.SKIN, C.SKIN_D, 1.8, 4);
+    M.shape(g, M.P(p => { p.moveTo(-2, -5); p.quadraticCurveTo(4, -12, 9, -10); p.quadraticCurveTo(6, -6, 2, -3); p.closePath(); }), C.SKIN, C.SKIN_D, 1.4, 3);
+    g.restore();
+    return [p1, p2];
   };
   // baş ve sade minyatür yüzü (üç çeyrek, sağa bakar; yerel koordinatta çağrılır)
   M.head = function (g, x, y, o = {}) {
@@ -392,8 +428,15 @@
     if (!subs || !subs.length) return;
     const vis = subs.filter(s => !s.hidden);
     if (!vis.length) return;
-    const first = vis[0].a, last = vis[vis.length - 1].b;
-    const open = M.clamp((t - first + .3) / .35) * (1 - M.clamp((t - last - .2) / .35));
+    // subKapat: true → görünür altyazılar arasında 1 sn'den uzun boşluk (gizli cümle) varsa parşömen orada kapanır, sonraki altyazıyla yeniden açılır
+    // varsayılan (kapalı): parşömen ilk görünür altyazıdan sonuncuya kadar açık kalır (eski filmler)
+    const groups = [];
+    for (const s of vis) {
+      const gr = groups[groups.length - 1];
+      if (M.subKapat && gr && s.a - gr.b <= 1) gr.b = Math.max(gr.b, s.b); else if (!M.subKapat && gr) gr.b = Math.max(gr.b, s.b); else groups.push({ a: s.a, b: s.b });
+    }
+    let open = 0;
+    for (const gr of groups) open = Math.max(open, M.clamp((t - gr.a + .3) / .35) * (1 - M.clamp((t - gr.b - .2) / .35)));
     if (open <= 0) return;
     const sy = M.subY, sh = 96, w = M.scrollW * M.easeOut(open), sx0 = 540 - w / 2, sx1 = 540 + w / 2;
     g.save(); g.setTransform(1, 0, 0, 1, 0, 0);
@@ -584,6 +627,33 @@
     g.save(); g.translate(x, y + 40); g.rotate(o.tilt || 0); g.translate(-x, -(y + 40));
     _head(g, x, y, o);
     if (o.agiz > .15) { g.fillStyle = '#7a2a1c'; g.beginPath(); g.ellipse(x + 27, y + 24, 6, 5 * o.agiz, 0, 0, TAU); g.fill(); g.strokeStyle = C.INK; g.lineWidth = 1.6; g.stroke(); }
+    if (o.gulus > 0) M.gulus(g, x, y, o.gulus, o.gulusAc || 0);
+    g.restore();
+  };
+  // belirgin gülüş (17 Kasım 2026, Z7'de çizildi): kıvrık gülen göz, köşeleri kalkık açık gülümseme, yanak allığı.
+  // M.head(g, x, y, { gulus: 0..1 (görünürlük; yüz yavaşça gülüşe döner), gulusAc: 0..1 (ağız açıklığı) }).
+  // Küçük ölçekte gülüş en iyi kapalı göz + kalkık köşeli ağızla okunur. Varsayılan kapalı.
+  M.gulus = function (g, x, y, k = 1, ac = 0) {
+    g.save(); g.globalAlpha *= M.clamp(k);
+    const ex = x + 18, ey = y - 6;
+    // eski göz ve ağzı ten rengiyle ört
+    g.fillStyle = C.SKIN;
+    g.beginPath(); g.ellipse(ex + 1, ey + 1, 12, 7, 0, 0, TAU); g.fill();
+    g.beginPath(); g.ellipse(x + 27, y + 24, 9, 8, 0, 0, TAU); g.fill();
+    // yanak allığı
+    g.save(); g.globalAlpha *= .45; g.fillStyle = C.ROSE_D; g.beginPath(); g.ellipse(x + 13, y + 13, 9, 6, 0, 0, TAU); g.fill(); g.restore();
+    // gülen göz: yukarı kıvrık yay
+    g.strokeStyle = C.INK; g.lineWidth = 2.8; g.lineCap = 'round';
+    g.beginPath(); g.moveTo(ex - 9, ey + 2); g.quadraticCurveTo(ex + 1, ey - 8, ex + 10, ey + 1); g.stroke();
+    g.lineWidth = 1.6; g.beginPath(); g.moveTo(ex - 6, ey + 6); g.quadraticCurveTo(ex + 1, ey + 8, ex + 7, ey + 5); g.stroke();
+    // açık gülümseme: köşeleri yukarıda hilal
+    const op = 5 + 5 * ac;
+    const m = M.P(p => { p.moveTo(x + 16, y + 17); p.quadraticCurveTo(x + 26, y + 20, x + 37, y + 15); p.quadraticCurveTo(x + 32, y + 22 + op, x + 22, y + 21 + op * .8); p.quadraticCurveTo(x + 17, y + 20, x + 16, y + 17); p.closePath(); });
+    g.fillStyle = '#7a2a1c'; g.fill(m);
+    g.save(); g.clip(m); g.fillStyle = '#f6efe0'; g.fillRect(x + 15, y + 14, 24, 6); g.restore();
+    g.lineWidth = 2; g.strokeStyle = C.INK; g.stroke(m);
+    // gülümseme kıvrımı (yanak çizgisi)
+    g.lineWidth = 1.4; g.beginPath(); g.moveTo(x + 13, y + 12); g.quadraticCurveTo(x + 12, y + 18, x + 15, y + 21); g.stroke();
     g.restore();
   };
   // oturan ve ayakta figüre gövde sarsıntısı (bob) ekle
@@ -1041,6 +1111,233 @@
     }
     g.restore();
   };
+
+  // ---- hazır parçalar (17 Kasım 2026, K4 "Yadigâr"da çizildi): mutfak, eski ev, iskele ----
+  //   P.ocak(x0, x1, yTezgah, o)   iki gözlü ocak (o.beyaz: eski ev; o.alev: alevin x'i; o.t: titreşim zamanı)
+  //   P.tava(cx, yTaban, o)        tava; o: renk, renkD, sap (-1 sol / 1 sağ), sapL, rot, icRenk, icerik [[x,y,tur,a]] (ağız merkezine göre)
+  //   P.parca(x, y, tur, a)        doğranmış parça: 'sogan' | 'domates' | 'biber'
+  //   P.tahta(x0, x1, yTezgah)     kesme tahtası (üst yüz yTezgah-20)
+  //   P.yarimSogan(cx, cy, r, o)   kesik yüzü dönük yarım soğan; halkalar altın varak; o.isik 0..1 (içten dışa), o.k
+  //   P.butunSogan(cx, cy, r)      bütün soğan
+  //   P.bicak(x, y, a, s)          bıçak; (x,y) sapın ucu (el), a bıçağın yönü
+  //   P.kasik(hx, hy, bx, by)      tahta kaşık; el → kaşık ağzı
+  //   P.radyo(cx, cy, o)           eski masa radyosu; o: renk, renkD, dugme (açı), ibre (-1..1)
+  //   P.pencere(x0, y0, x1, y1, ic) beyaz pervazlı iki kanatlı pencere; ic() camın içini çizer
+  //   P.nis(cx, top, bot, w, o)    sivri kemerli niş; o.dol 0..1 altın zemin + o.ic() küçük minyatür, o.k
+  //   P.kase(x, y, a)              firuze kâse (eğik)
+  //   P.mini(x, y, coat, o)        uzaktan baş-omuz (o.scarf, o.hair)
+  //   P.vapur(x, ySu, o)           çift katlı İstanbul vapuru; o: s (ölçek), kafalar (güvertede üç baş, 0..1)
+  //   P.duman(x, y, t, kal)        baca dumanı (kal 0..1: kalınlaşıp yayılma)
+  //   P.deniz(x0, x1, y0, y1, t)   dalgalı deniz bandı
+  P.IRON = '#3d3532'; P.IRON_D = '#1f1a18'; P.HAIR = '#3a2418';
+  const lwk = (w) => w * M.lwK;
+  P.ocak = (x0, x1, yT, o = {}) => {
+    const pl = o.beyaz ? C.WHITE : '#4a3c34', plD = o.beyaz ? '#c9c2b4' : '#2a201b';
+    if (o.alev != null) {
+      for (const dx of [-84, -70, 70, 84]) {
+        const h = 16 + 5 * Math.sin((o.t || 0) * 13 + dx);
+        M.shape(g, M.poly([[o.alev + dx - 6, yT - 34], [o.alev + dx + 6, yT - 34], [o.alev + dx, yT - 34 - h]]), Math.abs(dx) > 75 ? C.TURQ : C.SAFFRON, null, 1.4);
+      }
+    }
+    M.shape(g, M.P(p => p.rect(x0, yT - 30, x1 - x0, 30)), pl, plD, 2.6, 8);
+    M.shape(g, M.P(p => p.rect(x0 - 6, yT - 38, x1 - x0 + 12, 9)), o.beyaz ? '#e6ddca' : '#5d4c42', null, 2);
+    for (const u of [.18, .38, .62, .82]) M.shape(g, M.P(p => p.arc(x0 + (x1 - x0) * u, yT - 14, 6, 0, TAU)), o.beyaz ? '#b7ad99' : '#c9c2b4', null, 1.6);
+  };
+
+  P.parca = (x, y, tur, a = 0) => {
+    g.save(); g.translate(x, y); g.rotate(a);
+    if (tur === 'sogan') M.shape(g, M.P(p => { p.arc(0, 2, 8, Math.PI * 1.08, Math.PI * 1.92); p.arc(0, 4, 5, Math.PI * 1.88, Math.PI * 1.12, true); p.closePath(); }), '#f6eed6', '#d8c69a', 1.4, 2);
+    else if (tur === 'domates') M.shape(g, M.P(p => p.ellipse(0, 0, 7.5, 5.5, 0, 0, TAU)), C.VERM, C.VERM_D, 1.4, 3);
+    else M.shape(g, M.P(p => p.roundRect(-8, -3.5, 16, 7, 3)), C.LEAF, C.LEAF_D, 1.4, 2);
+    g.restore();
+  };
+
+  P.tava = (cx, yb, o = {}) => {
+    const R = 80, r0 = 64, H = 30, ry = 20, rc = yb - H, s = o.sap || -1;
+    const col = o.renk || P.IRON, colD = o.renkD || P.IRON_D;
+    g.save(); g.translate(cx, yb); g.rotate(o.rot || 0); g.translate(-cx, -yb);
+    // sap: ağzın yanından yukarı-yana
+    const ax = cx + s * (R - 8), ay = rc + 6, bx = cx + s * (o.sapL || 168), by = rc - 26;
+    const nx = -(by - ay), ny = bx - ax, nl = Math.hypot(nx, ny), ux = nx / nl, uy = ny / nl;
+    M.shape(g, M.poly([[ax + ux * 6, ay + uy * 6], [bx + ux * 5, by + uy * 5], [bx - ux * 5, by - uy * 5], [ax - ux * 6, ay - uy * 6]]), col, colD, 2.4, 3);
+    const gx = ax + (bx - ax) * .5, gy = ay + (by - ay) * .5;
+    M.shape(g, M.poly([[gx + ux * 8, gy + uy * 8], [bx + s * 8 + ux * 8, by + uy * 8 - 2], [bx + s * 8 - ux * 8, by - uy * 8 - 2], [gx - ux * 8, gy - uy * 8]]), C.WOOD, C.WOOD_D, 2.2, 4);
+    // iç (yağlı karanlık) ve içerik
+    const ic = M.P(p => p.ellipse(cx, rc, R, ry, 0, 0, TAU));
+    M.shape(g, ic, o.icRenk || '#2b211c', null, 2.6);
+    g.save(); g.clip(M.P(p => p.ellipse(cx, rc, R - 7, ry - 4, 0, 0, TAU)));
+    g.fillStyle = 'rgba(214,160,60,.25)'; g.beginPath(); g.ellipse(cx, rc + 2, R - 12, ry - 7, 0, 0, TAU); g.fill();
+    for (const [x, y, tur, a] of (o.icerik || [])) P.parca(cx + x, rc + y, tur, a || 0);
+    g.restore();
+    // gövde (ön yüz)
+    const body = M.P(p => { p.moveTo(cx - R, rc); p.lineTo(cx - r0, yb); p.ellipse(cx, yb, r0, ry * .7, 0, Math.PI, 0, true); p.lineTo(cx + R, rc); p.ellipse(cx, rc, R, ry, 0, 0, Math.PI, false); p.closePath(); });
+    M.shape(g, body, col, colD, 2.8, 10);
+    M.hiLine(g, q => { q.moveTo(cx - R + 14, rc + 10); q.quadraticCurveTo(cx - R + 26, rc + 22, cx - R + 40, rc + 25); }, lwk(2.2), .55);
+    g.strokeStyle = C.INK; g.lineWidth = lwk(2.6); g.beginPath(); g.ellipse(cx, rc, R, ry, 0, 0, TAU); g.stroke();
+    g.restore();
+  };
+
+  P.tahta = (x0, x1, yT) => {
+    M.shape(g, M.P(p => p.rect(x0, yT - 10, x1 - x0, 10)), C.WOOD, C.WOOD_D, 2.4, 4);
+    M.shape(g, M.poly([[x0 + 4, yT - 22], [x1 - 4, yT - 22], [x1, yT - 10], [x0, yT - 10]]), '#d9b27c', '#b48a55', 2.4, 4);
+  };
+
+  P.yarimSogan = (cx, cy, r, o = {}) => {
+    const is = M.clamp(o.isik || 0);
+    // kabuk: ucu yukarıda, kökü altta
+    const skin = M.P(p => { p.moveTo(cx, cy - r * 1.42); p.bezierCurveTo(cx + r * .35, cy - r * 1.05, cx + r * 1.08, cy - r * .7, cx + r * 1.04, cy + r * .1); p.bezierCurveTo(cx + r, cy + r * .82, cx + r * .5, cy + r * 1.02, cx, cy + r * 1.02); p.bezierCurveTo(cx - r * .5, cy + r * 1.02, cx - r, cy + r * .82, cx - r * 1.04, cy + r * .1); p.bezierCurveTo(cx - r * 1.08, cy - r * .7, cx - r * .35, cy - r * 1.05, cx, cy - r * 1.42); p.closePath(); });
+    M.shape(g, skin, '#c7884a', '#8a5a2a', 2.6, 6);
+    // kök püskülü
+    g.save(); g.strokeStyle = '#8a5a2a'; g.lineWidth = lwk(1.6); g.lineCap = 'round';
+    for (const dx of [-.3, -.1, .1, .3]) { g.beginPath(); g.moveTo(cx + dx * r * .6, cy + r * 1.0); g.lineTo(cx + dx * r * 1.3, cy + r * 1.22); g.stroke(); }
+    g.restore();
+    // halkalar: dıştan içe çizilir, ışık içten dışa gelir
+    const n = 6;
+    for (let i = 0; i < n; i++) {
+      const rr = r * (.88 - i * .145), cyy = cy + r * .06 + i * r * .015;
+      const k = M.clamp((is * 1.35) - (n - 1 - i) * .07);
+      M.gold(g, M.P(p => p.ellipse(cx, cyy, rr, rr * 1.04, 0, 0, TAU)), { x: cx, y: cyy, r: r * 1.3, k: k * (o.k ?? 1) }, i === 0 ? 2.4 : 1.4);
+    }
+    if (is > 0) { g.save(); g.globalAlpha = is * .9; M.glow(g, cx, cy, r * 2.4, .45 * is); g.restore(); }
+  };
+
+  P.butunSogan = (cx, cy, r) => {
+    const skin = M.P(p => { p.moveTo(cx, cy - r * 1.42); p.bezierCurveTo(cx + r * .35, cy - r * 1.05, cx + r * 1.1, cy - r * .7, cx + r * 1.04, cy + r * .1); p.bezierCurveTo(cx + r, cy + r * .82, cx + r * .5, cy + r * 1.02, cx, cy + r * 1.02); p.bezierCurveTo(cx - r * .5, cy + r * 1.02, cx - r, cy + r * .82, cx - r * 1.04, cy + r * .1); p.bezierCurveTo(cx - r * 1.1, cy - r * .7, cx - r * .35, cy - r * 1.05, cx, cy - r * 1.42); p.closePath(); });
+    M.shape(g, skin, '#cf9455', '#93602f', 2.6, 8);
+    g.save(); g.clip(skin); g.strokeStyle = '#93602f'; g.lineWidth = lwk(1.6);
+    for (const dx of [-.5, 0, .5]) { g.beginPath(); g.moveTo(cx, cy - r * 1.35); g.quadraticCurveTo(cx + dx * r * 1.6, cy, cx, cy + r); g.stroke(); }
+    g.restore();
+  };
+
+  P.bicak = (x, y, a, s = 1) => {
+    const ux = Math.cos(a), uy = Math.sin(a), nx = -uy, ny = ux;
+    const P0 = (d, w) => [x + ux * d * s + nx * w * s, y + uy * d * s + ny * w * s];
+    M.shape(g, M.poly([P0(-4, -5), P0(34, -5), P0(34, 5), P0(-4, 5)]), C.WOOD_D, null, 2);
+    M.shape(g, M.poly([P0(34, -4), P0(96, -2), P0(102, 3), P0(34, 8)]), '#dedcd6', '#9e9b94', 2, 3);
+  };
+
+  P.kasik = (hx, hy, bx, by) => {
+    g.save(); g.lineCap = 'round';
+    g.strokeStyle = C.INK; g.lineWidth = lwk(9); g.beginPath(); g.moveTo(hx, hy); g.lineTo(bx, by); g.stroke();
+    g.strokeStyle = '#c79a62'; g.lineWidth = lwk(5.5); g.beginPath(); g.moveTo(hx, hy); g.lineTo(bx, by); g.stroke();
+    g.restore();
+    M.shape(g, M.P(p => p.ellipse(bx, by, 13, 8, Math.atan2(by - hy, bx - hx), 0, TAU)), '#c79a62', '#9a6a43', 2, 3);
+  };
+
+  P.radyo = (cx, cy, o = {}) => {
+    const col = o.renk || C.WOOD, colD = o.renkD || C.WOOD_D;
+    for (const dx of [-36, 36]) M.shape(g, M.P(p => p.rect(cx + dx - 7, cy + 36, 14, 6)), C.INK, null, 1.6);
+    M.shape(g, M.P(p => p.roundRect(cx - 50, cy - 40, 100, 78, 14)), col, colD, 3, 9);
+    // hoparlör (solda)
+    const sp = M.P(p => p.arc(cx - 20, cy + 2, 24, 0, TAU));
+    M.shape(g, sp, '#4a3324', null, 2.4);
+    g.save(); g.clip(sp); g.strokeStyle = C.WHITE; g.globalAlpha = .8; g.lineWidth = lwk(2);
+    for (let y = -20; y <= 22; y += 7) { g.beginPath(); g.moveTo(cx - 46, cy + y); g.lineTo(cx + 6, cy + y); g.stroke(); }
+    g.restore();
+    g.strokeStyle = C.INK; g.lineWidth = lwk(2.4); g.beginPath(); g.arc(cx - 20, cy + 2, 24, 0, TAU); g.stroke();
+    // kadran ve düğme (sağda)
+    M.shape(g, M.P(p => p.rect(cx + 14, cy - 30, 28, 14)), C.VELLUM, C.VELLUM_D, 1.8, 3);
+    g.strokeStyle = C.VERM; g.lineWidth = lwk(2); g.beginPath(); g.moveTo(cx + 22 + (o.ibre || 0) * 10, cy - 29); g.lineTo(cx + 22 + (o.ibre || 0) * 10, cy - 17); g.stroke();
+    M.shape(g, M.P(p => p.arc(cx + 28, cy + 12, 13, 0, TAU)), C.VELLUM, C.VELLUM_D, 2.2, 4);
+    const da = (o.dugme || 0) - Math.PI / 2;
+    g.strokeStyle = C.INK; g.lineWidth = lwk(2.6); g.lineCap = 'round'; g.beginPath(); g.moveTo(cx + 28, cy + 12); g.lineTo(cx + 28 + Math.cos(da) * 10, cy + 12 + Math.sin(da) * 10); g.stroke();
+  };
+
+  P.pencere = (x0, y0, x1, y1, ic) => {
+    const glass = M.P(p => p.rect(x0, y0, x1 - x0, y1 - y0));
+    g.save(); g.clip(glass); ic(); g.restore();
+    const fr = 14;
+    const frame = M.P(p => { p.rect(x0 - fr, y0 - fr, x1 - x0 + 2 * fr, y1 - y0 + 2 * fr); p.rect(x0, y0, x1 - x0, y1 - y0); });
+    g.fillStyle = C.WHITE; g.fill(frame, 'evenodd');
+    g.strokeStyle = C.INK; g.lineWidth = lwk(2.6); g.strokeRect(x0 - fr, y0 - fr, x1 - x0 + 2 * fr, y1 - y0 + 2 * fr); g.strokeRect(x0, y0, x1 - x0, y1 - y0);
+    const xm = (x0 + x1) / 2;
+    M.shape(g, M.P(p => p.rect(xm - 6, y0, 12, y1 - y0)), C.WHITE, '#c9c2b4', 2.2, 3);
+    M.shape(g, M.P(p => p.rect(x0 - 26, y1 + fr - 2, x1 - x0 + 52, 16)), C.WHITE, '#c9c2b4', 2.4, 4);
+  };
+
+  P.nis = (cx, top, bot, w, o = {}) => {
+    M.shape(g, M.arch(cx - w / 2 - 12, w + 24, top - 14, bot + 8), C.SAFFRON, C.SAFFRON_D, 2.6, 6);
+    const inner = M.arch(cx - w / 2, w, top, bot);
+    g.fillStyle = M.PAT.LAPIS; g.fill(inner); g.fillStyle = 'rgba(10,16,50,.35)'; g.fill(inner);
+    const dol = M.clamp(o.dol || 0);
+    if (dol > 0) {
+      g.save(); g.clip(inner); g.globalAlpha = dol;
+      M.gold(g, inner, { x: cx, y: (top + bot) / 2, r: w * 1.6, k: o.k ?? .25 }, 0);
+      if (o.ic) o.ic();
+      g.restore();
+    }
+    g.strokeStyle = C.INK; g.lineWidth = lwk(2.6); g.stroke(inner);
+    if (dol > 0 && dol < 1) M.flash(g, cx + w * .22, top + w * .45, 14, Math.sin(Math.PI * dol));
+  };
+
+  P.kase = (x, y, a = 0) => {
+    g.save(); g.translate(x, y); g.rotate(a);
+    M.shape(g, M.P(p => { p.moveTo(-34, -6); p.quadraticCurveTo(-30, 26, 0, 28); p.quadraticCurveTo(30, 26, 34, -6); p.closePath(); }), C.TURQ, C.TURQ_D, 2.4, 6);
+    M.shape(g, M.P(p => p.ellipse(0, -6, 34, 8, 0, 0, TAU)), '#e9f2ea', C.TURQ_D, 2.2, 3);
+    M.pearls(g, -24, 10, 24, 10, 5, 2);
+    g.restore();
+  };
+
+  // mini baş-omuz (vapur güvertesi, uzak kalabalık)
+  P.mini = (x, y, coat, o = {}) => {
+    M.shape(g, M.P(p => p.ellipse(x, y + 16, 15, 12, 0, Math.PI, 0)), coat, null, 1.8);
+    if (o.scarf) M.shape(g, M.P(p => p.arc(x, y, 12, 0, TAU)), o.scarf, null, 1.8);
+    else { M.shape(g, M.P(p => p.arc(x, y, 10, 0, TAU)), C.SKIN, C.SKIN_D, 1.8, 2); M.shape(g, M.P(p => p.arc(x - 1, y - 4, 9, Math.PI, 0)), o.hair || P.HAIR, null, 1.4); }
+  };
+
+  P.vapur = (x, y, o = {}) => {
+    const s = o.s || 1;
+    g.save(); g.translate(x, y); g.scale(s, s);
+    // baca
+    M.shape(g, M.P(p => p.rect(40, -210, 40, 66)), C.SAFFRON, C.SAFFRON_D, 2.6, 6);
+    M.shape(g, M.P(p => p.rect(40, -210, 40, 14)), C.INK, null, 2);
+    // üst kat
+    M.shape(g, M.P(p => p.rect(-125, -146, 250, 44)), C.WHITE, '#c9c2b4', 2.6, 6);
+    g.fillStyle = C.INK; for (let i = 0; i < 8; i++) g.fillRect(-113 + i * 30, -136, 15, 18);
+    // güvertedeki üç baş
+    const kf = M.clamp(o.kafalar || 0);
+    if (kf > 0) {
+      g.save(); g.globalAlpha *= kf;
+      P.mini(-92, -166, C.VERD, { hair: '#5a3a22' }); P.mini(-56, -166, C.TURQ, {}); P.mini(-20, -166, C.SAFFRON, { scarf: C.LILAC });
+      g.restore();
+    }
+    // korkuluk
+    g.strokeStyle = C.INK; g.lineWidth = lwk(1.8); g.beginPath(); g.moveTo(-125, -160); g.lineTo(125, -160);
+    for (let xx = -120; xx <= 120; xx += 16) { g.moveTo(xx, -160); g.lineTo(xx, -146); } g.stroke();
+    // alt kat
+    M.shape(g, M.P(p => p.rect(-178, -104, 356, 50)), C.WHITE, '#c9c2b4', 2.6, 6);
+    g.fillStyle = C.INK; for (let i = 0; i < 11; i++) g.fillRect(-163 + i * 31, -93, 17, 21);
+    // gövde
+    M.shape(g, M.poly([[-218, -56], [218, -56], [190, 0], [-190, 0]]), C.WHITE, '#c9c2b4', 3, 8);
+    M.shape(g, M.poly([[-207, -22], [207, -22], [190, 0], [-190, 0]]), C.LAPIS, C.LAPIS_D, 2.4, 4);
+    g.strokeStyle = C.INK; g.lineWidth = lwk(2); g.beginPath(); g.moveTo(-212, -44); g.lineTo(212, -44); g.stroke();
+    g.restore();
+  };
+
+  P.duman = (x, y, t, kal = 0) => {
+    const n = 7;
+    for (let i = n - 1; i >= 0; i--) {
+      const v = i / (n - 1);
+      const px = x + v * (70 + 260 * kal) + Math.sin(t * 2 + i) * 6, py = y - v * (90 + 60 * kal);
+      const r = 8 + v * 14 + kal * (18 + 70 * v);
+      g.save(); g.globalAlpha *= (1 - v * .45);
+      M.shape(g, M.P(p => p.arc(px, py, r, 0, TAU)), C.WHITE, '#b9c3dc', 1.8, 5);
+      g.restore();
+    }
+  };
+
+  // sahil: dalgalı deniz bandı
+  P.deniz = (x0, x1, y0, y1, t) => {
+    g.fillStyle = C.TURQ; g.fillRect(x0, y0, x1 - x0, y1 - y0);
+    M.shape(g, M.P(p => p.rect(x0, y0, x1 - x0, 34)), C.LAPIS, C.LAPIS_D, 2.4, 6);
+    g.save(); g.strokeStyle = C.WHITE; g.globalAlpha = .75; g.lineWidth = lwk(2.2); g.lineCap = 'round';
+    for (let y = y0 + 70, r = 0; y < y1; y += 62, r++) for (let x = x0 + (r % 2) * 50; x < x1; x += 100) {
+      const xx = x + Math.sin(t * .8 + r) * 6; g.beginPath(); g.arc(xx, y, 14, Math.PI * 1.1, Math.PI * 1.9); g.stroke();
+    }
+    g.restore();
+  };
+
+
   return P;
   };
 

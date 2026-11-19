@@ -17,6 +17,7 @@
 <canvas id="c" width="1080" height="1920"></canvas>
 <script src="eskiz.js"></script>
 <script src="minyatur.js"></script>
+<script src="crayon.js"></script>
 <script>
   // Film dosyası ?film=<dosya yolu> ile verilir. Dosya window.FILM'i tanımlar:
   // Eskiz:    { duration, fps?, paper, ink, accent, seed?, subs?, setup(E)?, render(g, t, E) }
@@ -41,7 +42,10 @@
           document.fonts.load(`italic 500 50px 'Fraunces Variable'`, sample),
         ]);
         await document.fonts.ready;
-        if (FILM.style === 'minyatur') {
+        if (FILM.style === 'crayon') {
+          M.setup(g, FILM); CR.setup(g);
+          if (FILM.setup) FILM.setup(M, CR);
+        } else if (FILM.style === 'minyatur') {
           M.setup(g, FILM);
           if (FILM.setup) FILM.setup(M);
         } else {
@@ -66,6 +70,18 @@
     const tp = E.warp(FILM.timeMap, t);
     g.setTransform(1, 0, 0, 1, 0, 0);
     g.clearRect(0, 0, E.W, E.H);
+    if (FILM.style === 'crayon') {
+      // Crayon (deneme): kâğıt, mum boya şekiller, sulu boya yıkaması; bordür ve parşömen altyazı yok
+      M.lwK = 1; CR.begin(g, tp);
+      FILM.render(g, tp, M, CR);
+      CR.end(g);
+      // altyazı (parşömen bant) ve Instagram maskesi minyatürle ortak; bordür yok
+      M.lwK = 1; M.subY = FILM.subY ?? 1440; M.subKapat = !!FILM.subKapat;
+      M.drawSubs(g, FILM.subs, tp);
+      if (FILM.overlay) { g.save(); g.setTransform(1, 0, 0, 1, 0, 0); FILM.overlay(g, tp, M); g.restore(); }
+      if (window.INSTA_MASKE || FILM.instaMaske) M.instaMaske(g);
+      return true;
+    }
     if (FILM.style === 'minyatur') {
       g.fillStyle = M.C.LAPIS_D; g.fillRect(0, 0, M.W, M.H);
       g.save();
@@ -75,6 +91,7 @@
       g.restore();
       M.lwK = 1;
       M.subY = FILM.subY ?? 1440;
+      M.subKapat = !!FILM.subKapat;
       M.drawSubs(g, FILM.subs, tp);
       if (FILM.overlay) { g.save(); g.setTransform(1, 0, 0, 1, 0, 0); FILM.overlay(g, tp, M); g.restore(); }
       M.border(g, FILM.signature ?? 'Hemdem');

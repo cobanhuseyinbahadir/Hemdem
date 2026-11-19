@@ -39,7 +39,7 @@ Ses (3, 3b) metin onaylanır onaylanmaz hazırlanır ve görsel planla (3c) para
 
 ## Motor
 
-Videolar `motor/` klasöründeki motorla kodla üretilir (Node + Chrome + ffmpeg). 15 Kasım 2026'dan itibaren stil **Hemdem Minyatür**'dür (`motor/minyatur.js`, film dosyasında `style: 'minyatur'`); eski Hemdem Eskiz motoru (`motor/eskiz.js`) yalnızca eski videolar için durur. Hazır parçalar (`M.parcalar(g)`: defter, sandık, mendil, telefon, nazarlık, bebek, oturan figür…) ve müzik kütüphanesi (`motor/muzik/`) için kılavuz: `motor/README.md`. Görsel referanslar: `tasarim/REFERANSLAR.md`.
+Videolar `motor/` klasöründeki motorla kodla üretilir (Node + Chrome + ffmpeg). **İki görsel stil vardır, video başına seçilir** (19 Kasım 2026): **Hemdem Minyatür** (`motor/minyatur.js`, film dosyasında `style: 'minyatur'`; 15 Kasım'dan beri) ve **Hemdem Crayon** (mum boya; `motor/crayon.js`, `style: 'crayon'`; minyatür motorunun üstünde ince katman, çekim/geçiş/altyazı/figür kodu ortak). İçerik sahibi günün stilini Şef'e söyler ("bugün minyatür" / "bugün crayon"); Şef `durum.md`'ye `Stil:` olarak yazar, plan ve film o stille yapılır; belirtilmemişse görsel plan kapısında sorar. eski Hemdem Eskiz motoru (`motor/eskiz.js`) yalnızca eski videolar için durur. Hazır parçalar (`M.parcalar(g)`: defter, sandık, mendil, telefon, nazarlık, bebek, oturan figür…) ve müzik kütüphanesi (`motor/muzik/`) için kılavuz: `motor/README.md`. Görsel referanslar: `tasarim/REFERANSLAR.md`.
 
 `<tarih>` her zaman `YYYY-AA-GG` biçimindedir (ör. `2026-11-12`).
 
